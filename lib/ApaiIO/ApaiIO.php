@@ -28,10 +28,10 @@ use ApaiIO\ResponseTransformer\ResponseTransformerFactory;
  *
  * http://www.amazon.com
  *
- * @author       Jan Eichhorn <exeu65@googlemail.com>
+ * @author Jan Eichhorn <exeu65@googlemail.com>
  *
- * @link         https://github.com/Exeu/apai-io/wiki Wiki
- * @link         https://github.com/Exeu/apai-io Source
+ * @link   https://github.com/Exeu/apai-io/wiki Wiki
+ * @link   https://github.com/Exeu/apai-io Source
  */
 class ApaiIO
 {
@@ -58,7 +58,7 @@ class ApaiIO
      * @param OperationInterface $operation
      * @param ConfigurationInterface $configuration
      *
-     * @return \ApaiIO\Request\mixed
+     * @return mixed
      */
     public function runOperation(OperationInterface $operation, ConfigurationInterface $configuration = null)
     {
@@ -71,6 +71,14 @@ class ApaiIO
         return $this->applyResponseTransformer($response, $configuration);
     }
 
+    /**
+     * Applies a responsetransformer
+     *
+     * @param mixed $response
+     * @param ConfigurationInterface $configuration
+     *
+     * @return mixed
+     */
     protected function applyResponseTransformer($response, ConfigurationInterface $configuration)
     {
         if (true === is_null($configuration->getResponseTransformerClass())) {

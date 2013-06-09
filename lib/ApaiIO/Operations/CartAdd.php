@@ -24,13 +24,33 @@ namespace ApaiIO\Operations;
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
-class CartAdd extends AbstractOperation
+class CartAdd extends CartCreate
 {
+    private $itemCounter = 1;
+
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
         return 'CartAdd';
+    }
+
+    public function setCartId($cartId)
+    {
+        $this->parameter['CartId'] = $cartId;
+    }
+
+    public function setHMAC($HMAC)
+    {
+        $this->parameter['HMAC'] = $HMAC;
+    }
+
+    public function addItem($asin, $quantity)
+    {
+        $this->parameter['Item.'.$this->itemCounter.'.ASIN'] = $asin;
+        $this->parameter['Item.'.$this->itemCounter.'.Quantity'] = $quantity;
+
+        $this->itemCounter++;
     }
 }
