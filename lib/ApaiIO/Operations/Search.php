@@ -61,4 +61,27 @@ class Search extends AbstractOperation
 
         return $this;
     }
+
+    /**
+     * Sets the resultpage to a specified value
+     * Allows to browse resultsets which have more than one page
+     *
+     * @param integer $page
+     *
+     * @return \ApaiIO\Operations\Search
+     */
+    public function setPage($page)
+    {
+        if (false === is_numeric($page) || $page < 1 || $page > 10)
+        {
+            throw new InvalidArgumentException(sprintf(
+                '%s is an invalid page value. It has to be numeric, positive and between 1 and 10',
+                $page
+            ));
+        }
+
+        $this->parameter['ItemPage'] = $page;
+
+        return $this;
+    }
 }

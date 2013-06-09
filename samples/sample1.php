@@ -29,7 +29,7 @@ $search = new Search();
 $search->setCategory('DVD');
 $search->setActor('Bruce Willis');
 $search->setKeywords('Stirb Langsam');
-$search->setItemPage(3);
+$search->setPage(3);
 $search->setResponseGroup(array('Large', 'Small'));
 
 $formattedResponse = $apaiIO->runOperation($search);
