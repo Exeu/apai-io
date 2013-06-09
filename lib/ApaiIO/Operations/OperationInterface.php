@@ -26,7 +26,7 @@ interface OperationInterface
      *
      * @return string
      */
-    function getName();
+    public function getName();
 
     /**
      * Sets the responsegroups for the current operation
@@ -36,12 +36,12 @@ interface OperationInterface
      *
      * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CHAP_ResponseGroupsList.html
      */
-    function setResponseGroup(array $responseGroup);
+    public function setResponseGroup(array $responseGroup);
 
     /**
      * Returns all paramerters belonging to the current operation
      *
      * @return array
      */
-    function getOperationParameter();
+    public function getOperationParameter();
 }

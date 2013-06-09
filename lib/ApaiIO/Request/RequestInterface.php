@@ -27,7 +27,7 @@ interface RequestInterface
      *
      * @param ConfigurationInterface $configuration
      */
-    function setConfiguration(ConfigurationInterface $configuration);
+    public function setConfiguration(ConfigurationInterface $configuration);
 
     /**
      * Performs the request
@@ -36,5 +36,5 @@ interface RequestInterface
      *
      * @return mixed The response of the request
      */
-    function perform(OperationInterface $operation);
+    public function perform(OperationInterface $operation);
 }

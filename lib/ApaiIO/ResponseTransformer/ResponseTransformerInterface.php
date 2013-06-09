@@ -24,5 +24,5 @@ interface ResponseTransformerInterface
      *
      * @param mixed $response
      */
-    function transform($response);
+    public function transform($response);
 }

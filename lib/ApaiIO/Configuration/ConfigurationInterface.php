@@ -24,40 +24,40 @@ interface ConfigurationInterface
      *
      * @return string
      */
-    function getCountry();
+    public function getCountry();
 
     /**
      * Gets the accesskey
      *
      * @return string
      */
-    function getAccessKey();
+    public function getAccessKey();
 
     /**
      * Gets the secretkey
      *
      * @return string
      */
-    function getSecretKey();
+    public function getSecretKey();
 
     /**
      * Gets the associatetag
      *
      * @return string
      */
-    function getAssociateTag();
+    public function getAssociateTag();
 
     /**
      * Gets the requestclass
      *
      * @return string
      */
-    function getRequestClass();
+    public function getRequestClass();
 
     /**
      * Gets the responsetransformerclass
      *
      * @return string
      */
-    function getResponseTransformerClass();
+    public function getResponseTransformerClass();
 }
