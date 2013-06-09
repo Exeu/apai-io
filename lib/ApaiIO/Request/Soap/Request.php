@@ -25,7 +25,7 @@ use ApaiIO\Request\RequestInterface;
 /**
  * Basic implementation of the soap request
  *
- * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/MakingSOAPRequests.html
+ * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/MakingSOAPRequests.html
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
@@ -117,16 +117,19 @@ class Request implements RequestInterface
             array(
                 'AWSAccessKeyId' => $this->configuration->getAccessKey(),
                 'Request' => array_merge(
-                    array('Operation' => $operation->getName()),
-                    $operation->getOperationParameter()
-        )));
+                    array(
+                        'Operation' => $operation->getName()),
+                        $operation->getOperationParameter()
+                    )
+            )
+        );
     }
 
     /**
      * Performs the soaprequest
      *
      * @param OperationInterface $operation The operation
-     * @param array $params Requestparameters 'ParameterName' => 'ParameterValue'
+     * @param array              $params    Requestparameters 'ParameterName' => 'ParameterValue'
      *
      * @return array The response as an array with stdClass objects
      */

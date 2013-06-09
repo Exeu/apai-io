@@ -37,6 +37,9 @@ class Util
     /**
      * Provides the signature
      *
+     * @param string $stringToSign The string to be signed
+     * @param string $secretKey    The paapi secret key
+     *
      * @return string
      */
     public static function buildSignature($stringToSign, $secretKey)

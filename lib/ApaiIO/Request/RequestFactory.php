@@ -33,15 +33,24 @@ class RequestFactory
      */
     private static $requestObjects = array();
 
-    private function __construct() { }
+    /**
+     * Private constructor
+     */
+    private function __construct()
+    {
+    }
 
-    private function __clone() { }
+    /**
+     * Private clone
+     */
+    private function __clone()
+    {
+    }
 
     /**
      * Creates a new Requestobject
      *
-     * @param string $class
-     * @param ConfigurationInterface $configuration
+     * @param ConfigurationInterface $configuration The configurationobject
      *
      * @return \ApaiIO\Request\RequestInterface
      */

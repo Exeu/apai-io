@@ -33,14 +33,23 @@ class ResponseTransformerFactory
      */
     private static $responseTransformerObjects = array();
 
-    private function __construct() { }
+    /**
+     * Private constructor
+     */
+    private function __construct()
+    {
+    }
 
-    private function __clone() { }
+    /**
+     * Private clone
+     */
+    private function __clone()
+    {
+    }
 
     /**
      * Creates a new ResponseTransformer-object
      *
-     * @param string $class
      * @param ConfigurationInterface $configuration
      *
      * @return \ApaiIO\ResponseTransformer\ResponseTransformerInterface

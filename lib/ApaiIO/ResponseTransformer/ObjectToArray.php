@@ -29,7 +29,7 @@ class ObjectToArray implements ResponseTransformerInterface
      */
     public function transform($response)
     {
-        return $this->objectToArray($response);
+        return $this->buildArray($response);
     }
 
     /**
@@ -39,11 +39,10 @@ class ObjectToArray implements ResponseTransformerInterface
      *
      * @return array An arrayrepresentation of the given object
      */
-    protected function objectToArray($object)
+    protected function buildArray($object)
     {
         $out = array();
-        foreach ($object as $key => $value)
-        {
+        foreach ($object as $key => $value) {
             switch (true)
             {
                 case is_object($value):

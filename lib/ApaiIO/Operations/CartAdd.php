@@ -20,14 +20,12 @@ namespace ApaiIO\Operations;
 /**
  * A cart add operation
  *
- * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CartAdd.html
+ * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CartAdd.html
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
 class CartAdd extends CartCreate
 {
-    private $itemCounter = 1;
-
     /**
      * {@inheritdoc}
      */
@@ -36,21 +34,23 @@ class CartAdd extends CartCreate
         return 'CartAdd';
     }
 
+    /**
+     * Sets the cart id
+     *
+     * @param string $cartId
+     */
     public function setCartId($cartId)
     {
         $this->parameter['CartId'] = $cartId;
     }
 
+    /**
+     * Sets the HMAC
+     *
+     * @param string $HMAC
+     */
     public function setHMAC($HMAC)
     {
         $this->parameter['HMAC'] = $HMAC;
-    }
-
-    public function addItem($asin, $quantity)
-    {
-        $this->parameter['Item.'.$this->itemCounter.'.ASIN'] = $asin;
-        $this->parameter['Item.'.$this->itemCounter.'.Quantity'] = $quantity;
-
-        $this->itemCounter++;
     }
 }

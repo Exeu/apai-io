@@ -20,7 +20,7 @@ namespace ApaiIO\Operations;
 /**
  * A item search operation
  *
- * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/ItemSearch.html
+ * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/ItemSearch.html
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
@@ -72,8 +72,7 @@ class Search extends AbstractOperation
      */
     public function setPage($page)
     {
-        if (false === is_numeric($page) || $page < 1 || $page > 10)
-        {
+        if (false === is_numeric($page) || $page < 1 || $page > 10) {
             throw new InvalidArgumentException(sprintf(
                 '%s is an invalid page value. It has to be numeric, positive and between 1 and 10',
                 $page

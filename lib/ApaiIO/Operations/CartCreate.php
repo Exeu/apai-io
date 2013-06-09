@@ -20,7 +20,7 @@ namespace ApaiIO\Operations;
 /**
  * A cart create operation
  *
- * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CartCreate.html
+ * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CartCreate.html
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
@@ -36,6 +36,12 @@ class CartCreate extends AbstractOperation
         return 'CartCreate';
     }
 
+    /**
+     * Adds an item to the Cart
+     *
+     * @param string  $asin     The ASIN Number of the item
+     * @param integer $quantity How much you want to add
+     */
     public function addItem($asin, $quantity)
     {
         $this->parameter['Item.'.$this->itemCounter.'.ASIN'] = $asin;

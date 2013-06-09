@@ -47,8 +47,8 @@ abstract class AbstractOperation implements OperationInterface
     /**
      * Magic setterfunctions
      *
-     * @param string $methodName
-     * @param string $parameter
+     * @param string $methodName Methodname
+     * @param string $parameter  Parameters
      *
      * @return \ApaiIO\Operations\AbstractOperation
      */

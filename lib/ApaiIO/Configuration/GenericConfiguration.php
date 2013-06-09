@@ -82,6 +82,8 @@ class GenericConfiguration implements ConfigurationInterface
      * Sets an validates the country
      *
      * @param string $country
+     *
+     * @return \ApaiIO\Configuration\GenericConfiguration
      */
     public function setCountry($country)
     {
@@ -104,6 +106,8 @@ class GenericConfiguration implements ConfigurationInterface
      * Sets the accesskey
      *
      * @param string $accessKey
+     *
+     * @return \ApaiIO\Configuration\GenericConfiguration
      */
     public function setAccessKey($accessKey)
     {
@@ -124,6 +128,8 @@ class GenericConfiguration implements ConfigurationInterface
      * Sets the secretkey
      *
      * @param string $secretKey
+     *
+     * @return \ApaiIO\Configuration\GenericConfiguration
      */
     public function setSecretKey($secretKey)
     {
@@ -144,6 +150,8 @@ class GenericConfiguration implements ConfigurationInterface
      * Sets the associatetag
      *
      * @param string $associateTag
+     *
+     * @return \ApaiIO\Configuration\GenericConfiguration
      */
     public function setAssociateTag($associateTag)
     {
@@ -164,6 +172,8 @@ class GenericConfiguration implements ConfigurationInterface
      * Sets the requestclass
      *
      * @param string $requestClass
+     *
+     * @return \ApaiIO\Configuration\GenericConfiguration
      */
     public function setRequestClass($requestClass)
     {
@@ -184,6 +194,8 @@ class GenericConfiguration implements ConfigurationInterface
      * Sets the responsetransformerclass
      *
      * @param string $responseTransformerClass
+     *
+     * @return \ApaiIO\Configuration\GenericConfiguration
      */
     public function setResponseTransformerClass($responseTransformerClass)
     {
