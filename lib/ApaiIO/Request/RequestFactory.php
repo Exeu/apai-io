@@ -18,16 +18,54 @@
 namespace ApaiIO\Request;
 
 use ApaiIO\Configuration\ConfigurationInterface;
-use ApaiIO\Request\Soap\Request as SoapRequest;
 
+/**
+ * A requestfactory which creates a new requestobjects depending on the class name you provide
+ *
+ * @author Jan Eichhorn <exeu65@googlemail.com>
+ */
 class RequestFactory
 {
+    /**
+     * Storage for the requestobjects
+     *
+     * @var array
+     */
+    private static $requestObjects = array();
+
     private function __construct() { }
 
     private function __clone() { }
 
-    public static function createSoapRequest(ConfigurationInterface $configuration)
+    /**
+     * Creates a new Requestobject
+     *
+     * @param string $class
+     * @param ConfigurationInterface $configuration
+     *
+     * @return \ApaiIO\Request\RequestInterface
+     */
+    public static function createRequest(ConfigurationInterface $configuration)
     {
-        return new SoapRequest($configuration);
+        $class = $configuration->getRequestClass();
+
+        if (true == array_key_exists($class, self::$requestObjects)) {
+            return self::$requestObjects[$class];
+        }
+
+        try {
+            $reflectionClass = new \ReflectionClass($class);
+        } catch (\ReflectionException $e) {
+            throw new \InvalidArgumentException(sprintf("Requestclass not found: %s", $class));
+        }
+
+        if ($reflectionClass->implementsInterface('\\ApaiIO\\Request\\RequestInterface')) {
+            $request = new $class();
+            $request->setConfiguration($configuration);
+
+            return self::$requestObjects[$class] = $request;
+        }
+
+        throw new \LogicException(sptrinf("Requestclass does not implements the RequestInterface: %s", $class));
     }
 }

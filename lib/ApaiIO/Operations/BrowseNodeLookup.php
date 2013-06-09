@@ -18,46 +18,32 @@
 namespace ApaiIO\Operations;
 
 /**
- * A item search operation
+ * A browse node lookup operation
  *
- * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/ItemSearch.html
+ * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/BrowseNodeLookup.html
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
-class Search extends AbstractOperation
+class BrowseNodeLookup extends AbstractOperation
 {
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-        return 'ItemSearch';
+        return 'BrowseNodeLookup';
     }
 
     /**
-     * Sets the amazon category
+     * Sets the nodeid in which should be looked up
      *
-     * @param string $category
+     * @param string $nodeId
      *
-     * @return \ApaiIO\Operations\Search
+     * @return \ApaiIO\Operations\BrowseNodeLookup
      */
-    public function setCategory($category)
+    public function setNodeId($nodeId)
     {
-        $this->parameter['SearchIndex'] = $category;
-
-        return $this;
-    }
-
-    /**
-     * Sets the keywords
-     *
-     * @param string $keywords
-     *
-     * @return \ApaiIO\Operations\Search
-     */
-    public function setKeywords($keywords)
-    {
-        $this->parameter['Keywords'] = $keywords;
+        $this->parameter['BrowseNodeId'] = $nodeId;
 
         return $this;
     }

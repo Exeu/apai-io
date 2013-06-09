@@ -17,30 +17,24 @@
 
 namespace ApaiIO\Request;
 
-/**
- * A collection of misc functions helping to build the request
- *
- * @author Jan Eichhorn <exeu65@googlemail.com>
- */
-class Util
+use ApaiIO\Configuration\ConfigurationInterface;
+use ApaiIO\Operations\OperationInterface;
+
+interface RequestInterface
 {
     /**
-     * Provides the current timestamp according to the requirements of amazon
+     * Sets the configurationobject
      *
-     * @return string
+     * @param ConfigurationInterface $configuration
      */
-    public static function getTimeStamp()
-    {
-        return gmdate("Y-m-d\TH:i:s\Z");
-    }
+    function setConfiguration(ConfigurationInterface $configuration);
 
     /**
-     * Provides the signature
+     * Performs the request
      *
-     * @return string
+     * @param OperationInterface $operation
+     *
+     * @return mixed The response of the request
      */
-    public static function buildSignature($stringToSign, $secretKey)
-    {
-        return base64_encode(hash_hmac("sha256", $stringToSign, $secretKey, true));
-    }
+    function perform(OperationInterface $operation);
 }

@@ -17,28 +17,41 @@
 
 namespace ApaiIO\Operations;
 
+/**
+ * A base implementation of the OperationInterface
+ *
+ * @author Jan Eichhorn <exeu65@googlemail.com>
+ */
 abstract class AbstractOperation implements OperationInterface
 {
-    protected $responseGroup;
-
     protected $parameter = array();
 
-    public function responseGroup(array $responseGroup = null)
+    /**
+     * {@inheritdoc}
+     */
+    public function setResponseGroup(array $responseGroup)
     {
-        if (null === $responseGroup) {
-            return $this->responseGroup;
-        }
-
-        $this->responseGroup = $responseGroup;
+        $this->parameter['ResponseGroup'] = $responseGroup;
 
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getOperationParameter()
     {
         return $this->parameter;
     }
 
+    /**
+     * Magic setterfunctions
+     *
+     * @param string $methodName
+     * @param string $parameter
+     *
+     * @return \ApaiIO\Operations\AbstractOperation
+     */
     public function __call($methodName, $parameter)
     {
         if (strstr($methodName, 'set')) {
@@ -46,5 +59,7 @@ abstract class AbstractOperation implements OperationInterface
 
             return $this;
         }
+
+        throw new \BadFunctionCallException(sprintf('The function "%s" does not exist!', $methodName));
     }
 }

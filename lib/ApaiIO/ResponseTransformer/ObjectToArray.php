@@ -15,10 +15,18 @@
 * limitations under the License.
 */
 
-namespace ApaiIO\Response;
+namespace ApaiIO\ResponseTransformer;
 
-class ObjectToArray
+/**
+ * A responsetransformer transforming an object to an array
+ *
+ * @author Jan Eichhorn <exeu65@googlemail.com>
+ */
+class ObjectToArray implements ResponseTransformerInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function transform($response)
     {
         return $this->objectToArray($response);

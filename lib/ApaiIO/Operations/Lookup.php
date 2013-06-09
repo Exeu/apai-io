@@ -17,13 +17,30 @@
 
 namespace ApaiIO\Operations;
 
+/**
+ * A item lookup operation
+ *
+ * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/ItemLookup.html
+ *
+ * @author Jan Eichhorn <exeu65@googlemail.com>
+ */
 class Lookup extends AbstractOperation
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'ItemLookup';
     }
 
+    /**
+     * Sets the itemid which should be looked up
+     *
+     * @param string $itemId
+     *
+     * @return \ApaiIO\Operations\Lookup
+     */
     public function setItemId($itemId)
     {
         $this->parameter['ItemId'] = $itemId;

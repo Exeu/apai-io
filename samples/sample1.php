@@ -9,49 +9,63 @@ use ApaiIO\Response\ObjectToArray;
 use ApaiIO\Operations\Lookup;
 use ApaiIO\Operations\SimilarityLookup;
 use ApaiIO\Operations\CartCreate;
+use ApaiIO\ApaiIO;
+use ApaiIO\Operations\BrowseNodeLookup;
 
 $conf = new GenericConfiguration();
 
 try {
     $conf
-        ->country('de')
-        ->accessKey(AWS_API_KEY)
-        ->secretKey(AWS_API_SECRET_KEY)
-        ->associateTag(AWS_ASSOCIATE_TAG);
+        ->setCountry('de')
+        ->setAccessKey(AWS_API_KEY)
+        ->setSecretKey(AWS_API_SECRET_KEY)
+        ->setAssociateTag(AWS_ASSOCIATE_TAG);
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
-
-$soapRequest = RequestFactory::createSoapRequest($conf);
+$apaiIO = new ApaiIO($conf);
 
 $search = new Search();
 $search->setCategory('DVD');
 $search->setActor('Bruce Willis');
 $search->setKeywords('Stirb Langsam');
 $search->setItemPage(3);
+$search->setResponseGroup(array('Large', 'Small'));
 
-echo "<pre>";
+$formattedResponse = $apaiIO->runOperation($search);
 
-$response = new ObjectToArray();
+// var_dump($formattedResponse);
 
-$formattedResponse = $response->transform($soapRequest->perform($search));
+$conf->setResponseTransformerClass('\ApaiIO\ResponseTransformer\XmlToDomDocument');
 
 $lookup = new Lookup();
 $lookup->setItemId('B0040PBK32');
-$lookup->responseGroup(array('Large', 'Small'));
+$lookup->setResponseGroup(array('Large', 'Small'));
 
-$formattedResponse = $response->transform($soapRequest->perform($lookup));
+$formattedResponse = $apaiIO->runOperation($lookup, $configuration);
 
+//var_dump($formattedResponse);
 
 $lookup = new SimilarityLookup();
 $lookup->setItemId('B0040PBK32');
-$lookup->responseGroup(array('Large', 'Small'));
+$lookup->setResponseGroup(array('Large', 'Small'));
 
-$formattedResponse = $response->transform($soapRequest->perform($lookup));
+$formattedResponse = $apaiIO->runOperation($lookup);
 
-$cart = new CartCreate();
-$cart->addItem('B0040PBK32', 1);
+$conf->setRequestClass('\ApaiIO\Request\Soap\Request');
+$conf->setResponseTransformerClass('\ApaiIO\ResponseTransformer\ObjectToArray');
 
-$response = $soapRequest->perform($cart);
+$lookup = new SimilarityLookup();
+$lookup->setItemId('B0040PBK32');
+$lookup->setResponseGroup(array('Large', 'Small'));
 
-var_dump($response);
+$formattedResponse = $apaiIO->runOperation($lookup, $conf);
+
+//var_dump($formattedResponse);
+
+$browseNodeLookup = new BrowseNodeLookup();
+$browseNodeLookup->setNodeId(542064);
+
+$formattedResponse = $apaiIO->runOperation($browseNodeLookup, $configuration);
+
+var_dump($formattedResponse);

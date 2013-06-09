@@ -17,13 +17,31 @@
 
 namespace ApaiIO\Operations;
 
+/**
+ * A similarity lookup operation
+ *
+ * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/SimilarityLookup.html
+ *
+ * @author Jan Eichhorn <exeu65@googlemail.com>
+ */
 class SimilarityLookup extends AbstractOperation
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'SimilarityLookup';
     }
 
+    /**
+     * Sets the itemid which has to be looked up
+     * Basicly it is an amazon asin
+     *
+     * @param string $itemId
+     *
+     * @return \ApaiIO\Operations\SimilarityLookup
+     */
     public function setItemId($itemId)
     {
         $this->parameter['ItemId'] = $itemId;

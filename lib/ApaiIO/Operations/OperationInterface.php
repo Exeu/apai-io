@@ -22,11 +22,26 @@ interface OperationInterface
     /**
      * Gets the name of the operation
      *
+     * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CHAP_OperationListAlphabetical.html
+     *
      * @return string
      */
     function getName();
 
-    function responseGroup(array $responseGroup);
+    /**
+     * Sets the responsegroups for the current operation
+     * Which responsegroups are available depends on the Operation you perform
+     *
+     * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CHAP_ResponseGroupsList.html
+     *
+     * @param array $responseGroup
+     */
+    function setResponseGroup(array $responseGroup);
 
+    /**
+     * Returns all paramerters belonging to the current operation
+     *
+     * @return array
+     */
     function getOperationParameter();
 }

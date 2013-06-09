@@ -20,8 +20,16 @@ namespace ApaiIO\Request\Soap;
 use ApaiIO\Configuration\ConfigurationInterface;
 use ApaiIO\Request\Util;
 use ApaiIO\Operations\OperationInterface;
+use ApaiIO\Request\RequestInterface;
 
-class Request
+/**
+ * Basic implementation of the soap request
+ *
+ * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/MakingSOAPRequests.html
+ *
+ * @author Jan Eichhorn <exeu65@googlemail.com>
+ */
+class Request implements RequestInterface
 {
     /**
      * The WSDL File
@@ -42,11 +50,17 @@ class Request
      */
     protected $configuration;
 
-    public function __construct(ConfigurationInterface $configuration)
+    /**
+     * {@inheritdoc}
+     */
+    public function setConfiguration(ConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function perform(OperationInterface $operation)
     {
         $requestParams = $this->buildRequestParams($operation);
@@ -59,7 +73,7 @@ class Request
     /**
      * Provides some necessary soap headers
      *
-     * @param string $function
+     * @param OperationInterface $operation
      *
      * @return array Each element is a concrete SoapHeader object
      */
@@ -72,7 +86,7 @@ class Request
             new \SoapHeader(
                 'http://security.amazonaws.com/doc/2007-01-01/',
                 'AWSAccessKeyId',
-                $this->configuration->accessKey()
+                $this->configuration->getAccessKey()
             ),
             new \SoapHeader(
                 'http://security.amazonaws.com/doc/2007-01-01/',
@@ -88,30 +102,30 @@ class Request
     }
 
     /**
-     * Builds the request parameters
+     * Builds the request parameters depending on the operation
      *
-     * @param string $function
-     * @param array  $params
+     * @param OperationInterface $operation
      *
      * @return array
      */
     protected function buildRequestParams(OperationInterface $operation)
     {
-        $associateTag = array('AssociateTag' => $this->configuration->associateTag());
+        $associateTag = array('AssociateTag' => $this->configuration->getAssociateTag());
 
         return array_merge(
             $associateTag,
             array(
-                'AWSAccessKeyId' => $this->configuration->accessKey(),
+                'AWSAccessKeyId' => $this->configuration->getAccessKey(),
                 'Request' => array_merge(
                     array('Operation' => $operation->getName()),
-                    $operation->getOperationParameter(),
-                    array('ResponseGroup' => $operation->responseGroup())
+                    $operation->getOperationParameter()
         )));
     }
 
     /**
-     * @param string $function Name of the function which should be called
+     * Performs the soaprequest
+     *
+     * @param OperationInterface $operation The operation
      * @param array $params Requestparameters 'ParameterName' => 'ParameterValue'
      *
      * @return array The response as an array with stdClass objects
@@ -125,7 +139,7 @@ class Request
 
         $soapClient->__setLocation(str_replace(
             '%%COUNTRY%%',
-            $this->configuration->country(),
+            $this->configuration->getCountry(),
             $this->webserviceEndpoint
         ));
         $soapClient->__setSoapHeaders($this->buildSoapHeader($operation));
@@ -134,12 +148,14 @@ class Request
     }
 
     /**
-     * provides the signature
+     * Calculates the signature for the request
+     *
+     * @param string $request
      *
      * @return string
      */
-    final protected function buildSignature($request)
+    protected function buildSignature($request)
     {
-        return base64_encode(hash_hmac("sha256", $request, $this->configuration->secretKey(), true));
+        return Util::buildSignature($request, $this->configuration->getSecretKey());
     }
 }

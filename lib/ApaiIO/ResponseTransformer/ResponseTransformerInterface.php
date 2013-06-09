@@ -15,32 +15,14 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Request;
+namespace ApaiIO\ResponseTransformer;
 
-/**
- * A collection of misc functions helping to build the request
- *
- * @author Jan Eichhorn <exeu65@googlemail.com>
- */
-class Util
+interface ResponseTransformerInterface
 {
     /**
-     * Provides the current timestamp according to the requirements of amazon
+     * Transforms the response of the request
      *
-     * @return string
+     * @param mixed $response
      */
-    public static function getTimeStamp()
-    {
-        return gmdate("Y-m-d\TH:i:s\Z");
-    }
-
-    /**
-     * Provides the signature
-     *
-     * @return string
-     */
-    public static function buildSignature($stringToSign, $secretKey)
-    {
-        return base64_encode(hash_hmac("sha256", $stringToSign, $secretKey, true));
-    }
+    function transform($response);
 }

@@ -19,32 +19,72 @@ namespace ApaiIO\Configuration;
 
 use ApaiIO\Configuration\Country;
 
+/**
+ * A generic configurationclass
+ *
+ * @author Jan Eichhorn <exeu65@googlemail.com>
+ */
 class GenericConfiguration implements ConfigurationInterface
 {
+    /**
+     * The country
+     *
+     * @var string
+     */
     protected $country;
 
+    /**
+     * The accesskey
+     *
+     * @var string
+     */
     protected $accessKey;
 
+    /**
+     * The string
+     *
+     * @var unknown
+     */
     protected $secretKey;
 
+    /**
+     * The associate Tag
+     *
+     * @var string
+     */
     protected $associateTag;
 
     /**
-     * Set or get the country
+     * The requestclass
+     * By default its set to the provided restful request
      *
-     * if the country argument is null it will return the current
-     * country, otherwise it will set the country and return itself.
-     *
-     * @param string|null $country
-     *
-     * @return string|GenericConfiguration depends on country argument
+     * @var string
      */
-    public function country($country = null)
-    {
-        if (null === $country) {
-            return $this->country;
-        }
+    protected $requestClass = "\ApaiIO\Request\Rest\Request";
 
+    /**
+     * The responsetransformerclass
+     * By default its set to null which means that no transformer will be applied
+     *
+     * @var string
+     */
+    protected $responseTransformerClass = null;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Sets an validates the country
+     *
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
         Country::isValidCountry($country);
 
         $this->country = strtolower($country);
@@ -53,59 +93,100 @@ class GenericConfiguration implements ConfigurationInterface
     }
 
     /**
-     * Setter/Getter of the AssociateTag.
-     * This could be used for late bindings of this attribute
-     *
-     * @param string $associateTag
-     *
-     * @return string|GenericConfiguration depends on associateTag argument
+     * {@inheritdoc}
      */
-    public function associateTag($associateTag = null)
+    public function getAccessKey()
     {
-        if (null === $associateTag) {
-            return $this->associateTag;
-        }
-
-        $this->associateTag = $associateTag;
-
-        return $this;
+        return $this->accessKey;
     }
 
     /**
-     * Setter/Getter of the AssociateTag.
-     * This could be used for late bindings of this attribute
+     * Sets the accesskey
      *
-     * @param string $associateTag
-     *
-     * @return string|GenericConfiguration depends on associateTag argument
+     * @param string $accessKey
      */
-    public function accessKey($accessKey = null)
+    public function setAccessKey($accessKey)
     {
-        if (null === $accessKey) {
-            return $this->accessKey;
-        }
-
         $this->accessKey = $accessKey;
 
         return $this;
     }
 
     /**
-     * Setter/Getter of the AssociateTag.
-     * This could be used for late bindings of this attribute
-     *
-     * @param string $associateTag
-     *
-     * @return string|GenericConfiguration depends on associateTag argument
+     * {@inheritdoc}
      */
-    public function secretKey($secretKey = null)
+    public function getSecretKey()
     {
-        if (null === $secretKey) {
-            return $this->secretKey;
-        }
+        return $this->secretKey;
+    }
 
+    /**
+     * Sets the secretkey
+     *
+     * @param string $secretKey
+     */
+    public function setSecretKey($secretKey)
+    {
         $this->secretKey = $secretKey;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAssociateTag()
+    {
+        return $this->associateTag;
+    }
+
+    /**
+     * Sets the associatetag
+     *
+     * @param string $associateTag
+     */
+    public function setAssociateTag($associateTag)
+    {
+        $this->associateTag = $associateTag;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequestClass()
+    {
+        return $this->requestClass;
+    }
+
+    /**
+     * Sets the requestclass
+     *
+     * @param string $requestClass
+     */
+    public function setRequestClass($requestClass)
+    {
+        $this->requestClass = $requestClass;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getResponseTransformerClass()
+    {
+        return $this->responseTransformerClass;
+    }
+
+    /**
+     * Sets the responsetransformerclass
+     *
+     * @param string $responseTransformerClass
+     */
+    public function setResponseTransformerClass($responseTransformerClass)
+    {
+        $this->responseTransformerClass = $responseTransformerClass;
     }
 }

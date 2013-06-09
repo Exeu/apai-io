@@ -20,44 +20,44 @@ namespace ApaiIO\Configuration;
 interface ConfigurationInterface
 {
     /**
-     * Set or get the country
+     * Gets the country
      *
-     * if the country argument is null it will return the current
-     * country, otherwise it will set the country and return itself.
-     *
-     * @param string|null $country
-     *
-     * @return string|GenericConfiguration depends on country argument
+     * @return string
      */
-    function country($country);
+    function getCountry();
 
     /**
-     * Setter/Getter of the AssociateTag.
-     * This could be used for late bindings of this attribute
+     * Gets the accesskey
      *
-     * @param string $associateTag
-     *
-     * @return string|GenericConfiguration depends on associateTag argument
+     * @return string
      */
-    function associateTag($associateTag);
+    function getAccessKey();
 
     /**
-     * Setter/Getter of the AssociateTag.
-     * This could be used for late bindings of this attribute
+     * Gets the secretkey
      *
-     * @param string $associateTag
-     *
-     * @return string|GenericConfiguration depends on associateTag argument
+     * @return string
      */
-    function accessKey($accessKey);
+    function getSecretKey();
 
     /**
-     * Setter/Getter of the AssociateTag.
-     * This could be used for late bindings of this attribute
+     * Gets the associatetag
      *
-     * @param string $associateTag
-     *
-     * @return string|GenericConfiguration depends on associateTag argument
+     * @return string
      */
-    function secretKey($secretKey);
+    function getAssociateTag();
+
+    /**
+     * Gets the requestclass
+     *
+     * @return string
+     */
+    function getRequestClass();
+
+    /**
+     * Gets the responsetransformerclass
+     *
+     * @return string
+     */
+    function getResponseTransformerClass();
 }

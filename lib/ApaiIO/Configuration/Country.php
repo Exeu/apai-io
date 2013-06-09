@@ -17,15 +17,39 @@
 
 namespace ApaiIO\Configuration;
 
+/**
+ * Countryvalidation and countrylistings according to the amazonapi
+ *
+ * @author Jan Eichhorn <exeu65@googlemail.com>
+ */
 final class Country
 {
+    /**
+     * Possible countries
+     * Important for the requestendpoints
+     *
+     * @var array
+     */
     static private $countryList = array('de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es');
 
+    /**
+     * Gets all possible countries
+     *
+     * @return array
+     */
     public static function getCountries()
     {
         return self::$countryList;
     }
 
+    /**
+     * Checks if the given value is a valid country
+     *
+     * @param string $country
+     * @param string $exception false = throw no exception true = throw an exception
+     *
+     * @return boolean
+     */
     public static function isValidCountry($country, $exception = true)
     {
         $isValid = in_array(strtolower($country), self::$countryList) ? true : false;
