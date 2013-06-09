@@ -20,8 +20,7 @@ namespace ApaiIO\Operations;
 /**
  * A cart add operation
  *
- * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CartAdd.html
- *
+ * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CartAdd.html
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
 class CartAdd extends CartCreate

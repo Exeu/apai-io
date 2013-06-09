@@ -25,8 +25,7 @@ use ApaiIO\Request\RequestInterface;
 /**
  * Basic implementation of the soap request
  *
- * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/MakingSOAPRequests.html
- *
+ * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/MakingSOAPRequests.html
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
 class Request implements RequestInterface
@@ -120,9 +119,7 @@ class Request implements RequestInterface
                     array(
                         'Operation' => $operation->getName()),
                         $operation->getOperationParameter()
-                    )
-            )
-        );
+        )));
     }
 
     /**

@@ -22,7 +22,7 @@ interface OperationInterface
     /**
      * Gets the name of the operation
      *
-     * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CHAP_OperationListAlphabetical.html
+     * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CHAP_OperationListAlphabetical.html
      *
      * @return string
      */

@@ -30,8 +30,8 @@ use ApaiIO\ResponseTransformer\ResponseTransformerFactory;
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  *
- * @link   https://github.com/Exeu/apai-io/wiki Wiki
- * @link   https://github.com/Exeu/apai-io Source
+ * @see    https://github.com/Exeu/apai-io/wiki Wiki
+ * @see    https://github.com/Exeu/apai-io Source
  */
 class ApaiIO
 {

@@ -20,8 +20,7 @@ namespace ApaiIO\Operations;
 /**
  * A item search operation
  *
- * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/ItemSearch.html
- *
+ * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/ItemSearch.html
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
 class Search extends AbstractOperation

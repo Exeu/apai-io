@@ -20,8 +20,7 @@ namespace ApaiIO\Operations;
 /**
  * A browse node lookup operation
  *
- * @link   http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/BrowseNodeLookup.html
- *
+ * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/BrowseNodeLookup.html
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
 class BrowseNodeLookup extends AbstractOperation
