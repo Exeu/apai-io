@@ -39,7 +39,7 @@
     <exec executable="phpcs" output="/dev/null">
       <arg line="--report=checkstyle
               --report-file=${build.dir}/logs/checkstyle.xml
-              --standard=Symfony2
+              --standard=PSR2
               ${basedir}/lib" />
     </exec>
   </target>
