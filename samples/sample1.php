@@ -1,5 +1,5 @@
 <?php
-require_once 'autoloader.php';
+require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'tests'.DIRECTORY_SEPARATOR.'bootstrap.php';
 require_once 'Config.php';
 
 use ApaiIO\Request\RequestFactory;
