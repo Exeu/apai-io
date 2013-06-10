@@ -1,4 +1,6 @@
 <?php
+use ApaiIO\Request\Util;
+use ApaiIO\ResponseTransformer\ObjectToArray;
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -15,16 +17,20 @@
  * limitations under the License.
  */
 
-use ApaiIO\Configuration\GenericConfiguration;
-
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testCountryException()
+    public function testObjectToArray()
     {
-        $object = new GenericConfiguration();
-        $object->setCountry('no country');
+        $stdClassSub = new \stdClass();
+        $stdClassSub->baz = 'bar';
+
+        $stdClass = new \stdClass();
+        $stdClass->foo = 'bar';
+        $stdClass->bar = $stdClassSub;
+
+        $array = array('foo' => 'bar', 'bar' => array('baz' => 'bar'));
+        $transformer = new ObjectToArray();
+
+        $this->assertEquals($array, $transformer->transform($stdClass));
     }
 }

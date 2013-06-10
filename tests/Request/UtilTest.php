@@ -1,4 +1,5 @@
 <?php
+use ApaiIO\Request\Util;
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -15,16 +16,11 @@
  * limitations under the License.
  */
 
-use ApaiIO\Configuration\GenericConfiguration;
-
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class UtilTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testCountryException()
+    public function testSignature()
     {
-        $object = new GenericConfiguration();
-        $object->setCountry('no country');
+        $expectedResult = "9hUgcq4Tnuwb9naeMAyL/Xnk070qcbQUfSbWsFBztgM=";
+        $this->assertEquals($expectedResult, Util::buildSignature('ABCD', 'EFG'));
     }
 }

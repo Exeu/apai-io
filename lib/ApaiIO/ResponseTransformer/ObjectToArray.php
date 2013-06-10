@@ -45,10 +45,10 @@ class ObjectToArray implements ResponseTransformerInterface
         foreach ($object as $key => $value) {
             switch (true) {
                 case is_object($value):
-                    $out[$key] = $this->objectToArray($value);
+                    $out[$key] = $this->buildArray($value);
                     break;
                 case is_array($value):
-                    $out[$key] = $this->objectToArray($value);
+                    $out[$key] = $this->buildArray($value);
                     break;
                 default:
                     $out[$key] = $value;

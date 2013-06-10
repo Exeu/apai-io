@@ -45,7 +45,7 @@ abstract class AbstractOperation implements OperationInterface
     }
 
     /**
-     * Magic setterfunctions
+     * Magic setter and getter functions
      *
      * @param string $methodName Methodname
      * @param string $parameter  Parameters
@@ -54,10 +54,16 @@ abstract class AbstractOperation implements OperationInterface
      */
     public function __call($methodName, $parameter)
     {
-        if (strstr($methodName, 'set')) {
+        if (substr($methodName, 0, 3) == 'set') {
             $this->parameter[substr($methodName, 3)] = array_shift($parameter);
 
             return $this;
+        }
+
+        if (substr($methodName, 0, 3) == 'get') {
+            $keyName = substr($methodName, 3);
+
+            return isset($this->parameter[$keyName]) ? $this->parameter[$keyName] : null;
         }
 
         throw new \BadFunctionCallException(sprintf('The function "%s" does not exist!', $methodName));

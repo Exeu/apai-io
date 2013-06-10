@@ -1,4 +1,6 @@
 <?php
+use ApaiIO\Request\Util;
+use ApaiIO\Operations\Search;
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -15,16 +17,22 @@
  * limitations under the License.
  */
 
-use ApaiIO\Configuration\GenericConfiguration;
-
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class OperationsTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testCountryException()
+    public function testSearchException()
     {
-        $object = new GenericConfiguration();
-        $object->setCountry('no country');
+        $search = new Search();
+        $search->setPage(11);
+    }
+
+    public function testValidPage()
+    {
+        $search = new Search();
+        $search->setPage(1);
+
+        $this->assertEquals(1, $search->getItemPage());
     }
 }
