@@ -56,10 +56,14 @@ class RequestFactory
      */
     public static function createRequest(ConfigurationInterface $configuration)
     {
-        $class = $configuration->getRequestClass();
+        $class = $configuration->getRequest();
 
-        if (true == array_key_exists($class, self::$requestObjects)) {
+        if (true === is_string($class) && true == array_key_exists($class, self::$requestObjects)) {
             return self::$requestObjects[$class];
+        }
+
+        if (true === is_object($class) && $class instanceof \ApaiIO\Request\RequestInterface) {
+            return $class;
         }
 
         try {

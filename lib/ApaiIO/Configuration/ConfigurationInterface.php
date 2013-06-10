@@ -52,12 +52,12 @@ interface ConfigurationInterface
      *
      * @return string
      */
-    public function getRequestClass();
+    public function getRequest();
 
     /**
      * Gets the responsetransformerclass
      *
      * @return string
      */
-    public function getResponseTransformerClass();
+    public function getResponseTransformer();
 }

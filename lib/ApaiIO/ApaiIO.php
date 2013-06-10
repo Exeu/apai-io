@@ -81,7 +81,7 @@ class ApaiIO
      */
     protected function applyResponseTransformer($response, ConfigurationInterface $configuration)
     {
-        if (true === is_null($configuration->getResponseTransformerClass())) {
+        if (true === is_null($configuration->getResponseTransformer())) {
             return $response;
         }
 

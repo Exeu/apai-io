@@ -18,24 +18,34 @@
 namespace ApaiIO\ResponseTransformer;
 
 /**
- * A responsetransformer transforming a xml to a domdocument
+ * A responsetransformer transforming an xml via xslt
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
-class XsltTransformer implements ResponseTransformerInterface
+class Xslt implements ResponseTransformerInterface
 {
-	protected $xsl;
+    /**
+     * XSLTProcessor object
+     *
+     * @var \XSLTProcessor
+     */
+    protected $xsl;
 
-	public function __construct($xslt)
-	{
-		$xsl = new \XSLTProcessor();
-		$xsldoc = new \DOMDocument();
+    /**
+     * Constructor
+     *
+     * @param string $xslt
+     */
+    public function __construct($xslt)
+    {
+        $xsl = new \XSLTProcessor();
+        $xsldoc = new \DOMDocument();
 
-		$xsldoc->loadXML($xslt);
-		$xsl->importStyleSheet($xsldoc);
+        $xsldoc->loadXML($xslt);
+        $xsl->importStyleSheet($xsldoc);
 
-		$this->xsl = $xsl;
-	}
+        $this->xsl = $xsl;
+    }
 
     /**
      * {@inheritdoc}

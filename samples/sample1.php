@@ -50,9 +50,8 @@ $cartAdd->addItem('B003YL444A', 1);
 $formattedResponse = $apaiIO->runOperation($cartAdd);
 
 var_dump($formattedResponse);
-die();
 
-$conf->setResponseTransformerClass('\ApaiIO\ResponseTransformer\XmlToDomDocument');
+$conf->setResponseTransformer('\ApaiIO\ResponseTransformer\XmlToDomDocument');
 
 $lookup = new Lookup();
 $lookup->setItemId('B0040PBK32');
@@ -68,8 +67,8 @@ $lookup->setResponseGroup(array('Large', 'Small'));
 
 $formattedResponse = $apaiIO->runOperation($lookup);
 
-$conf->setRequestClass('\ApaiIO\Request\Soap\Request');
-$conf->setResponseTransformerClass('\ApaiIO\ResponseTransformer\ObjectToArray');
+$conf->setRequest('\ApaiIO\Request\Soap\Request');
+$conf->setResponseTransformer('\ApaiIO\ResponseTransformer\ObjectToArray');
 
 $lookup = new SimilarityLookup();
 $lookup->setItemId('B0040PBK32');
@@ -79,6 +78,7 @@ $formattedResponse = $apaiIO->runOperation($lookup, $conf);
 
 //var_dump($formattedResponse);
 
+$conf->setResponseTransformer(new \ApaiIO\ResponseTransformer\ObjectToArray());
 $browseNodeLookup = new BrowseNodeLookup();
 $browseNodeLookup->setNodeId(542064);
 

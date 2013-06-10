@@ -56,10 +56,14 @@ class ResponseTransformerFactory
      */
     public static function createResponseTransformer(ConfigurationInterface $configuration)
     {
-        $class = $configuration->getResponseTransformerClass();
+        $class = $configuration->getResponseTransformer();
 
-        if (true == array_key_exists($class, self::$responseTransformerObjects)) {
+        if (true === is_string($class) && true == array_key_exists($class, self::$responseTransformerObjects)) {
             return self::$responseTransformerObjects[$class];
+        }
+
+        if (true === is_object($class) && $class instanceof \ApaiIO\ResponseTransformer\ResponseTransformerInterface) {
+            return $class;
         }
 
         try {

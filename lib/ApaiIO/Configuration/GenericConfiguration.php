@@ -60,7 +60,7 @@ class GenericConfiguration implements ConfigurationInterface
      *
      * @var string
      */
-    protected $requestClass = "\ApaiIO\Request\Rest\Request";
+    protected $request = "\ApaiIO\Request\Rest\Request";
 
     /**
      * The responsetransformerclass
@@ -68,7 +68,7 @@ class GenericConfiguration implements ConfigurationInterface
      *
      * @var string
      */
-    protected $responseTransformerClass = null;
+    protected $responseTransformer = null;
 
     /**
      * {@inheritdoc}
@@ -163,21 +163,21 @@ class GenericConfiguration implements ConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequestClass()
+    public function getRequest()
     {
-        return $this->requestClass;
+        return $this->request;
     }
 
     /**
      * Sets the requestclass
      *
-     * @param string $requestClass
+     * @param string $request
      *
      * @return \ApaiIO\Configuration\GenericConfiguration
      */
-    public function setRequestClass($requestClass)
+    public function setRequest($request)
     {
-        $this->requestClass = $requestClass;
+        $this->request = $request;
 
         return $this;
     }
@@ -185,20 +185,20 @@ class GenericConfiguration implements ConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getResponseTransformerClass()
+    public function getResponseTransformer()
     {
-        return $this->responseTransformerClass;
+        return $this->responseTransformer;
     }
 
     /**
      * Sets the responsetransformerclass
      *
-     * @param string $responseTransformerClass
+     * @param string $responseTransformer
      *
      * @return \ApaiIO\Configuration\GenericConfiguration
      */
-    public function setResponseTransformerClass($responseTransformerClass)
+    public function setResponseTransformer($responseTransformer)
     {
-        $this->responseTransformerClass = $responseTransformerClass;
+        $this->responseTransformer = $responseTransformer;
     }
 }
