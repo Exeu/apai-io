@@ -1,6 +1,9 @@
 <?php
-use ApaiIO\Request\Util;
+use ApaiIO\ApaiIO;
+use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Search;
+use ApaiIO\Operations\Lookup;
+
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -17,22 +20,22 @@ use ApaiIO\Operations\Search;
  * limitations under the License.
  */
 
-class OperationsTest extends \PHPUnit_Framework_TestCase
+class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testSearchException()
+    public function testApaiIO()
     {
-        $search = new Search();
-        $search->setPage(11);
-    }
+        $conf = new GenericConfiguration();
+        $operation = new Search();
 
-    public function testSearchValidPage()
-    {
-        $search = new Search();
-        $search->setPage(1);
+        $request = $this->getMock('\ApaiIO\Request\Rest\Request', array('perform'));
+        $request
+            ->expects($this->once())
+            ->method('perform')
+            ->with($this->equalTo($operation));
 
-        $this->assertEquals(1, $search->getItemPage());
+        $conf->setRequest($request);
+
+        $apaiIO = new ApaiIO();
+        $apaiIO->runOperation($operation, $conf);
     }
 }

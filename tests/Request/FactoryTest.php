@@ -73,4 +73,15 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 
         $request = RequestFactory::createRequest($conf);
     }
+
+    public function testSameRequest()
+    {
+        $conf = new GenericConfiguration();
+
+        $requestA = RequestFactory::createRequest($conf);
+        $requestB = RequestFactory::createRequest($conf);
+
+        $this->assertSame($requestA, $requestB);
+
+    }
 }

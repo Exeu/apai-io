@@ -78,6 +78,6 @@ class ResponseTransformerFactory
             return self::$responseTransformerObjects[$class] = $responseTransformer;
         }
 
-        throw new \LogicException(sptrinf("Responsetransformerclass does not implements the ResponseTransformerInterface: %s", $class));
+        throw new \LogicException(sprintf("Responsetransformerclass does not implements the ResponseTransformerInterface: %s", $class));
     }
 }

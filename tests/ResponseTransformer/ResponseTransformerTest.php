@@ -1,6 +1,7 @@
 <?php
 use ApaiIO\Request\Util;
 use ApaiIO\ResponseTransformer\ObjectToArray;
+use ApaiIO\ResponseTransformer\XmlToDomDocument;
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -32,5 +33,29 @@ class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
         $transformer = new ObjectToArray();
 
         $this->assertEquals($array, $transformer->transform($stdClass));
+    }
+
+    public function testXmlToDomDocument()
+    {
+        $transformer = new XmlToDomDocument();
+
+        $xml = <<<EOF
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <verzeichnis>
+             <titel>Wikipedia Städteverzeichnis</titel>
+             <eintrag>
+                  <stichwort>Genf</stichwort>
+                  <eintragstext>Genf ist der Sitz von ...</eintragstext>
+             </eintrag>
+             <eintrag>
+                  <stichwort>Köln</stichwort>
+                  <eintragstext>Köln ist eine Stadt, die ...</eintragstext>
+             </eintrag>
+        </verzeichnis>
+EOF;
+
+        $document = $transformer->transform($xml);
+
+        $this->assertInstanceOf('\DOMDocument', $document);
     }
 }
