@@ -79,6 +79,6 @@ class RequestFactory
             return self::$requestObjects[$class] = $request;
         }
 
-        throw new \LogicException(sptrinf("Requestclass does not implements the RequestInterface: %s", $class));
+        throw new \LogicException(sprintf("Requestclass does not implements the RequestInterface: %s", $class));
     }
 }
