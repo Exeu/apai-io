@@ -2,3 +2,4 @@
 .project
 .settings
 samples/Config.php
+phpunit.xml
