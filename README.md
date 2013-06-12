@@ -5,6 +5,8 @@ You can either use the built in operations like ItemSearch or ItemLookup or you 
 
 Everything is programmed against interfaces so you can implement your own request or response classes for example.
 
+This class is realized by the Product Advertising API (former ECS) from Amazon WS Front. https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
+
 ## Installation
 
 ### Composer
