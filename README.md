@@ -5,6 +5,29 @@ You can either use the built in operations like ItemSearch or ItemLookup or you 
 
 Everything is programmed against interfaces so you can implement your own request or response classes for example.
 
+## Installation
+
+### Composer
+
+Add apai-io in your composer.json or create a new composer.json:
+
+```js
+{
+    "require": {
+        "exeu/apai-io": "dev-master"
+    }
+}
+```
+
+Now tell composer to download the library by running the command:
+
+``` bash
+$ php composer.phar install
+```
+
+Composer will generate the autoloader file automaticly. So you only have to include this.
+Typically its located in the vendor dir and its called autoload.php
+
 ##Basic Usage:
 This library is using the PSR-0 standrad: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
 So you can use any autoloader which fits into this standard.
