@@ -11,6 +11,8 @@ This class is realized by the Product Advertising API (former ECS) from Amazon W
 
 [![Build Status](http://ci.pixel-web.org/job/ApaiIO/badge/icon)](http://ci.pixel-web.org/job/ApaiIO/)
 
+[![Build Status](https://travis-ci.org/Exeu/apai-io.png?branch=master)](https://travis-ci.org/Exeu/apai-io)
+
 ## Installation
 
 ### Composer
