@@ -17,5 +17,5 @@
     },
     "autoload": {
         "psr-0": { "ApaiIO": "lib/" }
-    },
+    }
 }
