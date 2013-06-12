@@ -1,5 +1,10 @@
 #apai-io
 
+ApaiIO is a highly flexible PHP library for fetching the Product Advertising API using REST or SOAP.
+You can either use the built in operations like ItemSearch or ItemLookup or you can implement your own operations which fits to your needs.
+
+Everything is programmed against interfaces so you can implement your own request or response classes for example.
+
 ##Basic Usage:
 This library is using the PSR-0 standrad: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
 So you can use any autoloader which fits into this standard.
