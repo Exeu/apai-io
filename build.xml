@@ -79,7 +79,7 @@
   </target>
 
   <target name="phpunit" description="Run unit tests with PHPUnit">
-  	<copy file="${build.dir}/phpunit.xml.dist" tofile="${build.dir}/phpunit.xml"/>
+  	<copy file="${basedir}/phpunit.xml.dist" tofile="${basedir}/phpunit.xml"/>
     <exec executable="phpunit">
         <arg line="--coverage-clover ${build.dir}/coverage/clover.xml
             --coverage-html ${build.dir}/coverage/" />
