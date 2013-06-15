@@ -13,6 +13,12 @@ This class is realized by the Product Advertising API (former ECS) from Amazon W
 
 [![Build Status](https://travis-ci.org/Exeu/apai-io.png?branch=master)](https://travis-ci.org/Exeu/apai-io)
 
+## Documentation
+
+The documentation is currently under construction.
+
+You can read here: http://apai-io.pixel-web.org
+
 ## Installation
 
 ### Composer
