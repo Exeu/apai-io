@@ -7,17 +7,17 @@ Everything is programmed against interfaces so you can implement your own reques
 
 This class is realized by the Product Advertising API (former ECS) from Amazon WS Front. https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
 
-## Build status
-
-[![Build Status](http://ci.pixel-web.org/job/ApaiIO/badge/icon)](http://ci.pixel-web.org/job/ApaiIO/)
-
-[![Build Status](https://travis-ci.org/Exeu/apai-io.png?branch=master)](https://travis-ci.org/Exeu/apai-io)
-
 ## Documentation
 
 The documentation is currently under construction.
 
 You can read here: http://apai-io.pixel-web.org
+
+## Build status
+
+[![Build Status](http://ci.pixel-web.org/job/ApaiIO/badge/icon)](http://ci.pixel-web.org/job/ApaiIO/)
+
+[![Build Status](https://travis-ci.org/Exeu/apai-io.png?branch=master)](https://travis-ci.org/Exeu/apai-io)
 
 ## Installation
 
