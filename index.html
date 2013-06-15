@@ -31,37 +31,79 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="apai-io" class="anchor" href="#apai-io"><span class="octicon octicon-link"></span></a>apai-io</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>ApaiIO is a highly flexible PHP library for fetching the Product Advertising API using REST or SOAP.
+You can either use the built in operations like ItemSearch or ItemLookup or you can implement your own operations which fits to your needs.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>Everything is programmed against interfaces so you can implement your own request or response classes for example.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>This class is realized by the Product Advertising API (former ECS) from Amazon WS Front. <a href="https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html">https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html</a></p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a name="composer" class="anchor" href="#composer"><span class="octicon octicon-link"></span></a>Composer</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Add apai-io in your composer.json or create a new composer.json:</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">"require"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">"exeu/apai-io"</span><span class="o">:</span> <span class="s2">"dev-master"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Now tell composer to download the library by running the command:</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<div class="highlight"><pre><span class="nv">$ </span>php composer.phar install
+</pre></div>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Composer will generate the autoloader file automaticly. So you only have to include this.
+Typically its located in the vendor dir and its called autoload.php</p>
+
+<h2>
+<a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic Usage:</h2>
+
+<p>This library is using the PSR-0 standrad: <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md</a>
+So you can use any autoloader which fits into this standard.
+The tests directory contains an example bootstrap file.</p>
+
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">namespace</span> <span class="nx">Acme\Demo</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">ApaiIO\Configuration\GenericConfiguration</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ApaiIO\Operations\Search</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">ApaiIO\ApaiIO</span><span class="p">;</span>
+
+<span class="nv">$conf</span>
+    <span class="o">-&gt;</span><span class="na">setCountry</span><span class="p">(</span><span class="s1">'com'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">setAccessKey</span><span class="p">(</span><span class="nx">AWS_API_KEY</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">setSecretKey</span><span class="p">(</span><span class="nx">AWS_API_SECRET_KEY</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">setAssociateTag</span><span class="p">(</span><span class="nx">AWS_ASSOCIATE_TAG</span><span class="p">);</span>
+
+<span class="nv">$apaiIO</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ApaiIO</span><span class="p">(</span><span class="nv">$conf</span><span class="p">);</span>
+
+<span class="nv">$search</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Search</span><span class="p">();</span>
+<span class="nv">$search</span><span class="o">-&gt;</span><span class="na">setCategory</span><span class="p">(</span><span class="s1">'DVD'</span><span class="p">);</span>
+<span class="nv">$search</span><span class="o">-&gt;</span><span class="na">setActor</span><span class="p">(</span><span class="s1">'Bruce Willis'</span><span class="p">);</span>
+<span class="nv">$search</span><span class="o">-&gt;</span><span class="na">setKeywords</span><span class="p">(</span><span class="s1">'Die Hard'</span><span class="p">);</span>
+
+<span class="nv">$formattedResponse</span> <span class="o">=</span> <span class="nv">$apaiIO</span><span class="o">-&gt;</span><span class="na">runOperation</span><span class="p">(</span><span class="nv">$search</span><span class="p">);</span>
+
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$formattedResponse</span><span class="p">);</span>
+</pre></div>
+
+<p>For some very simple examples go to the samples-folder and have a look at the sample files.
+These files contain all information you need for building queries successful.</p>
+
+<h2>
+<a name="webservice-documentation" class="anchor" href="#webservice-documentation"><span class="octicon octicon-link"></span></a>Webservice Documentation:</h2>
+
+<p>Hosted on Amazon.com:
+<a href="http://docs.amazonwebservices.com/AWSECommerceService/latest/DG/">http://docs.amazonwebservices.com/AWSECommerceService/latest/DG/</a></p>
       </section>
     </div>
 
@@ -73,7 +115,17 @@ $ git checkout gh-pages
       </footer>
     </div>
 
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-41769129-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
 
   </body>
 </html>
