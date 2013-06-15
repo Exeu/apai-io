@@ -57,6 +57,51 @@ interface OperationInterface
         <h2>Lets build a custom ItemSearch class</h2>
         <h3>The class</h3>
 
+<pre><code class="php">namespace Acme\MyApp;
+
+use ApaiIO\Operations\OperationInterface;
+
+class SimpleKeywordSearch implements OperationInterface
+{
+    private $operationParameter = array(
+        'ResponseGroup' => 'Large',
+        'SearchIndex' => 'Blended'
+    );
+
+    public function getName()
+    {
+        return "ItemSearch"; // Amazon operation name
+    }
+
+    public function setResponseGroup($responseGroup)
+    {
+        $this->operationParameter['ResponseGroup'] = $responseGroup;
+    }
+
+    public function getOperationParameter()
+    {
+        return $this->operationParameter;
+    }
+
+    public function setKeywords($keywords)
+    {
+        $this->operationParameter['Keywords'] = $keywords;
+    }
+
+    public function setCategory($category)
+    {
+        $this->parameter['SearchIndex'] = $category;
+    }
+}</code></pre>
+
+        <h3>Running the operation</h3>
+
+<pre><code class="php">use Acme\MyApp\SimpleKeywordSearch;
+
+$simpleKeywordSearch = new SimpleKeywordSearch();
+$simpleKeywordSearch->setKeywords("Bruce Willis, Die Hard");
+
+$response = $apaiIo->runOperation($simpleKeywordSearch);</code></pre>
       </section>
     </div>
 
