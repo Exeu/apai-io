@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Apai-io : Amazon Product Adverstising Library based on PHP REST and SOAP using the Product Advertising API." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/sunburst.css">
+
+    <script type="text/javascript" src="javascripts/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Apai-io</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Exeu/apai-io">View on GitHub</a>
+
+          <h1 id="project_title">Apai-io</h1>
+          <h2 id="project_tagline">Amazon Product Adverstising Library based on PHP REST and SOAP using the Product Advertising API.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Exeu/apai-io/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Exeu/apai-io/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Built in operation</h1>
+        <p>apai-io comes with some built in operations.
+            <ul>
+                <li><a href="#item-search">ItemSearch</a></li>
+                <li><a href="#item-lookup">ItemLookup</a></li>
+                <li><a href="#similarity-lookup">SimilarityLookup</a></li>
+                <li><a href="#browse-node-lookup">BrowseNodeLookup</a></li>
+                <li>CartCreate</li>
+                <li>CartAdd</li>
+                <li><i>More comming soon</i></li>
+            </ul>
+        </p>
+
+        <a name="item-search"></a>
+        <h2>ItemSeach</h2>
+        <p>The ItemSearch can be used to search products in the amazon database.</p>
+        <p>Please see the following <a href="http://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemSearch.html" target="_blank">documentation</a> for more information.
+
+        <h3>Finding movies with "Bruce Willis" and keywords like "Die Hard"</h3>
+        <pre><code class="php">use ApaiIO\Operations\Search;
+
+$search = new Search();
+$search->setCategory('DVD');
+$search->setActor('Bruce Willis');
+$search->setKeywords('Die Hard');
+$search->setResponsegroup(array('Large', 'Images'));
+
+$response = $apaiIo->runOperation($search);
+</code></pre>
+
+        <h3>Finding books "lord of the rings" and the condition "used"</h3>
+        <pre><code class="php">use ApaiIO\Operations\Search;
+
+$search = new Search();
+$search->setCategory('Books');
+$search->setKeywords('lord of the rings');
+$search->setCondition('used');
+
+$response = $apaiIo->runOperation($search);
+</code></pre>
+
+        <a name="item-lookup"></a>
+        <h2>ItemLookup</h2>
+        <p>The ItemLookup can be used to lookup a product in the amazon database.</p>
+        <p>Please see the following <a href="http://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemLookup.html" target="_blank">documentation</a> for more information.
+
+        <h3>Getting the item with asin "B00D6BN9NK" -> <a href="http://www.amazon.com/A-Good-Day-Die-Hard/dp/B00D6BN9NK/ref=sr_1_1?ie=UTF8&qid=1371288902&sr=8-1&keywords=Die+Hard">link</a></h3>
+        <pre><code class="php">use ApaiIO\Operations\Lookup;
+
+$lookup = new Lookup();
+$lookup->setItemId('B00D6BN9NK');
+$lookup->setResponseGroup(array('Large')); // More detailed information
+
+$response = $apaiIo->runOperation($lookup);
+</code></pre>
+
+
+        <a name="similarity-lookup"></a>
+        <h2>SimilarityLookup</h2>
+        <p>The SimilarityLookup can be used to lookup similar products of the given asin in the amazon database.</p>
+        <p>Please see the following <a href="http://docs.aws.amazon.com/AWSECommerceService/latest/DG/SimilarityLookup.html" target="_blank">documentation</a> for more information.
+
+        <h3>Getting similar products to asin "B00D6BN9NK" -> <a href="http://www.amazon.com/A-Good-Day-Die-Hard/dp/B00D6BN9NK/ref=sr_1_1?ie=UTF8&qid=1371288902&sr=8-1&keywords=Die+Hard">link</a></h3>
+        <pre><code class="php">use ApaiIO\Operations\SimilarityLookup;
+
+$similaritylookup = new SimilarityLookup();
+$similaritylookup->setItemId('B00D6BN9NK');
+
+$response = $apaiIo->runOperation($similaritylookup);
+</code></pre>
+
+
+        <a name="browse-node-lookup"></a>
+        <h2>BrowseNodeLookup</h2>
+        <p>The BrowseNodeLookup can be used to browse the amazon product nodes.</p>
+        <p>Please see the following <a href="http://docs.aws.amazon.com/AWSECommerceService/latest/DG/BrowseNodeLookup.html" target="_blank">documentation</a> for more information.
+
+        <h3>Browsing the node "163357" (Comedy)</h3>
+        <pre><code class="php">use ApaiIO\Operations\BrowseNodeLookup;
+
+$browseNodeLookup = new BrowseNodeLookup();
+$browseNodeLookup->setNodeId(163357);
+
+$response = $apaiIo->runOperation($browseNodeLookup);
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Apai-io maintained by <a href="https://github.com/Exeu">Exeu</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-41769129-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>

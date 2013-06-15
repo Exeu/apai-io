@@ -34,13 +34,29 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Table of contents</h1>
-        <ul>
-            <li><a href="installation.html">Installation</a></li>
-            <li><a href="basic-usage.html">Basic usage</a></li>
-            <li><a href="built-in-operations.html">Built in operations</a></li>
-            <li><a href="custom-operations.html">Creating custom operations</a></li>
-        </ul>
+        <h1>Creating custom operations</h1>
+        <p>If the built in operations are note enough, you can build your own operations.</p>
+        <p>For example if you want to add your own custom logic to the operation like validation or more special getter and setter.</p>
+
+        <p>apai-io accepts every operation class which implements the following interface:</p>
+        <code>ApaiIO\Operations\OperationInterface</code>
+
+        <p>
+        <pre><code class="php">namespace ApaiIO\Operations;
+
+interface OperationInterface
+{
+    public function getName();
+
+    public function setResponseGroup(array $responseGroup);
+
+    public function getOperationParameter();
+}
+</code></pre>
+
+        <h2>Lets build a custom ItemSearch class</h2>
+        <h3>The class</h3>
+
       </section>
     </div>
 

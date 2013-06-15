@@ -34,13 +34,47 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Table of contents</h1>
-        <ul>
-            <li><a href="installation.html">Installation</a></li>
-            <li><a href="basic-usage.html">Basic usage</a></li>
-            <li><a href="built-in-operations.html">Built in operations</a></li>
-            <li><a href="custom-operations.html">Creating custom operations</a></li>
-        </ul>
+        <h1>Basic usage</h1>
+        <h2>Install via Composer</h2>
+        <p>The easiest way to install apai-io is to use the PHP dependency management tool composer.</p>
+
+        <p>First you have to add a file named composer.json to your project root</p>
+
+        <p>Edit this composer.json and add the following content to it</p>
+
+<pre><code class="json">{
+    "require": {
+        "exeu/apai-io": "dev-master"
+    }
+}
+</code></pre>
+
+        <p>Now you have to download composer:</p>
+
+        <pre><code class="bash">curl -sS https://getcomposer.org/installer | php</code></pre>
+
+        <p>Note that there are other ways to get composer. Please read the guide: <a href="http://getcomposer.org/download/">http://getcomposer.org/download/</a></p>
+
+        <p>After composer is downloaded you can run the following command:</p>
+
+        <pre><code class="bash">$ php composer.phar install</code></pre>
+
+        <p>After the installation succeeded, composer created a vendor dir where the library is placed and a additional autoload.php which you can include.</p>
+
+        <p>For example - create a index.php and add the following:</p>
+        <pre><code class="php">require_once "vendor/autoload.php";
+
+use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\ApaiIO;
+
+$conf
+    ->setCountry('com')
+    ->setAccessKey('YOUR ACCESS KEY')
+    ->setSecretKey('YOUR SECRET KEY')
+    ->setAssociateTag('YOUR ASSOCIATE TAG');
+
+$apaiIo = new ApaiIO($conf);</code></pre>
+        <p>Now your done and ready to use apai-io. See <a href="basic-usage.html">Basic usage</a></p>
       </section>
     </div>
 
