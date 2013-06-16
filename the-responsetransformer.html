@@ -41,6 +41,21 @@
         <p>For example if you making a REST call, you will get back a xml response which contains all items of the specified responsegroup.</p>
         <p>So what to do if you want to change this response? The answer is: The ResponseTransfomer!</p>
 
+            <ul>
+                <li><a href="#under">ResponseTransfomer under the hood (interface)</a></li>
+                <li>
+                    <a href="#builtin">Built in Responsetransformer</a>
+                    <ul>
+                        <li><a href="#ObjectToArray">ObjectToArray</a></li>
+                        <li><a href="#XmlToDomDocument">XmlToDomDocument</a></li>
+                        <li><a href="#Xslt">Xslt</a></li>
+                    </ul>
+                </li>
+                <li><a href="#own">Creating your own ResponseTransformer</a></li>
+            </ul>
+
+
+        <a name="under"></a>
         <h2>ResponseTransfomer under the hood (interface)</h2>
 <pre><code class="php">namespace ApaiIO\ResponseTransformer;
 
@@ -57,9 +72,11 @@ interface ResponseTransformerInterface
         <p>Every ResponseTransformer implements this simple interface. The function transform takes care about transforming the response which comes from amazon.</p>
         <p>Nothing else to do! You have the choice: You can build your own ResponseTransformer or you can use one of the built in.</p>
 
+        <a name="builtin"></a>
         <h2>Built in Responsetransformer</h2>
         <p>apai-io comes with some build in ResponseTransfomer classes.</p>
 
+        <a name="ObjectToArray"></a>
         <h3>ObjectToArray</h3>
         <p>The ObjectToArray ResponseTransformer transforms Objects (stdClass) to an array. Its basicly used when you decided to make SOAP requests.</p>
 
@@ -87,6 +104,7 @@ $response = $apaiIo->runOperation($operation);
         <p>You now can access the key you want or iterate over it.</p>
         <p>Note: This will only work if you are going to make SOAP Requests.</p>
 
+        <a name="XmlToDomDocument"></a>
         <h3>XmlToDomDocument</h3>
         <p>By default apai-io uses REST request to query the amazon database.</p>
         <p>All REST requests having a XML-String as response</p>
@@ -110,6 +128,7 @@ $apaiIo = new ApaiIO($conf);
 $response = $apaiIo->runOperation($operation);
 </code></pre>
 
+        <a name="Xslt"></a>
         <h3>Xslt</h3>
         <p>If you want to transform a XML to a for example usage ready HTML you can use the XSLT Transformer.</p>
         <p>What XSLT is, you can see here: <a href="http://en.wikipedia.org/wiki/XSLT">Wikipedia :)</a></p>
@@ -135,11 +154,61 @@ $apaiIo = new ApaiIO($conf);
 $response = $apaiIo->runOperation($operation);
 </code></pre>
 
+        <a name="own"></a>
         <h2>Creating your own ResponseTransformer</h2>
         <p>If you need your own ResponseTransformer you can simply achieve this by implementing the ResponseTransformerInterface and passing the instance of your class or its name to the configuration object.</p>
         <p>Let's build our own Transformer which returns all Item Elements via XPath.</p>
 
+<pre><code class="php">namespace Acme\Demo;
 
+use ApaiIO\ResponseTransformer\ResponseTransformerInterface;
+
+class ItemSearchXmlToItems implements ResponseTransformerInterface
+{
+    public function transform($response)
+    {
+        $xml =  simplexml_load_string($response);
+        $xml->registerXPathNamespace("amazon", "http://webservices.amazon.com/AWSECommerceService/2011-08-01");
+
+        $elements = $xml->xpath('//amazon:ItemSearchResponse/amazon:Items/amazon:Item');
+
+        return $elements;
+    }
+}</code></pre>
+
+        <p>Now you have build the class you can use it out of the box:</p>
+
+<pre><code class="php">use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\ApaiIO;
+use Acme\Demo\ItemSearchXmlToItems;
+
+$itemSearchXmlToItems = new ItemSearchXmlToItems();
+
+$conf = new GenericConfiguration();
+$conf
+    ->setCountry('com')
+    ->setAccessKey(AWS_API_KEY)
+    ->setSecretKey(AWS_API_SECRET_KEY)
+    ->setAssociateTag(AWS_ASSOCIATE_TAG)
+    ->setResponseTransformer($itemSearchXmlToItems);
+
+$apaiIo = new ApaiIO($conf);
+
+// ... Preparing your operation
+
+$response = $apaiIo->runOperation($operation);
+</code></pre>
+
+        <p>If you dont want to instanciate the object you can pass the fully quallified class name:</p>
+
+<pre><code class="php">$conf->setResponseTransformer('\Acme\Demo\ItemSearchXmlToItems');
+
+$apaiIo = new ApaiIO($conf);
+
+// ... Preparing your operation
+
+$response = $apaiIo->runOperation($operation);
+</code></pre>
       </section>
 
       </section>
