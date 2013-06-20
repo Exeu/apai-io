@@ -35,7 +35,7 @@ use ApaiIO\ResponseTransformer\ResponseTransformerFactory;
  */
 class ApaiIO
 {
-    const VERSION = "1.0.0-DEV";
+    const VERSION = "1.0.0";
 
     /**
      * Configuration
