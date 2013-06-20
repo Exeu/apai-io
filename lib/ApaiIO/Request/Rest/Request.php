@@ -77,7 +77,7 @@ class Request implements RequestInterface
             'AWSAccessKeyId' => $this->configuration->getAccessKey(),
             'AssociateTag' => $this->configuration->getAssociateTag(),
             'Operation' => $operation->getName(),
-            'Version' => '2009-01-06',
+            'Version' => '2011-08-01',
             'Timestamp' => Util::getTimeStamp()
         );
 
