@@ -79,7 +79,7 @@ $search->setKeywords('Die Hard');
         <p>The next step is to make the request:</p>
 <pre><code class="php">use ApaiIO\ApaiIO;
 
-$apiIo = new ApaiIO($conf);
+$apaiIo = new ApaiIO($conf);
 $response = $apaiIo->runOperation($search);
 
 var_dump($response);
