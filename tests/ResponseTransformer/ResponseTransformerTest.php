@@ -2,6 +2,8 @@
 use ApaiIO\Request\Util;
 use ApaiIO\ResponseTransformer\ObjectToArray;
 use ApaiIO\ResponseTransformer\XmlToDomDocument;
+use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;
+
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -39,7 +41,32 @@ class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
     {
         $transformer = new XmlToDomDocument();
 
-        $xml = <<<EOF
+        $xml = $this->getSampleXMLResponse();
+
+        $document = $transformer->transform($xml);
+
+        $this->assertInstanceOf('\DOMDocument', $document);
+    }
+
+    public function testXmlToSimpleXMLObject()
+    {
+        $transformer = new XmlToSimpleXmlObject();
+
+        $sampleXML = $this->getSampleXMLResponse();
+
+        $simpleXML = $transformer->transform($sampleXML);
+
+        $this->assertInstanceOf('\SimpleXMLElement', $simpleXML);
+        $this->assertEquals('Wikipedia Städteverzeichnis', $simpleXML->titel);
+        $this->assertEquals('Genf', $simpleXML->eintrag[0]->stichwort);
+    }
+
+    /**
+     * @return string
+     */
+    private function getSampleXMLResponse()
+    {
+        return <<<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <verzeichnis>
              <titel>Wikipedia Städteverzeichnis</titel>
@@ -53,9 +80,5 @@ class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
              </eintrag>
         </verzeichnis>
 EOF;
-
-        $document = $transformer->transform($xml);
-
-        $this->assertInstanceOf('\DOMDocument', $document);
     }
 }

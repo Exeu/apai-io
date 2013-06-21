@@ -18,7 +18,7 @@
 namespace ApaiIO\ResponseTransformer;
 
 /**
- * A responsetransformer transforming a xml to a simpleXML Object
+ * A responsetransformer transforming a xml to a simpleXML Object.
  *
  * @author Nikolai Panasenko <nikolai@panasenko.de>
  */
@@ -30,7 +30,6 @@ class XmlToSimpleXmlObject implements ResponseTransformerInterface
     public function transform($response)
     {
         $simpleXML = simplexml_load_string($response);
-
         return $simpleXML;
     }
 }
