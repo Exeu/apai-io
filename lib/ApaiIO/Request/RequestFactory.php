@@ -59,7 +59,10 @@ class RequestFactory
         $class = $configuration->getRequest();
 
         if (true === is_string($class) && true == array_key_exists($class, self::$requestObjects)) {
-            return self::$requestObjects[$class];
+            $request = self::$requestObjects[$class];
+            $request->setConfiguration($configuration);
+
+            return $request;
         }
 
         if (true === is_object($class) && $class instanceof \ApaiIO\Request\RequestInterface) {
