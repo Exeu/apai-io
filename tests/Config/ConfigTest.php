@@ -27,4 +27,12 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $object = new GenericConfiguration();
         $object->setCountry('no country');
     }
+
+    public function testCountrySetter()
+    {
+        $object = new GenericConfiguration();
+        $object->setCountry('DE');
+
+        $this->assertEquals('de', $object->getCountry());
+    }
 }
