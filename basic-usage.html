@@ -105,7 +105,7 @@ $search->setCategory('DVD');
 $search->setActor('Bruce Willis');
 $search->setKeywords('Die Hard');
 
-$apiIo = new ApaiIO($conf);
+$apaiIo = new ApaiIO($conf);
 $response = $apaiIo->runOperation($search);
 
 var_dump($response);</code></pre>
