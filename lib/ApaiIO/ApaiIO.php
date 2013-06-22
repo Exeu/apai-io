@@ -64,6 +64,10 @@ class ApaiIO
     {
         $configuration = is_null($configuration) ? $this->configuration : $configuration;
 
+        if (true === is_null($configuration)) {
+            throw new \Exception('No configuration passed.');
+        }
+
         $requestObject = RequestFactory::createRequest($configuration);
 
         $response = $requestObject->perform($operation);
