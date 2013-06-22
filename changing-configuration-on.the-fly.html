@@ -34,17 +34,68 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Table of contents</h1>
-        <ul>
-            <li><a href="installation.html">Installation</a></li>
-            <li><a href="basic-usage.html">Basic usage</a></li>
-            <li><a href="built-in-operations.html">Built in operations</a></li>
-            <li><a href="custom-operations.html">Creating custom operations</a></li>
-            <li><a href="the-responsetransformer.html">The Responsetransformer</a></li>
-            <li>Request-Types (REST and SOAP)</li>
-            <li>Creating a custom request class</li>
-            <li><a href="changing-configuration-on.the-fly.html">Changing configuration on the fly</a></li>
-        </ul>
+        <h1>Changing configuration on the fly</h1>
+        <p>ApaiIO has a built in feature that allows you to change the configuration on each request.</p>
+        <p>Typically you are going to do some thing like this:</p>
+
+        <pre><code class="php">use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Operations\Search;
+use ApaiIO\ApaiIO;
+
+$conf = new GenericConfiguration();
+$conf
+    ->setCountry('com')
+    ->setAccessKey('YOUR ACCESS KEY')
+    ->setSecretKey('YOUR SECRET KEY')
+    ->setAssociateTag('YOUR ASSOCIATE TAG');
+
+$search = new Search();
+$search->setCategory('DVD');
+$search->setActor('Bruce Willis');
+$search->setKeywords('Die Hard');
+
+$apaiIo = new ApaiIO($conf);
+$response = $apaiIo->runOperation($search);
+
+var_dump($response);</code></pre>
+
+        <p>But what if you want to change the configuration depending on the request you are going to do?</p>
+        <p>In this cas you could change it by passing another configuration object to the <code>runOperation()</code> function:
+
+        <pre><code class="php">use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Operations\Search;
+use ApaiIO\ApaiIO;
+
+$confA = new GenericConfiguration();
+$confA
+    ->setCountry('com')
+    ->setAccessKey('YOUR ACCESS KEY')
+    ->setSecretKey('YOUR SECRET KEY')
+    ->setAssociateTag('YOUR ASSOCIATE TAG');
+
+$search = new Search();
+$search->setCategory('DVD');
+$search->setActor('Bruce Willis');
+$search->setKeywords('Die Hard');
+
+$apaiIo = new ApaiIO($confA);
+$response = $apaiIo->runOperation($search);
+// Response with default configuration
+var_dump($response);
+
+$confB = new GenericConfiguration();
+$confB
+    ->setCountry('de')
+    ->setAccessKey('YOUR ACCESS KEY')
+    ->setSecretKey('YOUR SECRET KEY')
+    ->setAssociateTag('YOUR ASSOCIATE TAG')
+    ->setRequest('\ApaiIO\Request\Soap\Request')
+    ->setResponseTransformer('\ApaiIO\ResponseTransformer\ObjectToArray');
+
+$response = $apaiIo->runOperation($search, $confB);
+// Response with new configuration
+var_dump($response);</code></pre>
+
       </section>
     </div>
 
