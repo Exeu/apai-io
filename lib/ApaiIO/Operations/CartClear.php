@@ -23,7 +23,7 @@ namespace ApaiIO\Operations;
  * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CartAdd.html
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
-class CartClear extends CartCreate
+class CartClear extends AbstractOperation
 {
     /**
      * {@inheritdoc}
