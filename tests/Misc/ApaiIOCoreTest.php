@@ -29,9 +29,9 @@ class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
 
         $request = $this->getMock('\ApaiIO\Request\Rest\Request', array('perform'));
         $request
-        ->expects($this->once())
-        ->method('perform')
-        ->with($this->equalTo($operation));
+            ->expects($this->once())
+            ->method('perform')
+            ->with($this->equalTo($operation));
 
         $conf->setRequest($request);
 
