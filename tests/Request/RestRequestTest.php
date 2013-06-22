@@ -1,5 +1,8 @@
 <?php
-use ApaiIO\Request\Util;
+use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\ApaiIO;
+use ApaiIO\Operations\Search;
+use ApaiIO\ResponseTransformer\ObjectToArray;
 
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
@@ -19,13 +22,71 @@ use ApaiIO\Request\Util;
 
 class RestRequestTest extends \PHPUnit_Framework_TestCase
 {
-    public function testRestRequest()
-    {
-        $secKey = getenv('APAI_IO_SECRETKEY');
-        $accKey = getenv('APAI_IO_ACCESSKEY');
+    private $accessKey = null;
+    private $secretKey = null;
+    private $conf = null;
 
-        if (true === empty($secKey) || true === empty($accKey)) {
+    protected function setUp()
+    {
+        $this->secretKey = getenv('APAI_IO_SECRETKEY');
+        $this->accessKey = getenv('APAI_IO_ACCESSKEY');
+
+        if (true === empty($this->secretKey) || true === empty($this->accessKey )) {
             $this->markTestSkipped('No AccessKey/SecretKey ENVs');
         }
+
+        $this->conf = new GenericConfiguration();
+        $this->conf
+            ->setCountry('de')
+            ->setAccessKey($this->accessKey)
+            ->setSecretKey($this->secretKey)
+            ->setAssociateTag('apaiIOTest');
+    }
+
+    public function testRestSuccessRequest()
+    {
+        $search = new Search();
+        $search
+            ->setKeywords('Bruce Willis')
+            ->setCategory('DVD')
+            ->setPage(2);
+
+        $xml = $this->runOperation($search);
+        $res = $xml->xpath('//a:Request');
+
+        $success = (string) $res[0]->IsValid;
+        $this->assertEquals("True", $success);
+
+        $this->assertEquals('Bruce Willis', (string) $res[0]->ItemSearchRequest->Keywords);
+        $this->assertEquals('Small', (string) $res[0]->ItemSearchRequest->ResponseGroup);
+        $this->assertEquals('DVD', (string) $res[0]->ItemSearchRequest->SearchIndex);
+        $this->assertEquals(2, (integer) $res[0]->ItemSearchRequest->ItemPage);
+    }
+
+    public function testRestErrorRequest()
+    {
+        $search = new Search();
+        $search
+            ->setCategory('DVD')
+            ->setPage(2);
+
+        $xml = $this->runOperation($search);
+        $res = $xml->xpath('//a:Request');
+
+        $success = (string) $res[0]->IsValid;
+        $this->assertEquals("False", $success);
+
+        $this->assertEquals('AWS.MinimumParameterRequirement', (string) $res[0]->Errors->Error->Code);
+    }
+
+    protected function runOperation($operation)
+    {
+        $apaiIo = new ApaiIO($this->conf);
+        $response = $apaiIo->runOperation($operation);
+
+        $xml = simplexml_load_string($response);
+        $xml->registerXPathNamespace('a', 'http://webservices.amazon.com/AWSECommerceService/2011-08-01');
+
+        return $xml;
     }
 }
