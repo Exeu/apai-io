@@ -34,18 +34,30 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Table of contents</h1>
-        <ul>
-            <li><a href="installation.html">Installation</a></li>
-            <li><a href="basic-usage.html">Basic usage</a></li>
-            <li><a href="built-in-operations.html">Built in operations</a></li>
-            <li><a href="custom-operations.html">Creating custom operations</a></li>
-            <li><a href="the-responsetransformer.html">The Responsetransformer</a></li>
-            <li>Request-Types (REST and SOAP)</li>
-            <li>Creating a custom request class</li>
-            <li><a href="changing-configuration-on.the-fly.html">Changing configuration on the fly</a></li>
-            <li><a href="testing.html">Testing</a></li>
-        </ul>
+        <h1>Testing</h1>
+        <h2>PHPUnit</h2>
+        <p>When you download ApaiIO it comes with some unittests. If you plan to run these tests you can do it simply by running phpunit in the project root dir.</p>
+
+
+<pre><code class="bash">$ cd /path/to/lib
+$ phpunit
+</code></pre>
+        <p>Please see <a href="http://phpunit.de/manual/current/en/index.html" target="_blank">http://phpunit.de/manual/current/en/index.html</a> for more information about PHPUnit.</p>
+
+        <p>The tests are located in the folder: <code>tests/</code>. Feel free to have a look at them.
+
+        <h3>Environment variables</h3>
+        <p>If you want to run all tests you need to set up some environment variables. These variables are nescessary to make request to the amazon api.</p>
+
+<pre><code class="bash">$ export APAI_IO_SECRETKEY=YOUR SECRET KEY
+$ export APAI_IO_ACCESSKEY=YOUR ACCESS KEY
+</code></pre>
+
+        <p>If these variables are correct, all tests will run instead of skipping some tests.</p>
+
+        <h3>Code coverage</h3>
+        <p><a href="http://ci.pixel-web.org/job/ApaiIO/cloverphp/index.html" target="_blank">Klick here for the full report</a></p>
+        <iframe src="http://ci.pixel-web.org/job/ApaiIO/cloverphp/index.html" style="width: 100%; height: 400px"></iframe>
       </section>
     </div>
 
