@@ -63,6 +63,26 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, (integer) $res[0]->ItemSearchRequest->ItemPage);
     }
 
+
+    public function testRestArrayValues()
+    {
+        $search = new Search();
+        $search
+            ->setKeywords('Bruce Willis')
+            ->setCategory('DVD')
+            ->setResponseGroup(array('Large', 'Images'))
+            ->setPage(2);
+
+        $xml = $this->runOperation($search);
+        $res = $xml->xpath('//a:Request');
+
+        $success = (string) $res[0]->IsValid;
+        $this->assertEquals("True", $success);
+
+        $this->assertEquals('Large', (string) $res[0]->ItemSearchRequest->ResponseGroup[0]);
+        $this->assertEquals('Images', (string) $res[0]->ItemSearchRequest->ResponseGroup[1]);
+    }
+
     public function testRestErrorRequest()
     {
         $search = new Search();
