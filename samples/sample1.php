@@ -42,14 +42,14 @@ $formattedResponse = $apaiIO->runOperation($search);
 
 // $formattedResponse = $apaiIO->runOperation($cartCreate);
 
-$cartAdd = new CartAdd();
-$cartAdd->setCartId('280-6695255-7497359');
-$cartAdd->setHMAC('LxQ0BKVBeQTrzFCXvIoa/262EcU=');
-$cartAdd->addItem('B003YL444A', 1);
+// $cartAdd = new CartAdd();
+// $cartAdd->setCartId('280-6695255-7497359');
+// $cartAdd->setHMAC('LxQ0BKVBeQTrzFCXvIoa/262EcU=');
+// $cartAdd->addItem('B003YL444A', 1);
 
-$formattedResponse = $apaiIO->runOperation($cartAdd);
+// $formattedResponse = $apaiIO->runOperation($cartAdd);
 
-var_dump($formattedResponse);
+// var_dump($formattedResponse);
 
 $conf->setResponseTransformer('\ApaiIO\ResponseTransformer\XmlToDomDocument');
 
