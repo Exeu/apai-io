@@ -30,7 +30,7 @@ final class Country
      *
      * @var array
      */
-    private static $countryList = array('de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es');
+    private static $countryList = array('de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es', 'in');
 
     /**
      * Gets all possible countries
