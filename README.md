@@ -7,6 +7,8 @@ Everything is programmed against interfaces so you can implement your own reques
 
 This class is realized by the Product Advertising API (former ECS) from Amazon WS Front. https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
 
+You can try it out with the new demo site: http://apaiio.dev.pixel-web.org/
+
 ## Documentation
 
 The documentation is currently under construction.
