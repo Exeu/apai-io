@@ -57,6 +57,7 @@ use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Search;
 use ApaiIO\ApaiIO;
 
+$conf = new GenericConfiguration();
 $conf
     ->setCountry('com')
     ->setAccessKey(AWS_API_KEY)
