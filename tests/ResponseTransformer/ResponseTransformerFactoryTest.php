@@ -84,6 +84,20 @@ class ResponseTransformerFactoryTest extends \PHPUnit_Framework_TestCase
         $ResponseB = ResponseTransformerFactory::createResponseTransformer($conf);
 
         $this->assertSame($ResponseA, $ResponseB);
+    }
 
+    public function testFactoryCallback()
+    {
+        $that = $this;
+        $conf = new GenericConfiguration();
+        $conf->setResponseTransformer('\ApaiIO\ResponseTransformer\XmlToDomDocument');
+        $conf->setResponseTransformerFactory(
+            function ($response) use ($that) {
+                $that->assertInstanceOf('\ApaiIO\ResponseTransformer\XmlToDomDocument', $response);
+                return $response;
+            }
+        );
+
+        $requestObj = ResponseTransformerFactory::createResponseTransformer($conf);
     }
 }

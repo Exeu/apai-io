@@ -82,6 +82,19 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
         $requestB = RequestFactory::createRequest($conf);
 
         $this->assertSame($requestA, $requestB);
+    }
 
+    public function testFactoryCallback()
+    {
+        $that = $this;
+        $conf = new GenericConfiguration();
+        $conf->setRequestFactory(
+            function ($request) use ($that) {
+                $that->assertInstanceOf('\ApaiIO\Request\Rest\Request', $request);
+                return $request;
+            }
+        );
+
+        $requestObj = RequestFactory::createRequest($conf);
     }
 }
