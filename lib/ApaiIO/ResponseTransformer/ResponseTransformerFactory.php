@@ -76,7 +76,7 @@ class ResponseTransformerFactory
             $responseTransformer = new $class();
 
             if ($factoryCallback = $configuration->getResponseTransformerFactory()) {
-                $request = $factoryCallback($request);
+                $responseTransformer = $factoryCallback($responseTransformer);
             }
 
             return self::$responseTransformerObjects[$class] = $responseTransformer;
