@@ -60,4 +60,20 @@ interface ConfigurationInterface
      * @return string
      */
     public function getResponseTransformer();
+
+    /**
+     * Gets the request factory callback if it is set
+     * This callback can be used to manipulate the request before its returned.
+     *
+     * @return \Closure
+     */
+    public function getRequestFactory();
+
+    /**
+     * Gets the responsetransformer factory callback if it is set
+     * This callback can be used to manipulate the request before its returned.
+     *
+     * @return \Closure
+     */
+    public function getResponseTransformerFactory();
 }

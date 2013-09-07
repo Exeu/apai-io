@@ -63,12 +63,26 @@ class GenericConfiguration implements ConfigurationInterface
     protected $request = "\ApaiIO\Request\Rest\Request";
 
     /**
+     * A callback which is called before returning the request by the factory
+     *
+     * @var \Closure
+     */
+    protected $requestFactory = null;
+
+    /**
      * The responsetransformerclass
      * By default its set to null which means that no transformer will be applied
      *
      * @var string
      */
     protected $responseTransformer = null;
+
+    /**
+     * A callback which is called before returning the responsetransformer by the factory
+     *
+     * @var \Closure
+     */
+    protected $responseTransformerFactory = null;
 
     /**
      * {@inheritdoc}
@@ -200,5 +214,51 @@ class GenericConfiguration implements ConfigurationInterface
     public function setResponseTransformer($responseTransformer)
     {
         $this->responseTransformer = $responseTransformer;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequestFactory()
+    {
+        return $this->requestFactory;
+    }
+
+    /**
+     * Sets the request factory callback
+     *
+     * @param \Closure $closure
+     *
+     * @return \ApaiIO\Configuration\GenericConfiguration
+     */
+    public function setRequestFactory(\Closure $closure)
+    {
+        $this->requestFactory = $closure;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getResponseTransformerFactory()
+    {
+        return $this->responseTransformerFactory;
+    }
+
+    /**
+     * Sets the responsetransformer factory callback
+     *
+     * @param \Closure $closure
+     *
+     * @return \ApaiIO\Configuration\GenericConfiguration
+     */
+    public function setResponseTransformerFactory(\Closure $closure)
+    {
+        $this->responseTransformerFactory = $closure;
+
+        return $this;
     }
 }

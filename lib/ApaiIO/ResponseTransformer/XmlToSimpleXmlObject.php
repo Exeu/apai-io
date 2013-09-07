@@ -30,6 +30,7 @@ class XmlToSimpleXmlObject implements ResponseTransformerInterface
     public function transform($response)
     {
         $simpleXML = simplexml_load_string($response);
+
         return $simpleXML;
     }
 }
