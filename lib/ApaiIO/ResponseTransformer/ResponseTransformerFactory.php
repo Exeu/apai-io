@@ -86,7 +86,7 @@ class ResponseTransformerFactory
         throw new \LogicException(sprintf("Responsetransformerclass does not implements the ResponseTransformerInterface: %s", $class));
     }
 
-    protected function applyCallback($closure, $responseTransformer)
+    protected static function applyCallback($closure, $responseTransformer)
     {
         if (false === is_null($closure) && is_callable($closure)) {
             return $closure($responseTransformer);

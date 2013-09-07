@@ -86,7 +86,7 @@ class RequestFactory
         throw new \LogicException(sprintf("Requestclass does not implements the RequestInterface: %s", $class));
     }
 
-    protected function applyCallback($closure, $request)
+    protected static function applyCallback($closure, $request)
     {
         if (false === is_null($closure) && is_callable($closure)) {
             return $closure($request);
