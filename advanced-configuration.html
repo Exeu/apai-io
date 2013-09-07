@@ -34,60 +34,10 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Basic usage</h1>
-        <h2>Making your first request</h2>
-        <p>After the <a href="installation.html">installation</a> you can use apai-io out of the box.</p>
-
-        <p>This guide expects that you use an autoloader in your project!</p>
-
-        <h3>Creating your configuration</h3>
-        <p>First of all you have to create a new configuration object. Apai-IO has one built in configuration class which can be used in nearly every project. Its called GenericConfiguration.</p>
-        <pre><code class="php">use ApaiIO\Configuration\GenericConfiguration;
-
-$conf = new GenericConfiguration();
-$conf
-    ->setCountry('com')
-    ->setAccessKey('YOUR ACCESS KEY')
-    ->setSecretKey('YOUR SECRET KEY')
-    ->setAssociateTag('YOUR ASSOCIATE TAG');</code></pre>
-
-        <p>You have to set the country, accesskey, secretkey and your associate tag using the setter functions of the GenericConfiguration class.</p>
-        <p><strong>How to get your accesskey, secretkey and associate tag is documented here: <a href="http://docs.aws.amazon.com/AWSECommerceService/latest/DG/becomingAssociate.html">http://docs.aws.amazon.com/AWSECommerceService/latest/DG/becomingAssociate.html</a></strong>
-
-        <p>The country could be one of the following: <code>de, com, co.uk, ca, fr, co.jp, it, cn, es</code></p>
-        <p>For example if you set this to <code>de</code> you will send your requests to the german amazon database (www.amazon.de)</p>
-
-
-        <h3>Creating your operation</h3>
-        <p>After setting up the configuration, you can go to the next step and create your operation.</p>
-        <p>In the following example we take the ItemSearch operation: <a href="http://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemSearch.html">http://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemSearch.html</a></p>
-        <pre><code class="php">use ApaiIO\Operations\Search;
-
-$search = new Search();
-$search->setCategory('DVD');
-$search->setActor('Bruce Willis');
-$search->setKeywords('Die Hard');
-</code></pre>
-
-        <p>Now you have your first operation configured. It searches the DVD-Index, looking for the actor Bruce Willis and for the keywords Die Hard.</p>
-        <p>There are magic setter functions within this class. You can set additional parameters of your choice! What parameters are possible see the link above.</p>
-
-        <p>For example you can set the condition of the item to <code>used</code>:</p>
-        <pre><code class="php">$search->setCondition('used');</code></pre>
-
-        <h3>Making the request</h3>
-        <p>The next step is to make the request:</p>
-<pre><code class="php">use ApaiIO\ApaiIO;
-
-$apaiIo = new ApaiIO($conf);
-$response = $apaiIo->runOperation($search);
-
-var_dump($response);
-</code></pre>
-
-        <p>If everything worked fine and your configuration (accesskey, secretkey, associatetag) was correct, you will get a xml response as string.</p>
-
-        <h3>The full example</h3>
+        <h1>Advanced configuration</h1>
+        <h2>RequestFactory Callbacks</h2>
+        <p>Since version 1.3 you are able to set up a callback with the configuration which is called before the internal request factory returns a new requestobject.</p>
+        <p>With this change you can manipulate the requestobject easily.</p>
 
         <pre><code class="php">use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Search;
@@ -98,7 +48,44 @@ $conf
     ->setCountry('com')
     ->setAccessKey('YOUR ACCESS KEY')
     ->setSecretKey('YOUR SECRET KEY')
-    ->setAssociateTag('YOUR ASSOCIATE TAG');
+    ->setAssociateTag('YOUR ASSOCIATE TAG')
+    ->setRequestFactory(
+        function($request) {
+            // do what ever you want
+            return $request;
+        }
+    );
+
+$search = new Search();
+$search->setCategory('DVD');
+$search->setActor('Bruce Willis');
+$search->setKeywords('Die Hard');
+
+$apaiIo = new ApaiIO($conf);
+$response = $apaiIo->runOperation($search);
+
+var_dump($response);</code></pre>
+
+        <h2>ResponseTransformerFactory Callbacks</h2>
+        <p>Since version 1.3 you are able to set up a callback with the configuration which is called before the internal responsetransformer factory returns a new responsetransformerobject.</p>
+        <p>With this change you can manipulate the responsetransformerobject easily.</p>
+
+        <pre><code class="php">use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Operations\Search;
+use ApaiIO\ApaiIO;
+
+$conf = new GenericConfiguration();
+$conf
+    ->setCountry('com')
+    ->setAccessKey('YOUR ACCESS KEY')
+    ->setSecretKey('YOUR SECRET KEY')
+    ->setAssociateTag('YOUR ASSOCIATE TAG')
+    ->setResponseTransformerFactory(
+        function($responseTransformer) {
+            // do what ever you want
+            return $responseTransformer;
+        }
+    );
 
 $search = new Search();
 $search->setCategory('DVD');
@@ -110,7 +97,6 @@ $response = $apaiIo->runOperation($search);
 
 var_dump($response);</code></pre>
       </section>
-
     </div>
 
     <!-- FOOTER  -->
