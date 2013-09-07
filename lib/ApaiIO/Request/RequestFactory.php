@@ -57,16 +57,17 @@ class RequestFactory
     public static function createRequest(ConfigurationInterface $configuration)
     {
         $class = $configuration->getRequest();
+        $factoryCallback = $configuration->getRequestFactory();
 
         if (true === is_object($class) && $class instanceof \ApaiIO\Request\RequestInterface) {
-            return $class;
+            return self::applyCallback($factoryCallback, $class);
         }
 
         if (true === is_string($class) && true == array_key_exists($class, self::$requestObjects)) {
             $request = self::$requestObjects[$class];
             $request->setConfiguration($configuration);
 
-            return $request;
+            return self::applyCallback($factoryCallback, $request);
         }
 
         try {
@@ -79,13 +80,18 @@ class RequestFactory
             $request = new $class();
             $request->setConfiguration($configuration);
 
-            if ($factoryCallback = $configuration->getRequestFactory()) {
-                $request = $factoryCallback($request);
-            }
-
-            return self::$requestObjects[$class] = $request;
+            return self::$requestObjects[$class] = self::applyCallback($factoryCallback, $request);
         }
 
         throw new \LogicException(sprintf("Requestclass does not implements the RequestInterface: %s", $class));
+    }
+
+    protected function applyCallback($closure, $request)
+    {
+        if (false === is_null($closure) && is_callable($closure)) {
+            return $closure($request);
+        }
+
+        return $request;
     }
 }

@@ -57,13 +57,14 @@ class ResponseTransformerFactory
     public static function createResponseTransformer(ConfigurationInterface $configuration)
     {
         $class = $configuration->getResponseTransformer();
+        $factoryCallback = $configuration->getResponseTransformerFactory();
 
         if (true === is_object($class) && $class instanceof \ApaiIO\ResponseTransformer\ResponseTransformerInterface) {
-            return $class;
+             return self::applyCallback($factoryCallback, $class);
         }
 
         if (true === is_string($class) && true == array_key_exists($class, self::$responseTransformerObjects)) {
-            return self::$responseTransformerObjects[$class];
+            return self::applyCallback($factoryCallback, self::$responseTransformerObjects[$class]);
         }
 
         try {
@@ -79,9 +80,18 @@ class ResponseTransformerFactory
                 $responseTransformer = $factoryCallback($responseTransformer);
             }
 
-            return self::$responseTransformerObjects[$class] = $responseTransformer;
+            return self::$responseTransformerObjects[$class] = self::applyCallback($factoryCallback, $responseTransformer);
         }
 
         throw new \LogicException(sprintf("Responsetransformerclass does not implements the ResponseTransformerInterface: %s", $class));
+    }
+
+    protected function applyCallback($closure, $responseTransformer)
+    {
+        if (false === is_null($closure) && is_callable($closure)) {
+            return $closure($responseTransformer);
+        }
+
+        return $responseTransformer;
     }
 }
