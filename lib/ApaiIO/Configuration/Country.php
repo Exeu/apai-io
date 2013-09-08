@@ -55,11 +55,13 @@ final class Country
         $isValid = in_array(strtolower($country), self::$countryList) ? true : false;
 
         if (true === $exception && false === $isValid) {
-            throw new \InvalidArgumentException(sprintf(
-                "Invalid Country-Code: %s! Possible Country-Codes: %s",
-                $country,
-                implode(', ', self::$countryList)
-            ));
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid Country-Code: %s! Possible Country-Codes: %s",
+                    $country,
+                    implode(', ', self::$countryList)
+                )
+            );
         }
 
         return $isValid;
