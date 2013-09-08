@@ -60,7 +60,7 @@ class ResponseTransformerFactory
         $factoryCallback = $configuration->getResponseTransformerFactory();
 
         if (true === is_object($class) && $class instanceof \ApaiIO\ResponseTransformer\ResponseTransformerInterface) {
-             return self::applyCallback($factoryCallback, $class);
+            return self::applyCallback($factoryCallback, $class);
         }
 
         if (true === is_string($class) && true == array_key_exists($class, self::$responseTransformerObjects)) {

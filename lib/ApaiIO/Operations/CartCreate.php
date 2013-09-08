@@ -38,13 +38,13 @@ class CartCreate extends AbstractOperation
     /**
      * Adds an item to the Cart
      *
-     * @param string  $asin     The ASIN Number of the item
+     * @param string $asin     The ASIN Number of the item
      * @param integer $quantity How much you want to add
      */
     public function addItem($asin, $quantity)
     {
-        $this->parameter['Item.'.$this->itemCounter.'.ASIN'] = $asin;
-        $this->parameter['Item.'.$this->itemCounter.'.Quantity'] = $quantity;
+        $this->parameter['Item.' . $this->itemCounter . '.ASIN'] = $asin;
+        $this->parameter['Item.' . $this->itemCounter . '.Quantity'] = $quantity;
 
         $this->itemCounter++;
     }

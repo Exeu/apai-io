@@ -18,9 +18,9 @@
 namespace ApaiIO\Request\Soap;
 
 use ApaiIO\Configuration\ConfigurationInterface;
-use ApaiIO\Request\Util;
 use ApaiIO\Operations\OperationInterface;
 use ApaiIO\Request\RequestInterface;
+use ApaiIO\Request\Util;
 
 /**
  * Basic implementation of the soap request
@@ -118,15 +118,15 @@ class Request implements RequestInterface
                 'Request' => array_merge(
                     array(
                         'Operation' => $operation->getName()),
-                        $operation->getOperationParameter()
-        )));
+                    $operation->getOperationParameter()
+                )));
     }
 
     /**
      * Performs the soaprequest
      *
      * @param OperationInterface $operation The operation
-     * @param array              $params    Requestparameters 'ParameterName' => 'ParameterValue'
+     * @param array $params    Requestparameters 'ParameterName' => 'ParameterValue'
      *
      * @return array The response as an array with stdClass objects
      */

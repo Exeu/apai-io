@@ -18,9 +18,9 @@
 namespace ApaiIO\Request\Rest;
 
 use ApaiIO\Configuration\ConfigurationInterface;
-use ApaiIO\Request\Util;
 use ApaiIO\Operations\OperationInterface;
 use ApaiIO\Request\RequestInterface;
+use ApaiIO\Request\Util;
 
 /**
  * Basic implementation of the rest request

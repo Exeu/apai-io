@@ -55,7 +55,7 @@ class ApaiIO
     /**
      * Runs the given operation
      *
-     * @param OperationInterface     $operation     The operationobject
+     * @param OperationInterface $operation     The operationobject
      * @param ConfigurationInterface $configuration The configurationobject
      *
      * @return mixed
@@ -78,7 +78,7 @@ class ApaiIO
     /**
      * Applies a responsetransformer
      *
-     * @param mixed                  $response      The response of the request
+     * @param mixed $response      The response of the request
      * @param ConfigurationInterface $configuration The configurationobject
      *
      * @return mixed

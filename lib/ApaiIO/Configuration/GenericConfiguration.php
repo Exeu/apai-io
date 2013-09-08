@@ -43,7 +43,7 @@ class GenericConfiguration implements ConfigurationInterface
     /**
      * The string
      *
-     * @var unknown
+     * @var string
      */
     protected $secretKey;
 

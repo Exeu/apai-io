@@ -5,7 +5,7 @@ require_once 'Config.php';
 use ApaiIO\Request\RequestFactory;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Search;
-use ApaiIO\Response\ObjectToArray;
+use ApaiIO\ResponseTransformer\ObjectToArray;
 use ApaiIO\Operations\Lookup;
 use ApaiIO\Operations\SimilarityLookup;
 use ApaiIO\Operations\CartCreate;
