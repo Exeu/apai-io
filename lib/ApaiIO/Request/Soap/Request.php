@@ -118,7 +118,7 @@ class Request implements RequestInterface
                 'Request' => array_merge(
                     array(
                         'Operation' => $operation->getName()),
-                    $operation->getOperationParameter()
+                        $operation->getOperationParameter()
                 )));
     }
 
@@ -126,7 +126,7 @@ class Request implements RequestInterface
      * Performs the soaprequest
      *
      * @param OperationInterface $operation The operation
-     * @param array $params    Requestparameters 'ParameterName' => 'ParameterValue'
+     * @param array              $params    Requestparameters 'ParameterName' => 'ParameterValue'
      *
      * @return array The response as an array with stdClass objects
      */

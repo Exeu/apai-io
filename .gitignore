@@ -4,3 +4,4 @@
 .idea
 samples/Config.php
 phpunit.xml
+php-cs-fixer.phar
