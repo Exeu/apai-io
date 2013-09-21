@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ApaiIO" default="build" basedir=".">
+  <property name="build.dir" location="${basedir}/build" />
+
+  <target name="clean">
+    <!-- Clean up -->
+    <delete dir="build" />
+
+    <!-- Create build directories -->
+    <mkdir dir="${build.dir}/api" />
+    <mkdir dir="${build.dir}/code-browser" />
+    <mkdir dir="${build.dir}/coverage" />
+    <mkdir dir="${build.dir}/logs" />
+    <mkdir dir="${build.dir}/pdepend" />
+  </target>
+
+  <!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
+  <target name="parallelTasks">
+    <parallel>
+      <antcall target="pdepend" />
+      <antcall target="phpmd" />
+      <antcall target="phpcpd" />
+      <antcall target="phpcs" />
+      <antcall target="phploc" />
+    </parallel>
+  </target>
+
+  <!-- Generate pmd.xml -->
+  <target name="phpmd">
+    <exec executable="phpmd">
+      <arg line="${basedir}/lib xml codesize,unusedcode,naming,design
+      --reportfile ${build.dir}/logs/pmd.xml" />
+    </exec>
+  </target>
+
+  <!-- Generate checkstyle.xml -->
+  <target name="phpcs">
+    <exec executable="phpcs" output="/dev/null">
+      <arg line="--report=checkstyle
+              --report-file=${build.dir}/logs/checkstyle.xml
+              --standard=PSR2
+              ${basedir}/lib" />
+    </exec>
+  </target>
+
+  <!-- Generate jdepend.xml and software metrics charts -->
+  <target name="pdepend">
+    <exec executable="pdepend">
+      <arg line="--jdepend-xml=${build.dir}/logs/jdepend.xml
+              --jdepend-chart=${build.dir}/logs/jdepend-chart.svg
+              --overview-pyramid=${build.dir}/logs/jdepend-pyramid.svg
+              ${basedir}/lib" />
+    </exec>
+  </target>
+
+  <!-- Generate pmd-cpd.xml -->
+  <target name="phpcpd">
+    <exec executable="phpcpd">
+      <arg line="--log-pmd ${build.dir}/logs/pmd-cpd.xml
+              ${basedir}/lib" />
+    </exec>
+  </target>
+
+  <!-- Generate phploc.xml -->
+  <target name="phploc">
+    <exec executable="phploc">
+      <arg line="--log-xml ${build.dir}/logs/phploc.xml
+              ${basedir}/lib" />
+    </exec>
+  </target>
+
+  <target name="phpcb">
+    <exec executable="phpcb">
+      <arg line="--log=${build.dir}/logs
+              --source=${basedir}/lib
+              --output=${build.dir}/code-browser" />
+    </exec>
+  </target>
+
+  <target name="phpunit" description="Run unit tests with PHPUnit">
+  	<copy file="${basedir}/phpunit.xml.dist" tofile="${basedir}/phpunit.xml"/>
+    <exec executable="phpunit">
+        <arg line="--coverage-clover ${build.dir}/coverage/clover.xml
+            --coverage-html ${build.dir}/coverage/" />
+    </exec>
+  </target>
+
+  <target name="build" depends="clean,parallelTasks,phpcb,phpunit" />
+</project>
