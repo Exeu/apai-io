@@ -38,6 +38,7 @@ class RequestFactory
      */
     private function __construct()
     {
+        // noop
     }
 
     /**
@@ -45,6 +46,7 @@ class RequestFactory
      */
     private function __clone()
     {
+        // noop
     }
 
     /**
@@ -89,7 +91,12 @@ class RequestFactory
     protected static function applyCallback($closure, $request)
     {
         if (false === is_null($closure) && is_callable($closure)) {
-            return $closure($request);
+            $request = $closure($request);
+            if ($request instanceof \ApaiIO\Request\RequestInterface) {
+                return $request;
+            }
+
+            throw new \LogicException(sprintf("Requestclass does not implements the RequestInterface: %s", get_class($request)));
         }
 
         return $request;

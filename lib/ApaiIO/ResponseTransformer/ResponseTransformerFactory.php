@@ -89,7 +89,12 @@ class ResponseTransformerFactory
     protected static function applyCallback($closure, $responseTransformer)
     {
         if (false === is_null($closure) && is_callable($closure)) {
-            return $closure($responseTransformer);
+            $responseTransformer = $closure($responseTransformer);
+            if ($responseTransformer instanceof \ApaiIO\ResponseTransformer\ResponseTransformerInterface) {
+                return $responseTransformer;
+            }
+
+            throw new \LogicException(sprintf("Responsetransformerclass does not implements the ResponseTransformerInterface: %s", get_class($responseTransformer)));
         }
 
         return $responseTransformer;

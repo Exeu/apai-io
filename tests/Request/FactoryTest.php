@@ -95,6 +95,21 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
             }
         );
 
-        $requestObj = RequestFactory::createRequest($conf);
+        RequestFactory::createRequest($conf);
+    }
+
+    /**
+     * @expectedException LogicException
+     */
+    public function testInvalidRequestFactoryCallbackReturnValue()
+    {
+        $conf = new GenericConfiguration();
+        $conf->setRequestFactory(
+            function ($request) {
+                return new \stdClass();
+            }
+        );
+
+        RequestFactory::createRequest($conf);
     }
 }
