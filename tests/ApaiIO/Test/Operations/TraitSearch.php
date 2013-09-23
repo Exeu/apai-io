@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Operations;
 
-
 use ApaiIO\Common\OperationTrait;
 
 class TraitSearch

@@ -99,6 +99,22 @@ class ResponseTransformerFactoryTest extends \PHPUnit_Framework_TestCase
             }
         );
 
-        $requestObj = ResponseTransformerFactory::createResponseTransformer($conf);
+        ResponseTransformerFactory::createResponseTransformer($conf);
+    }
+
+    /**
+     * @expectedException LogicException
+     */
+    public function testInvalidRequestFactoryCallbackReturnValue()
+    {
+        $conf = new GenericConfiguration();
+        $conf->setResponseTransformer('\ApaiIO\ResponseTransformer\XmlToDomDocument');
+        $conf->setResponseTransformerFactory(
+            function ($response) {
+                return new \stdClass();
+            }
+        );
+
+        ResponseTransformerFactory::createResponseTransformer($conf);
     }
 }
