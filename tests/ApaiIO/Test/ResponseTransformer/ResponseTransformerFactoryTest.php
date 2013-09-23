@@ -17,9 +17,8 @@
 
 namespace ApaiIO\Test\ResponseTransformer;
 
-use ApaiIO\Response\Util;
-use ApaiIO\Response\ResponseFactory;
 use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\ResponseTransformer\ObjectToArray;
 use ApaiIO\ResponseTransformer\ResponseTransformerFactory;
 
 class ResponseTransformerFactoryTest extends \PHPUnit_Framework_TestCase
@@ -37,7 +36,7 @@ class ResponseTransformerFactoryTest extends \PHPUnit_Framework_TestCase
     public function testValidResponseObjectFromObject()
     {
         $conf = new GenericConfiguration();
-        $conf->setResponseTransformer(new \ApaiIO\ResponseTransformer\ObjectToArray());
+        $conf->setResponseTransformer(new ObjectToArray());
 
         $Response = ResponseTransformerFactory::createResponseTransformer($conf);
 

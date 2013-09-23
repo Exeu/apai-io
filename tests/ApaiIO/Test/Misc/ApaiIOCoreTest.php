@@ -20,7 +20,6 @@ namespace ApaiIO\Test\Misc;
 use ApaiIO\ApaiIO;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Search;
-use ApaiIO\Operations\Lookup;
 
 class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
 {
