@@ -27,7 +27,12 @@ trait OperationTrait
     protected $parameter = array();
 
     /**
-     * {@inheritdoc}
+     * Sets the responsegroups for the current operation
+     * Which responsegroups are available depends on the Operation you perform
+     *
+     * @param array $responseGroup The responsegroup as an array
+     *
+     * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CHAP_ResponseGroupsList.html
      */
     public function setResponseGroup(array $responseGroup)
     {
@@ -37,7 +42,9 @@ trait OperationTrait
     }
 
     /**
-     * {@inheritdoc}
+     * Returns all paramerters belonging to the current operation
+     *
+     * @return array
      */
     public function getOperationParameter()
     {
