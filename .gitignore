@@ -6,3 +6,4 @@ samples/Config.php
 phpunit.xml
 php-cs-fixer.phar
 composer.phar
+vendor
