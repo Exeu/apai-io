@@ -1,6 +1,4 @@
 <?php
-use ApaiIO\Request\Util;
-use ApaiIO\Operations\Search;
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -16,6 +14,11 @@ use ApaiIO\Operations\Search;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+namespace ApaiIO\Test\Request;
+
+use ApaiIO\Request\Util;
+use ApaiIO\Operations\Search;
 
 class OperationsTest extends \PHPUnit_Framework_TestCase
 {

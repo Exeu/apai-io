@@ -1,9 +1,4 @@
 <?php
-use ApaiIO\Configuration\GenericConfiguration;
-use ApaiIO\ApaiIO;
-use ApaiIO\Operations\Search;
-use ApaiIO\ResponseTransformer\ObjectToArray;
-
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -19,6 +14,14 @@ use ApaiIO\ResponseTransformer\ObjectToArray;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+namespace ApaiIO\Test\Request;
+
+use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\ApaiIO;
+use ApaiIO\Operations\Search;
+use ApaiIO\ResponseTransformer\ObjectToArray;
+
 
 class SoapRequestTest extends \PHPUnit_Framework_TestCase
 {
