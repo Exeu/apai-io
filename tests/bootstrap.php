@@ -19,5 +19,6 @@ require_once 'UniversalClassLoader.php';
 
 $classLoader = new \Symfony\Component\ClassLoader\UniversalClassLoader();
 
+$classLoader->registerNamespace('ApaiIO\Test', __DIR__);
 $classLoader->registerNamespace('ApaiIO', __DIR__.'/../lib');
 $classLoader->register();
