@@ -15,26 +15,16 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Test\Config;
+namespace ApaiIO\Test\Operations;
 
-use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Common\OperationTrait;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class TraitSearch
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testCountryException()
-    {
-        $object = new GenericConfiguration();
-        $object->setCountry('no country');
-    }
+    use OperationTrait;
 
-    public function testCountrySetter()
+    public function getName()
     {
-        $object = new GenericConfiguration();
-        $object->setCountry('DE');
-
-        $this->assertEquals('de', $object->getCountry());
+        return 'ItemSearch';
     }
 }

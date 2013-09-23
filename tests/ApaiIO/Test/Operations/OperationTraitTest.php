@@ -15,26 +15,27 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Test\Config;
+namespace ApaiIO\Test\Operations;
 
-use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Operations\Search;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class OperationTraitTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testCountryException()
+    public function setUp()
     {
-        $object = new GenericConfiguration();
-        $object->setCountry('no country');
+        if (version_compare(phpversion(), '5.4.0', '<')) {
+            $this->markTestSkipped('You need PHP >= 5.4.0 to run this test');
+        }
     }
 
-    public function testCountrySetter()
+    public function testOperationTrait()
     {
-        $object = new GenericConfiguration();
-        $object->setCountry('DE');
+        $search = new TraitSearch();
 
-        $this->assertEquals('de', $object->getCountry());
+        $search->setResponseGroup(array('Large'));
+
+        $expectedResult = array('ResponseGroup' => array('Large'));
+
+        $this->assertEquals($expectedResult, $search->getOperationParameter());
     }
 }

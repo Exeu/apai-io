@@ -15,6 +15,16 @@
     <mkdir dir="${build.dir}/pdepend" />
   </target>
 
+  <target name="buildEnv">
+      <exec executable="bash">
+          <arg value="-c"/>
+          <arg line='"curl -s https://getcomposer.org/installer | php"' />
+      </exec>
+      <exec executable="php">
+          <arg line="composer.phar install --dev" />
+      </exec>
+  </target>
+
   <!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
   <target name="parallelTasks">
     <parallel>
@@ -86,5 +96,5 @@
     </exec>
   </target>
 
-  <target name="build" depends="clean,parallelTasks,phpcb,phpunit" />
+  <target name="build" depends="clean,buildEnv,parallelTasks,phpcb,phpunit" />
 </project>

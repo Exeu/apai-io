@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Test\Request;
+namespace ApaiIO\Test\Operations;
 
 use ApaiIO\Operations\Search;
 

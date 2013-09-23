@@ -5,3 +5,8 @@ php:
   - 5.3
   - 5.4
   - 5.5
+
+before_script:
+    # php deps
+    - composer self-update
+    - composer install --dev

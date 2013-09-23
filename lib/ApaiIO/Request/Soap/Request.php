@@ -116,7 +116,9 @@ class Request implements RequestInterface
             array(
                 'AWSAccessKeyId' => $this->configuration->getAccessKey(),
                 'Request' => array_merge(
-                    array('Operation' => $operation->getName()),
+                    array(
+                        'Operation' => $operation->getName()
+                    ),
                     $operation->getOperationParameter()
                 )
             )

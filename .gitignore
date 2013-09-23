@@ -7,3 +7,5 @@ phpunit.xml
 php-cs-fixer.phar
 composer.phar
 *.swp
+vendor
+*.orig
