@@ -1,9 +1,4 @@
 <?php
-use ApaiIO\Request\Util;
-use ApaiIO\ResponseTransformer\ObjectToArray;
-use ApaiIO\ResponseTransformer\XmlToDomDocument;
-use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;
-
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -19,6 +14,13 @@ use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+namespace ApaiIO\Test\ResponseTransformer;
+
+use ApaiIO\Request\Util;
+use ApaiIO\ResponseTransformer\ObjectToArray;
+use ApaiIO\ResponseTransformer\XmlToDomDocument;
+use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;
 
 class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
 {

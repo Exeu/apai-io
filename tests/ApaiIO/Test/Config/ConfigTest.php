@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+namespace ApaiIO\Test\Request;
+
 use ApaiIO\Configuration\GenericConfiguration;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase
