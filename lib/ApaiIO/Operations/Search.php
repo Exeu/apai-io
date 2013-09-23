@@ -72,10 +72,12 @@ class Search extends AbstractOperation
     public function setPage($page)
     {
         if (false === is_numeric($page) || $page < 1 || $page > 10) {
-            throw new \InvalidArgumentException(sprintf(
-                '%s is an invalid page value. It has to be numeric, positive and between 1 and 10',
-                $page
-            ));
+            throw new \InvalidArgumentException(
+                sprintf(
+                    '%s is an invalid page value. It has to be numeric, positive and between 1 and 10',
+                    $page
+                )
+            );
         }
 
         $this->parameter['ItemPage'] = $page;

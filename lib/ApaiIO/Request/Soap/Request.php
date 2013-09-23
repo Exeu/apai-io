@@ -117,9 +117,12 @@ class Request implements RequestInterface
                 'AWSAccessKeyId' => $this->configuration->getAccessKey(),
                 'Request' => array_merge(
                     array(
-                        'Operation' => $operation->getName()),
-                        $operation->getOperationParameter()
-                )));
+                        'Operation' => $operation->getName()
+                    ),
+                    $operation->getOperationParameter()
+                )
+            )
+        );
     }
 
     /**
@@ -137,11 +140,13 @@ class Request implements RequestInterface
             array('exceptions' => 1)
         );
 
-        $soapClient->__setLocation(str_replace(
-            '%%COUNTRY%%',
-            $this->configuration->getCountry(),
-            $this->webserviceEndpoint
-        ));
+        $soapClient->__setLocation(
+            str_replace(
+                '%%COUNTRY%%',
+                $this->configuration->getCountry(),
+                $this->webserviceEndpoint
+            )
+        );
         $soapClient->__setSoapHeaders($this->buildSoapHeader($operation));
 
         return $soapClient->__soapCall($operation->getName(), array($params));
