@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Request;
 
-use ApaiIO\Request\Util;
 use ApaiIO\Operations\Search;
 
 class OperationsTest extends \PHPUnit_Framework_TestCase

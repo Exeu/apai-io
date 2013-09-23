@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\ResponseTransformer;
 
-use ApaiIO\Request\Util;
 use ApaiIO\ResponseTransformer\ObjectToArray;
 use ApaiIO\ResponseTransformer\XmlToDomDocument;
 use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;

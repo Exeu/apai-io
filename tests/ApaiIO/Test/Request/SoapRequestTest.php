@@ -20,8 +20,6 @@ namespace ApaiIO\Test\Request;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\ApaiIO;
 use ApaiIO\Operations\Search;
-use ApaiIO\ResponseTransformer\ObjectToArray;
-
 
 class SoapRequestTest extends \PHPUnit_Framework_TestCase
 {

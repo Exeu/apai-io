@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Request;
 
-use ApaiIO\Request\Util;
 use ApaiIO\Request\RequestFactory;
 use ApaiIO\Configuration\GenericConfiguration;
 
