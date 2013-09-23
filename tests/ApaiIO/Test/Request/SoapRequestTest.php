@@ -1,9 +1,4 @@
 <?php
-use ApaiIO\Configuration\GenericConfiguration;
-use ApaiIO\ApaiIO;
-use ApaiIO\Operations\Search;
-use ApaiIO\ResponseTransformer\ObjectToArray;
-
 /*
  * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
  *
@@ -20,7 +15,15 @@ use ApaiIO\ResponseTransformer\ObjectToArray;
  * limitations under the License.
  */
 
-class RestRequestTest extends \PHPUnit_Framework_TestCase
+namespace ApaiIO\Test\Request;
+
+use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\ApaiIO;
+use ApaiIO\Operations\Search;
+use ApaiIO\ResponseTransformer\ObjectToArray;
+
+
+class SoapRequestTest extends \PHPUnit_Framework_TestCase
 {
     private $accessKey = null;
     private $secretKey = null;
@@ -40,7 +43,8 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
             ->setCountry('de')
             ->setAccessKey($this->accessKey)
             ->setSecretKey($this->secretKey)
-            ->setAssociateTag('apaiIOTest');
+            ->setAssociateTag('apaiIOTest')
+            ->setRequest('\ApaiIO\Request\Soap\Request');
     }
 
     public function testRestSuccessRequest()
@@ -51,36 +55,31 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
             ->setCategory('DVD')
             ->setPage(2);
 
-        $xml = $this->runOperation($search);
-        $res = $xml->xpath('//a:Request');
+        $res = $this->runOperation($search);
 
-        $success = (string) $res[0]->IsValid;
-        $this->assertEquals("True", $success);
+        $this->assertEquals("True", $res->Items->Request->IsValid);
 
-        $this->assertEquals('Bruce Willis', (string) $res[0]->ItemSearchRequest->Keywords);
-        $this->assertEquals('Small', (string) $res[0]->ItemSearchRequest->ResponseGroup);
-        $this->assertEquals('DVD', (string) $res[0]->ItemSearchRequest->SearchIndex);
-        $this->assertEquals(2, (integer) $res[0]->ItemSearchRequest->ItemPage);
+        $this->assertEquals('Bruce Willis', $res->Items->Request->ItemSearchRequest->Keywords);
+        $this->assertEquals('Small', $res->Items->Request->ItemSearchRequest->ResponseGroup);
+        $this->assertEquals('DVD', $res->Items->Request->ItemSearchRequest->SearchIndex);
+        $this->assertEquals(2, $res->Items->Request->ItemSearchRequest->ItemPage);
     }
 
 
     public function testRestArrayValues()
     {
+        $responseGroups = array('Large', 'Images');
+
         $search = new Search();
         $search
             ->setKeywords('Bruce Willis')
             ->setCategory('DVD')
-            ->setResponseGroup(array('Large', 'Images'))
+            ->setResponseGroup($responseGroups)
             ->setPage(2);
 
-        $xml = $this->runOperation($search);
-        $res = $xml->xpath('//a:Request');
+        $res = $this->runOperation($search);
 
-        $success = (string) $res[0]->IsValid;
-        $this->assertEquals("True", $success);
-
-        $this->assertEquals('Large', (string) $res[0]->ItemSearchRequest->ResponseGroup[0]);
-        $this->assertEquals('Images', (string) $res[0]->ItemSearchRequest->ResponseGroup[1]);
+        $this->assertEquals($responseGroups, $res->Items->Request->ItemSearchRequest->ResponseGroup);
     }
 
     public function testRestErrorRequest()
@@ -90,13 +89,9 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
             ->setCategory('DVD')
             ->setPage(2);
 
-        $xml = $this->runOperation($search);
-        $res = $xml->xpath('//a:Request');
+        $res = $this->runOperation($search);
 
-        $success = (string) $res[0]->IsValid;
-        $this->assertEquals("False", $success);
-
-        $this->assertEquals('AWS.MinimumParameterRequirement', (string) $res[0]->Errors->Error->Code);
+        $this->assertEquals("False", $res->Items->Request->IsValid);
     }
 
     protected function runOperation($operation)
@@ -104,9 +99,6 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
         $apaiIo = new ApaiIO($this->conf);
         $response = $apaiIo->runOperation($operation);
 
-        $xml = simplexml_load_string($response);
-        $xml->registerXPathNamespace('a', 'http://webservices.amazon.com/AWSECommerceService/2011-08-01');
-
-        return $xml;
+        return $response;
     }
 }

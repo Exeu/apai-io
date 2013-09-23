@@ -9,6 +9,10 @@
         {
             "name": "Jan Eichhorn",
             "email": "exeu65@googlemail.com"
+        },
+        {
+            "name": "Dejan Spasic",
+            "email": "dejan.spasic@bitweise.biz"
         }
     ],
     "minimum-stability": "dev",
