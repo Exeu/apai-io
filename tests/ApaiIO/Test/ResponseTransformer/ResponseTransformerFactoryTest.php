@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+namespace ApaiIO\Test\ResponseTransformer;
+
 use ApaiIO\Response\Util;
 use ApaiIO\Response\ResponseFactory;
 use ApaiIO\Configuration\GenericConfiguration;
