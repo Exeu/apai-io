@@ -80,7 +80,7 @@ class GenericConfiguration implements ConfigurationInterface
     /**
      * A callback which is called before returning the responsetransformer by the factory
      *
-     * @var \Closure
+     * @var \Closure|array|string
      */
     protected $responseTransformerFactory = null;
 
@@ -255,13 +255,17 @@ class GenericConfiguration implements ConfigurationInterface
     /**
      * Sets the responsetransformer factory callback
      *
-     * @param \Closure $closure
+     * @param \Closure|array|string $callback
      *
      * @return \ApaiIO\Configuration\GenericConfiguration
      */
-    public function setResponseTransformerFactory(\Closure $closure)
+    public function setResponseTransformerFactory($callback)
     {
-        $this->responseTransformerFactory = $closure;
+        if (!is_callable($callback)) {
+            throw new \InvalidArgumentException("Given argument is not callable");
+        }
+
+        $this->responseTransformerFactory = $callback;
 
         return $this;
     }

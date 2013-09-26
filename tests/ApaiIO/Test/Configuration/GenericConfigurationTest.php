@@ -32,7 +32,7 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
     }
 
-    public function testSetRequestFactoryExeptsClouser()
+    public function testSetRequestFactoryExeptsClosure()
     {
         $this->genericConfiguration->setRequestFactory(function(){});
     }
@@ -40,6 +40,16 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testSetRequestFactoryExeptsCallable()
     {
         $this->genericConfiguration->setRequestFactory(array(__NAMESPACE__ . '\CallableClass', 'foo'));
+    }
+
+    public function testSetResponseTransformerFactoryExeptsClosure()
+    {
+        $this->genericConfiguration->setResponseTransformerFactory(function(){});
+    }
+
+    public function testSetResponseTransformerExeptsCallable()
+    {
+        $this->genericConfiguration->setResponseTransformerFactory(array(__NAMESPACE__ . '\CallableClass', 'foo'));
     }
 
     /**

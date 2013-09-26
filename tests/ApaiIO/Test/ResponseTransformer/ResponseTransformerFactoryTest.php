@@ -15,106 +15,49 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Test\ResponseTransformer;
+namespace ApaiIO\Test\Request;
 
-use ApaiIO\Configuration\GenericConfiguration;
-use ApaiIO\ResponseTransformer\ObjectToArray;
+use ApaiIO\Request\RequestFactory;
 use ApaiIO\ResponseTransformer\ResponseTransformerFactory;
 
 class ResponseTransformerFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testValidResponseObjectFromString()
+    public function testCallback()
     {
-        $conf = new GenericConfiguration();
-        $conf->setResponseTransformer('\ApaiIO\ResponseTransformer\ObjectToArray');
+        $responseTransformer = $this->getMock('\ApaiIO\ResponseTransformer\ResponseTransformerInterface');
+        $callback = $this->getMock(__NAMESPACE__ . '\CallableClass2', array('foo'));
+        $callback->expects($this->once())
+            ->method('foo')
+            ->with($this->isInstanceOf('\ApaiIO\ResponseTransformer\ResponseTransformerInterface'))
+            ->will($this->returnValue($responseTransformer));
 
-        $Response = ResponseTransformerFactory::createResponseTransformer($conf);
-
-        $this->assertInstanceOf('\ApaiIO\ResponseTransformer\ObjectToArray', $Response);
-    }
-
-    public function testValidResponseObjectFromObject()
-    {
-        $conf = new GenericConfiguration();
-        $conf->setResponseTransformer(new ObjectToArray());
-
-        $Response = ResponseTransformerFactory::createResponseTransformer($conf);
-
-        $this->assertInstanceOf('\ApaiIO\ResponseTransformer\ObjectToArray', $Response);
-    }
-
-    /**
-     * @expectedException LogicException
-     */
-    public function testInvalidResponseObjectFromString()
-    {
-        $conf = new GenericConfiguration();
-        $conf->setResponseTransformer('\Exception');
-
-        $Response = ResponseTransformerFactory::createResponseTransformer($conf);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testNonExistingResponseObjectFromString()
-    {
-        $conf = new GenericConfiguration();
-        $conf->setResponseTransformer('\XFOO');
-
-        $Response = ResponseTransformerFactory::createResponseTransformer($conf);
-    }
-
-    /**
-     * @expectedException LogicException
-     */
-    public function testInvalidResponseObjectFromObject()
-    {
-        $conf = new GenericConfiguration();
-        $conf->setResponseTransformer(new \Exception());
-
-        $Response = ResponseTransformerFactory::createResponseTransformer($conf);
-    }
-
-    public function testSameResponse()
-    {
-        $conf = new GenericConfiguration();
-        $conf->setResponseTransformer('\ApaiIO\ResponseTransformer\ObjectToArray');
-
-        $ResponseA = ResponseTransformerFactory::createResponseTransformer($conf);
-        $ResponseB = ResponseTransformerFactory::createResponseTransformer($conf);
-
-        $this->assertSame($ResponseA, $ResponseB);
-    }
-
-    public function testFactoryCallback()
-    {
-        $that = $this;
-        $conf = new GenericConfiguration();
-        $conf->setResponseTransformer('\ApaiIO\ResponseTransformer\XmlToDomDocument');
-        $conf->setResponseTransformerFactory(
-            function ($response) use ($that) {
-                $that->assertInstanceOf('\ApaiIO\ResponseTransformer\XmlToDomDocument', $response);
-                return $response;
-            }
+        $configuration = $this->getMock(
+            '\ApaiIO\Configuration\ConfigurationInterface',
+            array(
+                'getRequest',
+                'getRequestFactory',
+                'getCountry',
+                'getAccessKey',
+                'getSecretKey',
+                'getAssociateTag',
+                'getResponseTransformer',
+                'getResponseTransformerFactory',
+            )
         );
+        $configuration->expects($this->once())
+            ->method('getResponseTransformer')
+            ->will($this->returnValue($responseTransformer));
+        $configuration->expects($this->once())
+            ->method('getResponseTransformerFactory')
+            ->will($this->returnValue(array($callback, 'foo')));
 
-        ResponseTransformerFactory::createResponseTransformer($conf);
+        ResponseTransformerFactory::createResponseTransformer($configuration);
     }
+}
 
-    /**
-     * @expectedException LogicException
-     */
-    public function testInvalidRequestFactoryCallbackReturnValue()
+class CallableClass2
+{
+    public function foo()
     {
-        $conf = new GenericConfiguration();
-        $conf->setResponseTransformer('\ApaiIO\ResponseTransformer\XmlToDomDocument');
-        $conf->setResponseTransformerFactory(
-            function ($response) {
-                return new \stdClass();
-            }
-        );
-
-        ResponseTransformerFactory::createResponseTransformer($conf);
     }
 }
