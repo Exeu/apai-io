@@ -42,6 +42,14 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->genericConfiguration->setRequestFactory(array(__NAMESPACE__ . '\CallableClass', 'foo'));
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSetRequestFactoryThrowExceptionIfArgumentIsNotCallable()
+    {
+        $this->genericConfiguration->setRequestFactory("");
+    }
+
     public function testSetResponseTransformerFactoryExeptsClosure()
     {
         $this->genericConfiguration->setResponseTransformerFactory(function(){});
@@ -55,9 +63,9 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testSetRequestFactoryThrowExceptionIfArgumentIsNotCallable()
+    public function testSetResponseTransformerFactoryThrowExceptionIfArgumentIsNotCallable()
     {
-        $this->genericConfiguration->setRequestFactory("");
+        $this->genericConfiguration->setResponseTransformerFactory("");
     }
 
     /**
