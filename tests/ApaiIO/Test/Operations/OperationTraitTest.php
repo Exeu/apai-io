@@ -17,7 +17,8 @@
 
 namespace ApaiIO\Test\Operations;
 
-use ApaiIO\Operations\Search;
+use ApaiIO\Operations\OperationInterface;
+use ApaiIO\Common\OperationTrait;
 
 class OperationTraitTest extends \PHPUnit_Framework_TestCase
 {
@@ -37,5 +38,15 @@ class OperationTraitTest extends \PHPUnit_Framework_TestCase
         $expectedResult = array('ResponseGroup' => array('Large'));
 
         $this->assertEquals($expectedResult, $search->getOperationParameter());
+    }
+}
+
+class TraitSearch implements OperationInterface
+{
+    use OperationTrait;
+
+    public function getName()
+    {
+        return 'ItemSearch';
     }
 }
