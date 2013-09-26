@@ -65,7 +65,7 @@ class GenericConfiguration implements ConfigurationInterface
     /**
      * A callback which is called before returning the request by the factory
      *
-     * @var \Closure
+     * @var \Closure|array|string
      */
     protected $requestFactory = null;
 
@@ -235,11 +235,11 @@ class GenericConfiguration implements ConfigurationInterface
      */
     public function setRequestFactory($callback)
     {
-        if (is_callable($callback)) {
-            $this->requestFactory = $callback;
-        } else {
+        if (!is_callable($callback)) {
             throw new \InvalidArgumentException("Given argument is not callable");
         }
+
+        $this->requestFactory = $callback;
 
         return $this;
     }
