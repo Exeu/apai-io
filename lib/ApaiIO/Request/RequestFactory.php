@@ -91,7 +91,7 @@ class RequestFactory
     protected static function applyCallback($closure, $request)
     {
         if (false === is_null($closure) && is_callable($closure)) {
-            $request = $closure($request);
+            $request = call_user_func($closure, $request);
             if ($request instanceof \ApaiIO\Request\RequestInterface) {
                 return $request;
             }
