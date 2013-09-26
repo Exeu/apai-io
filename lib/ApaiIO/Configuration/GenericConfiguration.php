@@ -229,13 +229,17 @@ class GenericConfiguration implements ConfigurationInterface
     /**
      * Sets the request factory callback
      *
-     * @param \Closure $closure
+     * @param \Closure|array|string $callback
      *
      * @return \ApaiIO\Configuration\GenericConfiguration
      */
-    public function setRequestFactory(\Closure $closure)
+    public function setRequestFactory($callback)
     {
-        $this->requestFactory = $closure;
+        if (is_callable($callback)) {
+            $this->requestFactory = $callback;
+        } else {
+            throw new \InvalidArgumentException("Given argument is not callable");
+        }
 
         return $this;
     }
