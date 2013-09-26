@@ -49,6 +49,23 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $this->genericConfiguration->setRequestFactory("");
     }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testCountryException()
+    {
+        $object = new GenericConfiguration();
+        $object->setCountry('no country');
+    }
+
+    public function testCountrySetter()
+    {
+        $object = new GenericConfiguration();
+        $object->setCountry('DE');
+
+        $this->assertEquals('de', $object->getCountry());
+    }
 }
 
 class CallableClass
