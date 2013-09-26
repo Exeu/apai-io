@@ -88,10 +88,10 @@ class RequestFactory
         throw new \LogicException(sprintf("Requestclass does not implements the RequestInterface: %s", $class));
     }
 
-    protected static function applyCallback($closure, $request)
+    protected static function applyCallback($callback, $request)
     {
-        if (false === is_null($closure) && is_callable($closure)) {
-            $request = call_user_func($closure, $request);
+        if (false === is_null($callback) && is_callable($callback)) {
+            $request = call_user_func($callback, $request);
             if ($request instanceof \ApaiIO\Request\RequestInterface) {
                 return $request;
             }
