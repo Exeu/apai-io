@@ -20,7 +20,7 @@ namespace ApaiIO\Test\Request;
 use ApaiIO\Request\RequestFactory;
 use ApaiIO\Configuration\GenericConfiguration;
 
-class FactoryTest extends \PHPUnit_Framework_TestCase
+class BaseFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidRequestObjectFromString()
     {
