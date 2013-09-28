@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Test\Request;
+namespace ApaiIO\Test\ResponseTransformer;
 
 use ApaiIO\Request\RequestFactory;
 use ApaiIO\ResponseTransformer\ResponseTransformerFactory;
@@ -25,7 +25,7 @@ class ResponseTransformerFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCallback()
     {
         $responseTransformer = $this->getMock('\ApaiIO\ResponseTransformer\ResponseTransformerInterface');
-        $callback = $this->getMock(__NAMESPACE__ . '\CallableClass2', array('foo'));
+        $callback = $this->getMock(__NAMESPACE__ . '\CallableClass', array('foo'));
         $callback->expects($this->once())
             ->method('foo')
             ->with($this->isInstanceOf('\ApaiIO\ResponseTransformer\ResponseTransformerInterface'))
@@ -55,7 +55,7 @@ class ResponseTransformerFactoryTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-class CallableClass2
+class CallableClass
 {
     public function foo()
     {
