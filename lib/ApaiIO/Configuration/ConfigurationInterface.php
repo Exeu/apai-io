@@ -65,7 +65,7 @@ interface ConfigurationInterface
      * Gets the request factory callback if it is set
      * This callback can be used to manipulate the request before its returned.
      *
-     * @return \Closure
+     * @return \Closure|array|string
      */
     public function getRequestFactory();
 
@@ -73,7 +73,7 @@ interface ConfigurationInterface
      * Gets the responsetransformer factory callback if it is set
      * This callback can be used to manipulate the request before its returned.
      *
-     * @return \Closure
+     * @return \Closure|array|string
      */
     public function getResponseTransformerFactory();
 }
