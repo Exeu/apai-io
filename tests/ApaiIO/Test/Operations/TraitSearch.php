@@ -18,24 +18,14 @@
 namespace ApaiIO\Test\Operations;
 
 use ApaiIO\Common\OperationTrait;
+use ApaiIO\Operations\OperationInterface;
 
-class OperationTraitTest extends \PHPUnit_Framework_TestCase
+class TraitSearch implements OperationInterface
 {
-    public function setUp()
+    use OperationTrait;
+
+    public function getName()
     {
-        if (version_compare(phpversion(), '5.4.0', '<')) {
-            $this->markTestSkipped('You need PHP >= 5.4.0 to run this test');
-        }
-    }
-
-    public function testOperationTrait()
-    {
-        $search = new TraitSearch();
-
-        $search->setResponseGroup(array('Large'));
-
-        $expectedResult = array('ResponseGroup' => array('Large'));
-
-        $this->assertEquals($expectedResult, $search->getOperationParameter());
+        return 'ItemSearch';
     }
 }
