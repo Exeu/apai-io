@@ -37,4 +37,21 @@ class OperationsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $search->getItemPage());
     }
+
+    public function testAbstractOperationSetterAndGetter()
+    {
+        $search = new Search();
+        $search->setFoo('ABC');
+
+        $this->assertEquals('ABC', $search->getFoo());
+    }
+
+    /**
+     * @expectedException BadFunctionCallException
+     */
+    public function testAbstractOperationInvalidMethodName()
+    {
+        $search = new Search();
+        $search->foo();
+    }
 }
