@@ -80,10 +80,18 @@ class ResponseTransformerFactory
                 $responseTransformer = $factoryCallback($responseTransformer);
             }
 
-            return self::$responseTransformerObjects[$class] = self::applyCallback($factoryCallback, $responseTransformer);
+            return self::$responseTransformerObjects[$class] = self::applyCallback(
+                $factoryCallback,
+                $responseTransformer
+            );
         }
 
-        throw new \LogicException(sprintf("Responsetransformerclass does not implements the ResponseTransformerInterface: %s", $class));
+        throw new \LogicException(
+            sprintf(
+                "Responsetransformerclass does not implements the ResponseTransformerInterface: %s",
+                $class
+            )
+        );
     }
 
     protected static function applyCallback($callback, $responseTransformer)
@@ -94,7 +102,12 @@ class ResponseTransformerFactory
                 return $responseTransformer;
             }
 
-            throw new \LogicException(sprintf("Responsetransformerclass does not implements the ResponseTransformerInterface: %s", get_class($responseTransformer)));
+            throw new \LogicException(
+                sprintf(
+                    "Responsetransformerclass does not implements the ResponseTransformerInterface: %s",
+                    get_class($responseTransformer)
+                )
+            );
         }
 
         return $responseTransformer;
