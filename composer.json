@@ -8,13 +8,18 @@
     "authors": [
         {
             "name": "Jan Eichhorn",
-            "email": "exeu65@googlemail.com"
+            "email": "exeu65@googlemail.com",
+            "role": "Maintainer"
         },
         {
             "name": "Dejan Spasic",
-            "email": "dejan.spasic@bitweise.biz"
+            "email": "dejan.spasic@bitweise.biz",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "issues": "https://github.com/Exeu/apai-io/issues"
+    }
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
