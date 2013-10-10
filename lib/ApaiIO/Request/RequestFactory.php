@@ -96,7 +96,12 @@ class RequestFactory
                 return $request;
             }
 
-            throw new \LogicException(sprintf("Requestclass does not implements the RequestInterface: %s", get_class($request)));
+            throw new \LogicException(
+                sprintf(
+                    "Requestclass does not implements the RequestInterface: %s",
+                    get_class($request)
+                )
+            );
         }
 
         return $request;

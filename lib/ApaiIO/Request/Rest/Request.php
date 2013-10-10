@@ -125,6 +125,13 @@ class Request implements RequestInterface
     {
         $template = "GET\nwebservices.amazon.%s\n/onca/xml\n%s";
 
-        return Util::buildSignature(sprintf($template, $this->configuration->getCountry(), implode('&', $params)), $this->configuration->getSecretKey());
+        return Util::buildSignature(
+            sprintf(
+                $template,
+                $this->configuration->getCountry(),
+                implode('&', $params)
+            ),
+            $this->configuration->getSecretKey()
+        );
     }
 }
