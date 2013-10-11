@@ -19,7 +19,7 @@
     ],
     "support": {
         "issues": "https://github.com/Exeu/apai-io/issues"
-    }
+    },
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
