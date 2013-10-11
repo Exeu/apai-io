@@ -35,6 +35,7 @@ class RequestFactory
 
     /**
      * Private constructor
+     * @codeCoverageIgnore
      */
     private function __construct()
     {
@@ -43,6 +44,7 @@ class RequestFactory
 
     /**
      * Private clone
+     * @codeCoverageIgnore
      */
     private function __clone()
     {
