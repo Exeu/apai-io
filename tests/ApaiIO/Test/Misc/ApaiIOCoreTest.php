@@ -23,7 +23,7 @@ use ApaiIO\Operations\Search;
 
 class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
 {
-    public function testApaiIORequest()
+    public function testApaiIORequestPerfomOperation()
     {
         $conf = new GenericConfiguration();
         $operation = new Search();
@@ -35,6 +35,31 @@ class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($operation));
 
         $conf->setRequest($request);
+
+        $apaiIO = new ApaiIO();
+        $apaiIO->runOperation($operation, $conf);
+    }
+
+    public function testApaiIOTransformResponse()
+    {
+        $conf = new GenericConfiguration();
+        $operation = new Search();
+
+        $request = $this->getMock('\ApaiIO\Request\Rest\Request', array('perform'));
+        $request
+            ->expects($this->once())
+            ->method('perform')
+            ->will($this->returnValue(array('a' => 'b')));
+
+        $conf->setRequest($request);
+
+        $responseTransformer = $this->getMock('\ApaiIO\ResponseTransformer\ObjectToArray', array('transform'));
+        $responseTransformer
+            ->expects($this->once())
+            ->method('transform')
+            ->with($this->equalTo(array('a' => 'b')));
+
+        $conf->setResponseTransformer($responseTransformer);
 
         $apaiIO = new ApaiIO();
         $apaiIO->runOperation($operation, $conf);
