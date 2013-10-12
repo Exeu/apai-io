@@ -35,6 +35,7 @@ class ResponseTransformerFactory
 
     /**
      * Private constructor
+     * @codeCoverageIgnore
      */
     private function __construct()
     {
@@ -42,6 +43,7 @@ class ResponseTransformerFactory
 
     /**
      * Private clone
+     * @codeCoverageIgnore
      */
     private function __clone()
     {
