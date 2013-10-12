@@ -15,6 +15,10 @@ The documentation is currently under construction.
 
 You can read here: http://apai-io.pixel-web.org
 
+## API Documentation
+
+http://api.pixel-web.org/apai-io/index.html
+
 ## Build status
 
 [![Build Status](http://ci.pixel-web.org/job/ApaiIO/badge/icon)](http://ci.pixel-web.org/job/ApaiIO/)
