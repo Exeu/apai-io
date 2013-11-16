@@ -97,7 +97,6 @@ class Request implements RequestInterface
      */
     public function setOptions(array $options = array())
     {
-        $this->options += $options;
         foreach ($options as $currentOption => $currentOptionValue) {
             $this->options[$currentOption] = $currentOptionValue;
         }
