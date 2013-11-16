@@ -151,16 +151,18 @@ class Request implements RequestInterface
             }
         }
 
+        $curlError = false;
+        $errorNumber = null;
+        $errorMessage = null;
+
         $result = curl_exec($ch);
+
         if (false === $result) {
             $curlError = true;
             $errorNumber = curl_errno($ch);
             $errorMessage = curl_error($ch);
-        } else {
-            $curlError = false;
-            $errorNumber = null;
-            $errorMessage = null;
         }
+
         curl_close($ch);
 
         if ($curlError) {
