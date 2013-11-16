@@ -136,9 +136,8 @@ class Request implements RequestInterface
         $preparedRequestParams = $this->prepareRequestParams($operation);
         $queryString = $this->buildQueryString($preparedRequestParams);
 
-        $options = $this->options + array(
-            CURLOPT_URL => sprintf($this->requestScheme, $this->configuration->getCountry(), $queryString)
-        );
+        $options = $this->options;
+        $options[CURLOPT_URL] = sprintf($this->requestScheme, $this->configuration->getCountry(), $queryString);
 
         foreach ($options as $currentOption => $currentOptionValue) {
             if (false === curl_setopt($ch, $currentOption, $currentOptionValue)) {
