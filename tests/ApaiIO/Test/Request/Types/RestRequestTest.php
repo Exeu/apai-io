@@ -115,6 +115,28 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testOverrideOptionsOverSetOptionsWithInvalidKey()
+    {
+        $request = new Request();
+        $request->setOptions(array(
+            -11 => __METHOD__
+        ));
+
+        $request->setConfiguration($this->conf);
+
+        $search = new Search();
+        $search
+            ->setCategory('DVD')
+            ->setPage(2);
+
+        $request->perform($search);
+
+    }
+
     protected function runOperation($operation)
     {
         $apaiIo = new ApaiIO($this->conf);

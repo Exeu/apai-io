@@ -139,7 +139,7 @@ class Request implements RequestInterface
         $options[CURLOPT_URL] = sprintf($this->requestScheme, $this->configuration->getCountry(), $queryString);
 
         foreach ($options as $currentOption => $currentOptionValue) {
-            if (false === curl_setopt($ch, $currentOption, $currentOptionValue)) {
+            if (false === @curl_setopt($ch, $currentOption, $currentOptionValue)) {
                 throw new \RuntimeException(
                     sprintf(
                         "An error occurred while setting %s with value %s",
