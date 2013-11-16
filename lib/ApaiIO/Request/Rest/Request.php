@@ -81,6 +81,12 @@ class Request implements RequestInterface
      */
     public function __construct(array $options = array())
     {
+        $this->options = array(
+            self::USERAGENT => "ApaiIO [" . ApaiIO::VERSION . "]",
+            self::CONNECTION_TIMEOUT => 10,
+            self::TIMEOUT => 10,
+            self::FOLLOW_LOCATION => 1
+        );
         $this->setOptions($options);
     }
 
@@ -91,18 +97,21 @@ class Request implements RequestInterface
      */
     public function setOptions(array $options = array())
     {
-        $this->options = array_merge(
-            array(
-                self::USERAGENT => "ApaiIO [" . ApaiIO::VERSION . "]",
-                self::CONNECTION_TIMEOUT => 10,
-                self::TIMEOUT => 10,
-                self::FOLLOW_LOCATION => 1
-            ),
-            $options,
-            array(
-                CURLOPT_RETURNTRANSFER => 1
-            )
-        );
+        $this->options += $options;
+        foreach ($options as $currentOption => $currentOptionValue) {
+            $this->options[$currentOption] = $currentOptionValue;
+        }
+        $this->options[CURLOPT_RETURNTRANSFER] = 1; // force the return transfer
+    }
+
+    /**
+     * return the current curl options
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 
     /**
@@ -127,12 +136,8 @@ class Request implements RequestInterface
         $preparedRequestParams = $this->prepareRequestParams($operation);
         $queryString = $this->buildQueryString($preparedRequestParams);
 
-        $options = array_merge(
-            $this->options,
-            array(
-                CURLOPT_URL => sprintf($this->requestScheme, $this->configuration->getCountry(), $queryString)
-            )
-        );
+        $options = $this->options;
+        $options[CURLOPT_URL] = sprintf($this->requestScheme, $this->configuration->getCountry(), $queryString);
 
         foreach ($options as $currentOption => $currentOptionValue) {
             if (false === curl_setopt($ch, $currentOption, $currentOptionValue)) {
