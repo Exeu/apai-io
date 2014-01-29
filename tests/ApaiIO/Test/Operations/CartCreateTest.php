@@ -58,6 +58,19 @@ class CartCreateTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, $operationParameters["Item.1.Quantity"]);
     }
 
+    public function testAddItemByOfferListingId()
+    {
+        $operationParameters = $this->cartCreate->getOperationParameter();
+        $this->assertEquals(array(), $operationParameters);
+
+        $asin = __LINE__;
+        $this->cartCreate->addItem($asin, 2, false);
+
+        $operationParameters = $this->cartCreate->getOperationParameter();
+        $this->assertEquals($asin, $operationParameters["Item.1.OfferListingId"]);
+        $this->assertEquals(2, $operationParameters["Item.1.Quantity"]);
+    }
+
     public function testAddItemIncrementsCounter()
     {
         $asin = __LINE__;
