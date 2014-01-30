@@ -38,9 +38,9 @@ class CartCreate extends AbstractOperation
     /**
      * Adds an item to the Cart
      *
-     * @param string  $id The ASIN or OfferListingId Number of the item
+     * @param string  $id       The ASIN or OfferListingId Number of the item
      * @param integer $quantity How much you want to add
-     * @param bool $byAsin if False will use OfferListingId insted of ASIN
+     * @param bool    $byAsin   If False will use OfferListingId insted of ASIN
      */
     public function addItem($id, $quantity, $byAsin = true)
     {
