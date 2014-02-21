@@ -64,6 +64,8 @@ class RequestFactory
         $factoryCallback = $configuration->getRequestFactory();
 
         if (true === is_object($class) && $class instanceof \ApaiIO\Request\RequestInterface) {
+            $class->setConfiguration($configuration);
+
             return self::applyCallback($factoryCallback, $class);
         }
 
