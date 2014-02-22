@@ -17,10 +17,28 @@
 
 namespace ApaiIO\Test\Request;
 
+use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Operations\Lookup;
 use ApaiIO\Request\RequestFactory;
 
 class RequestFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    private $accessKey;
+    private $secretKey;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUp()
+    {
+        $this->accessKey = getenv('APAI_IO_ACCESSKEY');
+        $this->secretKey = getenv('APAI_IO_SECRETKEY');
+
+        if (true === empty($this->secretKey) || true === empty($this->accessKey )) {
+            $this->markTestSkipped('No AccessKey/SecretKey ENVs');
+        }
+    }
+
     public function testCallback()
     {
         $request = $this->getMock('\ApaiIO\Request\RequestInterface');
@@ -51,6 +69,25 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(array($callback, 'foo')));
 
         RequestFactory::createRequest($configuration);
+    }
+
+    public function testCustomConfigurationPassed()
+    {
+        $configuration = new GenericConfiguration();
+        $configuration->setCountry('de')
+            ->setAccessKey($this->accessKey)
+            ->setSecretKey($this->secretKey)
+            ->setAssociateTag('apaiIOTest');
+
+        $operation = new Lookup();
+        $operation->setItemId('B002E2QHE0');
+
+        $request = RequestFactory::createRequest($configuration);
+        $result = $request->perform($operation);
+
+        $xmlArray = json_decode(json_encode((array) simplexml_load_string($result)), true);
+
+        $this->assertContains('www.amazon.de', $xmlArray['Items']['Item']['DetailPageURL']);
     }
 }
 
