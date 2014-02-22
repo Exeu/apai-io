@@ -23,22 +23,6 @@ use ApaiIO\Request\RequestFactory;
 
 class RequestFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    private $accessKey;
-    private $secretKey;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUp()
-    {
-        $this->accessKey = getenv('APAI_IO_ACCESSKEY');
-        $this->secretKey = getenv('APAI_IO_SECRETKEY');
-
-        if (true === empty($this->secretKey) || true === empty($this->accessKey )) {
-            $this->markTestSkipped('No AccessKey/SecretKey ENVs');
-        }
-    }
-
     public function testCallback()
     {
         $request = $this->getMock('\ApaiIO\Request\RequestInterface');
@@ -73,10 +57,17 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCustomConfigurationPassed()
     {
+        $accessKey = getenv('APAI_IO_ACCESSKEY');
+        $secretKey = getenv('APAI_IO_SECRETKEY');
+
+        if (true === empty($secretKey) || true === empty($accessKey )) {
+            $this->markTestSkipped('No AccessKey/SecretKey ENVs');
+        }
+
         $configuration = new GenericConfiguration();
         $configuration->setCountry('de')
-            ->setAccessKey($this->accessKey)
-            ->setSecretKey($this->secretKey)
+            ->setAccessKey($accessKey)
+            ->setSecretKey($secretKey)
             ->setAssociateTag('apaiIOTest');
 
         $operation = new Lookup();
