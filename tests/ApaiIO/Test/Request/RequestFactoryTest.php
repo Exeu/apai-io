@@ -20,6 +20,7 @@ namespace ApaiIO\Test\Request;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Lookup;
 use ApaiIO\Request\RequestFactory;
+use ApaiIO\Request\Rest\Request;
 
 class RequestFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -57,29 +58,19 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCustomConfigurationPassed()
     {
-        $accessKey = getenv('APAI_IO_ACCESSKEY');
-        $secretKey = getenv('APAI_IO_SECRETKEY');
-
-        if (true === empty($secretKey) || true === empty($accessKey )) {
-            $this->markTestSkipped('No AccessKey/SecretKey ENVs');
-        }
-
         $configuration = new GenericConfiguration();
         $configuration->setCountry('de')
-            ->setAccessKey($accessKey)
-            ->setSecretKey($secretKey)
-            ->setAssociateTag('apaiIOTest');
+            ->setAccessKey('ABC')
+            ->setSecretKey('DEF')
+            ->setAssociateTag('apaiIOTest')
+            ->setRequest(new Request());
 
         $operation = new Lookup();
         $operation->setItemId('B002E2QHE0');
 
         $request = RequestFactory::createRequest($configuration);
-        $result = $request->perform($operation);
-
-        $xmlArray = json_decode(json_encode((array) simplexml_load_string($result)), true);
-
-        $this->assertContains('www.amazon.de', $xmlArray['Items']['Item']['DetailPageURL']);
-    }
+        $this->assertSame($configuration, \PHPUnit_Framework_Assert::readAttribute($request, 'configuration'));
+   }
 }
 
 class CallableClass
