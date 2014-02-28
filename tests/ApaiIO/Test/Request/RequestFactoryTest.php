@@ -65,9 +65,6 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
             ->setAssociateTag('apaiIOTest')
             ->setRequest(new Request());
 
-        $operation = new Lookup();
-        $operation->setItemId('B002E2QHE0');
-
         $request = RequestFactory::createRequest($configuration);
         $this->assertSame($configuration, \PHPUnit_Framework_Assert::readAttribute($request, 'configuration'));
    }
