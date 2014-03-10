@@ -36,22 +36,27 @@ class LookupTest extends \PHPUnit_Framework_TestCase
 
     public function testGetIdType()
     {
-    	$lookup = new Lookup();
-    	$lookup->setIdType('UPC');
-        $this->assertEquals('UPC', $lookup->getIdType());
-        $this->assertEquals('All', $lookup->getSearchIndex());
-        $lookup->setIdType('upc');
-        $this->assertEquals('UPC', $lookup->getIdType());
-        $this->assertEquals('All', $lookup->getSearchIndex());
-        $lookup->setIdType('not valid');
-        $this->assertEquals('ASIN', $lookup->getIdType());
-        $this->assertEquals('All', $lookup->getSearchIndex());
+        $lookup = new Lookup();
+        $valididTypes = array('ASIN', 'SKU', 'UPC', 'EAN', 'ISBN');
+        foreach($valididTypes as $valididType) {
+            $lookup->setIdType($valididType);
+            $this->assertEquals($valididType, $lookup->getIdType());
+        }
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testExceptionWhenPassingWrongIdType()
+    {
+        $lookup = new Lookup();
+        $lookup->setIdType('Invalid IdType');
     }
 
     public function testGetSearchIndex()
     {
-    	$lookup = new Lookup();
-    	$lookup->setSearchIndex('Appliances');
+        $lookup = new Lookup();
+        $lookup->setSearchIndex('Appliances');
         $this->assertEquals('Appliances', $lookup->getSearchIndex());
     }
 }

@@ -56,23 +56,13 @@ class Lookup extends AbstractOperation
      */
     public function setIdType($idType)
     {
-    	$idType = strtoupper($idType);
+        $idTypes = array('ASIN', 'SKU', 'UPC', 'EAN', 'ISBN');
 
-    	switch($idType) {
-    		case 'SKU':
-    		case 'EAN':
-    			break;
-    		case 'UPC':
-    			// UPC is not valid in the CA locale
-    			break;
-    		case 'ISBN':
-    			// US Only.
-    			break;
-
-    		// Prevent Invalid idtype
-    		default:
-    			$idType = 'ASIN';
-    	}
+        if (!in_array($idType, $idTypes)) {
+            $msg = "Invalid type '%s' passed. Valid types are: '%s'";
+            $idTypes = implode(', ', $idTypes);
+            throw new \InvalidArgumentException(sprintf($msg, $idType, $idTypes));
+        }
 
         $this->parameter['IdType'] = $idType;
 
