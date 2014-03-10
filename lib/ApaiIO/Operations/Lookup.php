@@ -46,4 +46,54 @@ class Lookup extends AbstractOperation
 
         return $this;
     }
+
+    /**
+     * Sets the idtype either ASIN (Default), SKU, UPC, EAN, and ISBN
+     *
+     * @param string $idType
+     *
+     * @return \ApaiIO\Operations\Lookup
+     */
+    public function setIdType($idType)
+    {
+    	$idType = strtoupper($idType);
+
+    	switch($idType) {
+    		case 'SKU':
+    		case 'EAN':
+    			break;
+    		case 'UPC':
+    			// UPC is not valid in the CA locale
+    			break;
+    		case 'ISBN':
+    			// US Only.
+    			break;
+
+    		// Prevent Invalid idtype
+    		default:
+    			$idType = 'ASIN';
+    	}
+
+        $this->parameter['IdType'] = $idType;
+
+        if (empty($this->parameter['SearchIndex'])) {
+        	$this->parameter['SearchIndex'] = 'All';
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sets the searchindex which should be used when set IdType other than ASIN
+     *
+     * @param string $searchIndex
+     *
+     * @return \ApaiIO\Operations\Lookup
+     */
+    public function setSearchIndex($searchIndex)
+    {
+        $this->parameter['SearchIndex'] = $searchIndex;
+
+        return $this;
+    }
 }

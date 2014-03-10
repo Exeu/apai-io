@@ -33,4 +33,25 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         $lookup = new Lookup();
         $this->assertEquals('ItemLookup', $lookup->getName());
     }
+
+    public function testGetIdType()
+    {
+    	$lookup = new Lookup();
+    	$lookup->setIdType('UPC');
+        $this->assertEquals('UPC', $lookup->getIdType());
+        $this->assertEquals('All', $lookup->getSearchIndex());
+        $lookup->setIdType('upc');
+        $this->assertEquals('UPC', $lookup->getIdType());
+        $this->assertEquals('All', $lookup->getSearchIndex());
+        $lookup->setIdType('not valid');
+        $this->assertEquals('ASIN', $lookup->getIdType());
+        $this->assertEquals('All', $lookup->getSearchIndex());
+    }
+
+    public function testGetSearchIndex()
+    {
+    	$lookup = new Lookup();
+    	$lookup->setSearchIndex('Appliances');
+        $this->assertEquals('Appliances', $lookup->getSearchIndex());
+    }
 }
