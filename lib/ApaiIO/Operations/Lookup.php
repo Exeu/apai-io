@@ -25,6 +25,12 @@ namespace ApaiIO\Operations;
  */
 class Lookup extends AbstractOperation
 {
+    const TYPE_ASIN = 'ASIN';
+    const TYPE_SKU = 'SKU';
+    const TYPE_UPC = 'UPC';
+    const TYPE_EAN = 'EAN';
+    const TYPE_ISBN = 'ISBN';
+
     /**
      * {@inheritdoc}
      */
@@ -56,12 +62,20 @@ class Lookup extends AbstractOperation
      */
     public function setIdType($idType)
     {
-        $idTypes = array('ASIN', 'SKU', 'UPC', 'EAN', 'ISBN');
+        $idTypes = array(
+            self::TYPE_ASIN,
+            self::TYPE_SKU,
+            self::TYPE_UPC,
+            self::TYPE_EAN,
+            self::TYPE_ISBN
+        );
 
         if (!in_array($idType, $idTypes)) {
-            $msg = "Invalid type '%s' passed. Valid types are: '%s'";
-            $idTypes = implode(', ', $idTypes);
-            throw new \InvalidArgumentException(sprintf($msg, $idType, $idTypes));
+            throw new \InvalidArgumentException(sprintf(
+                "Invalid type '%s' passed. Valid types are: '%s'",
+                $idType,
+                implode(', ', $idTypes)
+            ));
         }
 
         $this->parameter['IdType'] = $idType;

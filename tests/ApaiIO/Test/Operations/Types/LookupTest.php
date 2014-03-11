@@ -37,7 +37,18 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     public function testGetIdType()
     {
         $lookup = new Lookup();
-        $valididTypes = array('ASIN', 'SKU', 'UPC', 'EAN', 'ISBN');
+        $valididTypes = array(
+            'ASIN',
+            'SKU',
+            'UPC',
+            'EAN',
+            'ISBN',
+            Lookup::TYPE_ASIN,
+            Lookup::TYPE_SKU,
+            Lookup::TYPE_UPC,
+            Lookup::TYPE_EAN,
+            Lookup::TYPE_ISBN
+        );
         foreach($valididTypes as $valididType) {
             $lookup->setIdType($valididType);
             $this->assertEquals($valididType, $lookup->getIdType());
