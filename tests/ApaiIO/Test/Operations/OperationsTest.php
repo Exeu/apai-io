@@ -28,6 +28,24 @@ class OperationsTest extends \PHPUnit_Framework_TestCase
     {
         $search = new Search();
         $search->setPage(11);
+    }    
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testMaximumPriceException()
+    {
+        $search = new Search();
+        $search->setMaximumPrice(-1);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testMinimumPriceException()
+    {
+        $search = new Search();
+        $search->setMinimumPrice('helloworld');
     }
 
     public function testSearchValidPage()
