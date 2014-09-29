@@ -89,7 +89,6 @@ class Search extends AbstractOperation
      * Sets the minimum price to a specified value for the search
      * Currency will be given by the site you are querying: EUR for IT, USD for COM
      * Price should be given as integer. 8.99$ USD becomes 899
-     * 
      *
      * @param integer $price
      *
@@ -97,25 +96,16 @@ class Search extends AbstractOperation
      */
     public function setMinimumPrice($price)
     {
-        if (false === is_numeric($price) || $price < 1) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    '%s is an invalid minimum price value. It has to be numeric and >= than 1',
-                    $price
-                )
-            );
-        }
-
+        $this->validatePrice($price);
         $this->parameter['MinimumPrice'] = $price;
 
         return $this;
     }
-    
+
     /**
      * Sets the maximum price to a specified value for the search
      * Currency will be given by the site you are querying: EUR for IT, USD for COM
      * Price should be given as integer. 8.99$ USD becomes 899
-     * 
      *
      * @param integer $price
      *
@@ -123,17 +113,26 @@ class Search extends AbstractOperation
      */
     public function setMaximumPrice($price)
     {
+        $this->validatePrice($price);
+        $this->parameter['MaximumPrice'] = $price;
+
+        return $this;
+    }
+
+    /**
+     * Validates the given price.
+     *
+     * @param integer $price
+     */
+    protected function validatePrice($price)
+    {
         if (false === is_numeric($price)  || $price < 1) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    '%s is an invalid maximum price value. It has to be numeric and >= than 1',
+                    '%s is an invalid price value. It has to be numeric and >= than 1',
                     $price
                 )
             );
         }
-
-        $this->parameter['MaximumPrice'] = $price;
-
-        return $this;
     }
 }
