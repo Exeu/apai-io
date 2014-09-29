@@ -25,6 +25,8 @@ http://api.pixel-web.org/apai-io/index.html
 
 [![Build Status](https://travis-ci.org/Exeu/apai-io.png?branch=master)](https://travis-ci.org/Exeu/apai-io)
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9b802be9-541d-4008-b56c-9c9f5baece8b/small.png)](https://insight.sensiolabs.com/projects/9b802be9-541d-4008-b56c-9c9f5baece8b)
+
 ## Installation
 
 ### Composer
