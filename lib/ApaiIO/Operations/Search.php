@@ -120,7 +120,7 @@ class Search extends AbstractOperation
      * @param integer $price
      *
      * @return \ApaiIO\Operations\Search
-     */    
+     */
     public function setMaximumPrice($price)
     {
         if (false === is_numeric($price)  || $price < 1) {
