@@ -81,7 +81,7 @@ class Lookup extends AbstractOperation
         $this->parameter['IdType'] = $idType;
 
         if (empty($this->parameter['SearchIndex'])) {
-        	$this->parameter['SearchIndex'] = 'All';
+            $this->parameter['SearchIndex'] = 'All';
         }
 
         return $this;
