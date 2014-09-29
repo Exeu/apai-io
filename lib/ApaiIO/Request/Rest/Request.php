@@ -33,24 +33,28 @@ class Request implements RequestInterface
 {
     /**
      * Connection time out in seconds
+     *
      * @var int
      */
     const CONNECTION_TIMEOUT = CURLOPT_CONNECTTIMEOUT;
 
     /**
      * Time out in seconds
+     *
      * @var int
      */
     const TIMEOUT = CURLOPT_TIMEOUT;
 
     /**
      * Enable/Disable location following
+     *
      * @var int
      */
     const FOLLOW_LOCATION = CURLOPT_FOLLOWLOCATION;
 
     /**
      * Useragent
+     *
      * @var string
      */
     const USERAGENT = CURLOPT_USERAGENT;
