@@ -1,4 +1,10 @@
 #apai-io
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exeu/apai-io/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exeu/apai-io/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Exeu/apai-io/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Exeu/apai-io/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/Exeu/apai-io/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exeu/apai-io/build-status/master)
+[![Latest Stable Version](https://poser.pugx.org/exeu/apai-io/v/stable.svg)](https://packagist.org/packages/exeu/apai-io) [![Total Downloads](https://poser.pugx.org/exeu/apai-io/downloads.svg)](https://packagist.org/packages/exeu/apai-io)
+[![Build Status](https://travis-ci.org/Exeu/apai-io.png?branch=master)](https://travis-ci.org/Exeu/apai-io)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9b802be9-541d-4008-b56c-9c9f5baece8b/mini.png)](https://insight.sensiolabs.com/projects/9b802be9-541d-4008-b56c-9c9f5baece8b)
 
 ApaiIO is a highly flexible PHP library for fetching the Product Advertising API using REST or SOAP.
 You can either use the built in operations like ItemSearch or ItemLookup or you can implement your own operations which fits to your needs.
@@ -20,12 +26,6 @@ You can read here: http://apai-io.pixel-web.org
 http://api.pixel-web.org/apai-io/index.html
 
 ## Build status
-
-[![Build Status](http://ci.pixel-web.org/job/ApaiIO/badge/icon)](http://ci.pixel-web.org/job/ApaiIO/)
-
-[![Build Status](https://travis-ci.org/Exeu/apai-io.png?branch=master)](https://travis-ci.org/Exeu/apai-io)
-
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9b802be9-541d-4008-b56c-9c9f5baece8b/small.png)](https://insight.sensiolabs.com/projects/9b802be9-541d-4008-b56c-9c9f5baece8b)
 
 ## Installation
 
