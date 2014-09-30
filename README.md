@@ -25,8 +25,6 @@ You can read here: http://apai-io.pixel-web.org
 
 http://api.pixel-web.org/apai-io/index.html
 
-## Build status
-
 ## Installation
 
 ### Composer
