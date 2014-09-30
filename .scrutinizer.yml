@@ -12,7 +12,7 @@ tools:
             excluded_paths: ["*/tests/*", "*/samples/*"]
     sensiolabs_security_checker: true
     php_code_coverage: true
-
+    external_code_coverage: true
 before_commands:
     - "composer install --prefer-source"
 
