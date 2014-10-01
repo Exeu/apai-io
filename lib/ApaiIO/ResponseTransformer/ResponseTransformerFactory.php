@@ -78,10 +78,6 @@ class ResponseTransformerFactory
         if ($reflectionClass->implementsInterface('\\ApaiIO\\ResponseTransformer\\ResponseTransformerInterface')) {
             $responseTransformer = new $class();
 
-            if ($factoryCallback = $configuration->getResponseTransformerFactory()) {
-                $responseTransformer = $factoryCallback($responseTransformer);
-            }
-
             return self::$responseTransformerObjects[$class] = self::applyCallback(
                 $factoryCallback,
                 $responseTransformer
