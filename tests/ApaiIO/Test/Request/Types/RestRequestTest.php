@@ -117,7 +117,7 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException RuntimeException
      */
     public function testOverrideOptionsOverSetOptionsWithInvalidKey()
     {
@@ -133,7 +133,7 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
             ->setCategory('DVD')
             ->setPage(2);
 
-        $request->perform($search);
+        @$request->perform($search);
 
     }
 
