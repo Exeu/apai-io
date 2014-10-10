@@ -117,7 +117,7 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException PHPUnit_Framework_Error_Warning
      */
     public function testOverrideOptionsOverSetOptionsWithInvalidKey()
     {
