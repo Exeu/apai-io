@@ -65,7 +65,7 @@ class ResponseTransformerFactory
             return self::applyCallback($factoryCallback, $class);
         }
 
-        if (true === is_string($class) && true == array_key_exists($class, self::$responseTransformerObjects)) {
+        if (true === is_string($class) && true === array_key_exists($class, self::$responseTransformerObjects)) {
             return self::applyCallback($factoryCallback, self::$responseTransformerObjects[$class]);
         }
 

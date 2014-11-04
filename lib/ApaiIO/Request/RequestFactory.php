@@ -69,7 +69,7 @@ class RequestFactory
             return self::applyCallback($factoryCallback, $class);
         }
 
-        if (true === is_string($class) && true == array_key_exists($class, self::$requestObjects)) {
+        if (true === is_string($class) && true === array_key_exists($class, self::$requestObjects)) {
             $request = self::$requestObjects[$class];
             $request->setConfiguration($configuration);
 
