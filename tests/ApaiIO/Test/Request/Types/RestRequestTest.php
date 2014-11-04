@@ -115,7 +115,6 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-
     /**
      * @expectedException RuntimeException
      */
@@ -146,5 +145,30 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
         $xml->registerXPathNamespace('a', 'http://webservices.amazon.com/AWSECommerceService/2011-08-01');
 
         return $xml;
+    }
+
+    /**
+     * @expectedException RuntimeException
+     * @expectedExceptionMessage An error occurred while sending request. Error number: 1; Error message: Protocol foohttp not supported or disabled in libcurl
+     */
+    public function testInvalidRequest()
+    {
+        $configuration = $this->getMock('\ApaiIO\Configuration\ConfigurationInterface');
+
+        $operation  = new Search();
+        $request    = new Request();
+        $reflection = new \ReflectionClass($request);
+
+        $prop = $reflection->getProperty('requestScheme');
+        $prop->setAccessible(true);
+
+        $prop->setValue(
+            $request,
+            'foo' . $prop->getValue($request)
+        );
+
+        $request->setConfiguration($configuration);
+
+        $request->perform($operation);
     }
 }

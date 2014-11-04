@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Test\Operations;
+namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\CartCreate;
 

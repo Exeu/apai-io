@@ -19,6 +19,7 @@ namespace ApaiIO\Test\Request;
 
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Lookup;
+use ApaiIO\Operations\Search;
 use ApaiIO\Request\RequestFactory;
 use ApaiIO\Request\Rest\Request;
 
