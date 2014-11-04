@@ -20,7 +20,6 @@ namespace ApaiIO\Test\ResponseTransformer;
 use ApaiIO\ResponseTransformer\ObjectToArray;
 use ApaiIO\ResponseTransformer\XmlToDomDocument;
 use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;
-use ApaiIO\ResponseTransformer\Xslt;
 
 class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,18 +62,6 @@ class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Genf', $simpleXML->eintrag[0]->stichwort);
     }
 
-    public function testXsltResponseTransformer()
-    {
-        $responseTransformer = new Xslt($this->getSampleXslForTransformation());
-
-        $result = $responseTransformer->transform($this->getSampleXmlForTransformation());
-
-        $this->assertEquals(
-            'Fight for your mind by Ben Harper - 1995',
-            trim($result)
-        );
-    }
-
     /**
      * @return string
      */
@@ -93,37 +80,6 @@ class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
                   <eintragstext>Köln ist eine Stadt, die ...</eintragstext>
              </eintrag>
         </verzeichnis>
-EOF;
-    }
-
-    private function getSampleXmlForTransformation()
-    {
-        return <<<EOF
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<collection>
- <cd>
-  <title>Fight for your mind</title>
-  <artist>Ben Harper</artist>
-  <year>1995</year>
- </cd>
-</collection>
-EOF;
-    }
-
-    private function getSampleXslForTransformation()
-    {
-        return <<<EOF
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
- <xsl:param name="owner" select="'Nicolas Eliaszewicz'"/>
- <xsl:output method="html" encoding="utf-8" indent="no"/>
- <xsl:template match="collection">
-  <xsl:apply-templates/>
- </xsl:template>
- <xsl:template match="cd">
-  <xsl:value-of select="title"/> by <xsl:value-of select="artist"/> - <xsl:value-of select="year"/>
- </xsl:template>
-</xsl:stylesheet>
 EOF;
     }
 }
