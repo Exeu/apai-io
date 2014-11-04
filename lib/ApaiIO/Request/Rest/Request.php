@@ -86,10 +86,10 @@ class Request implements RequestInterface
     public function __construct(array $options = array())
     {
         $this->options = array(
-            self::USERAGENT => "ApaiIO [" . ApaiIO::VERSION . "]",
+            self::USERAGENT          => "ApaiIO [" . ApaiIO::VERSION . "]",
             self::CONNECTION_TIMEOUT => 10,
-            self::TIMEOUT => 10,
-            self::FOLLOW_LOCATION => 1
+            self::TIMEOUT            => 10,
+            self::FOLLOW_LOCATION    => 1
         );
         $this->setOptions($options);
     }
