@@ -100,4 +100,20 @@ class Lookup extends AbstractOperation
 
         return $this;
     }
+
+    /**
+     * Sets the condition of the items to return: New | Used | Collectible | Refurbished | All
+     *
+     * Defaults to New.
+     *
+     * @param string $condition
+     *
+     * @return \ApaiIO\Operations\Lookup
+     */
+    public function setCondition($condition)
+    {
+        $this->parameter['Condition'] = $condition;
+
+        return $this;
+    }
 }

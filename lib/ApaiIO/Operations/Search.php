@@ -120,6 +120,22 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Sets the condition of the items to return: New | Used | Collectible | Refurbished | All
+     *
+     * Defaults to New.
+     *
+     * @param string $condition
+     *
+     * @return \ApaiIO\Operations\Search
+     */
+    public function setCondition($condition)
+    {
+        $this->parameter['Condition'] = $condition;
+
+        return $this;
+    }
+
+    /**
      * Validates the given price.
      *
      * @param integer $price

@@ -70,4 +70,11 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         $lookup->setSearchIndex('Appliances');
         $this->assertEquals('Appliances', $lookup->getSearchIndex());
     }
+
+    public function testConditionGetterAndSetter()
+    {
+        $lookup = new Lookup();
+        $lookup->setCondition('All');
+        $this->assertEquals('All', $lookup->getCondition());
+    }
 }
