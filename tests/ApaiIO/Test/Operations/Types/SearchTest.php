@@ -75,4 +75,11 @@ class SearchTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $search->getItemPage());
     }
+
+    public function testConditionGetterAndSetter()
+    {
+        $search = new Search();
+        $search->setCondition('All');
+        $this->assertEquals('All', $search->getCondition());
+    }
 }
