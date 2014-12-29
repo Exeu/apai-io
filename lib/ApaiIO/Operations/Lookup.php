@@ -80,7 +80,7 @@ class Lookup extends AbstractOperation
 
         $this->parameter['IdType'] = $idType;
 
-        if (empty($this->parameter['SearchIndex'])) {
+        if (empty($this->parameter['SearchIndex']) && $idType != self::TYPE_ASIN) {
             $this->parameter['SearchIndex'] = 'All';
         }
 
