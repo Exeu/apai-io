@@ -56,6 +56,40 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider providerSetIdTypeAffectsSearchIndex
+     *
+     * @param string      $idType
+     * @param string|null $expectedSearchIndex
+     */
+    public function testSetIdTypeAffectsSearchIndex($idType, $expectedSearchIndex)
+    {
+        $lookup = new Lookup();
+        $lookup->setIdType($idType);
+
+        $parameters = $lookup->getOperationParameter();
+
+        if ($expectedSearchIndex === null) {
+            $this->assertArrayNotHasKey('SearchIndex', $parameters);
+        } else {
+            $this->assertSame($expectedSearchIndex, $parameters['SearchIndex']);
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function providerSetIdTypeAffectsSearchIndex()
+    {
+        return array(
+            array(Lookup::TYPE_ASIN, null),
+            array(Lookup::TYPE_SKU, 'All'),
+            array(Lookup::TYPE_UPC, 'All'),
+            array(Lookup::TYPE_EAN, 'All'),
+            array(Lookup::TYPE_ISBN, 'All')
+        );
+    }
+
+    /**
      * @expectedException InvalidArgumentException
      */
     public function testExceptionWhenPassingWrongIdType()
