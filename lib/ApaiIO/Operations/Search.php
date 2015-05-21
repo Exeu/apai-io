@@ -136,6 +136,36 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Sets the availability. Don't use method if you want the default Amazon behaviour.
+     * Only valid value = Available
+     *
+     * @param string $availability
+     * @see http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_ReturningPriceAndAvailabilityInformation-itemsearch.html
+     *
+     * @return \ApaiIO\Operations\Search
+     */
+    public function setAvailability($availability)
+    {
+        $this->parameter['Availability'] = $availability;
+
+        return $this;
+    }
+
+    /**
+     * Sets the browseNodeId
+     *
+     * @param integer $browseNodeId
+     *
+     * @return \ApaiIO\Operations\Search
+     */
+    public function setBrowseNode($browseNodeId)
+    {
+        $this->parameter['BrowseNode'] = $browseNodeId;
+
+        return $this;
+    }
+
+    /**
      * Validates the given price.
      *
      * @param integer $price

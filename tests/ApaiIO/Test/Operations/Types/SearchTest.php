@@ -82,4 +82,18 @@ class SearchTest extends \PHPUnit_Framework_TestCase
         $search->setCondition('All');
         $this->assertEquals('All', $search->getCondition());
     }
+
+    public function testAvailabilityGetterAndSetter()
+    {
+        $search = new Search();
+        $search->setAvailability('Available');
+        $this->assertEquals('Available', $search->getAvailability());
+    }
+
+    public function testNodeGetterAndSetter()
+    {
+        $search = new Search();
+        $search->setBrowseNode(10967581);
+        $this->assertEquals(10967581, $search->getBrowseNode());
+    }
 }

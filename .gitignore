@@ -6,6 +6,7 @@ samples/Config.php
 phpunit.xml
 php-cs-fixer.phar
 composer.phar
+composer.lock
 *.swp
 vendor
 *.orig
