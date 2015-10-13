@@ -28,6 +28,15 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         $lookup->setItemId('B1234');
     }
 
+    public function testSettersNegative()
+    {
+        $this->setExpectedException('\Exception');
+        $lookup = new Lookup();
+        $lookup->setItemIds(
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        );
+    }
+
     public function testGetName()
     {
         $lookup = new Lookup();
@@ -49,7 +58,7 @@ class LookupTest extends \PHPUnit_Framework_TestCase
             Lookup::TYPE_EAN,
             Lookup::TYPE_ISBN
         );
-        foreach($valididTypes as $valididType) {
+        foreach ($valididTypes as $valididType) {
             $lookup->setIdType($valididType);
             $this->assertEquals($valididType, $lookup->getIdType());
         }
@@ -58,7 +67,7 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider providerSetIdTypeAffectsSearchIndex
      *
-     * @param string      $idType
+     * @param string $idType
      * @param string|null $expectedSearchIndex
      */
     public function testSetIdTypeAffectsSearchIndex($idType, $expectedSearchIndex)
