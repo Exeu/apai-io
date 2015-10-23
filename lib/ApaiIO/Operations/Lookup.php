@@ -49,8 +49,10 @@ class Lookup extends AbstractOperation
         if (count($itemIds) > 10) {
             throw new \Exception('setItemIds accepts not more then 10 itemid\'s at once');
         }
+
         $asinString = implode(',', $itemIds);
         $this->setItemId($asinString);
+
         return $this;
     }
 
