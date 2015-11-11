@@ -1,5 +1,5 @@
 {
-    "name": "exeu/apai-io",
+    "name": "nikola-barac/apai-io",
     "type": "library",
     "description": "Amazon Product Advertising PHP Library",
     "keywords": ["Amazon", "ECS", "Product Advertising", "SOAP", "REST", "Products"],
