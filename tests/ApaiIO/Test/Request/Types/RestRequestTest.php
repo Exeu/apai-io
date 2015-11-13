@@ -149,7 +149,6 @@ class RestRequestTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException RuntimeException
-     * @expectedExceptionMessage An error occurred while sending request. Error number: 1; Error message: Protocol foohttp not supported or disabled in libcurl
      */
     public function testInvalidRequest()
     {
