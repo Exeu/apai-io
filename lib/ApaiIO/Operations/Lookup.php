@@ -40,6 +40,23 @@ class Lookup extends AbstractOperation
     }
 
     /**
+     * Pass up to 10 itemid's which should be looked up
+     * @param array $itemIds
+     * @return \ApaiIO\Operations\Lookup
+     */
+    public function setItemIds($itemIds = array())
+    {
+        if (count($itemIds) > 10) {
+            throw new \Exception('setItemIds accepts not more then 10 itemid\'s at once');
+        }
+
+        $asinString = implode(',', $itemIds);
+        $this->setItemId($asinString);
+
+        return $this;
+    }
+
+    /**
      * Sets the itemid which should be looked up
      *
      * @param string $itemId
