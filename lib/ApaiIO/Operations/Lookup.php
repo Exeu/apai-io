@@ -41,7 +41,9 @@ class Lookup extends AbstractOperation
 
     /**
      * Pass up to 10 itemid's which should be looked up
+     *
      * @param array $itemIds
+     *
      * @return \ApaiIO\Operations\Lookup
      */
     public function setItemIds($itemIds = array())

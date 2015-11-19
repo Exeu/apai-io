@@ -28,9 +28,11 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         $lookup->setItemId('B1234');
     }
 
+    /**
+     * @expectedException \Exception
+     */
     public function testSettersNegative()
     {
-        $this->setExpectedException('\Exception');
         $lookup = new Lookup();
         $lookup->setItemIds(
             array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
