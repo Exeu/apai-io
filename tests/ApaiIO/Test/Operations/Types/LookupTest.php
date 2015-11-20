@@ -39,6 +39,16 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testMultiItemSet()
+    {
+        $lookup = new Lookup();
+        $lookup->setItemIds(array(1,2,3,4));
+
+        $itemQuery = $lookup->getItemId();
+
+        $this->assertSame('1,2,3,4', $itemQuery);
+    }
+
     public function testGetName()
     {
         $lookup = new Lookup();

@@ -46,7 +46,7 @@ class Lookup extends AbstractOperation
      *
      * @return \ApaiIO\Operations\Lookup
      */
-    public function setItemIds($itemIds = array())
+    public function setItemIds(array $itemIds)
     {
         if (count($itemIds) > 10) {
             throw new \Exception('setItemIds accepts not more then 10 itemid\'s at once');
