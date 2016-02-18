@@ -34,6 +34,16 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Return the amazon category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->parameter['SearchIndex'];
+    }
+
+    /**
      * Sets the amazon category
      *
      * @param string $category
@@ -48,6 +58,16 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Returns the keywords
+     *
+     * @return string
+     */
+    public function getKeywords()
+    {
+        return $this->parameter['Keywords'];
+    }
+
+    /**
      * Sets the keywords
      *
      * @param string $keywords
@@ -59,6 +79,16 @@ class Search extends AbstractOperation
         $this->parameter['Keywords'] = $keywords;
 
         return $this;
+    }
+
+    /**
+     * Return the resultpage
+     *
+     * @return integer
+     */
+    public function getPage()
+    {
+        return $this->parameter['ItemPage'];
     }
 
     /**
@@ -86,6 +116,16 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Return the minimum price as integer so 8.99$ will be returned as 899
+     *
+     * @return integer
+     */
+    public function getMinimumPrice()
+    {
+        return $this->parameter['MinimumPrice'];
+    }
+
+    /**
      * Sets the minimum price to a specified value for the search
      * Currency will be given by the site you are querying: EUR for IT, USD for COM
      * Price should be given as integer. 8.99$ USD becomes 899
@@ -100,6 +140,15 @@ class Search extends AbstractOperation
         $this->parameter['MinimumPrice'] = $price;
 
         return $this;
+    }
+
+    /**
+     * Returns the maximum price as integer so 8.99$ will be returned as 899
+     * @return mixed
+     */
+    public function getMaximumPrice()
+    {
+        return $this->parameter['MaximumPrice'];
     }
 
     /**
@@ -120,6 +169,16 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Returns the condition of the items to return. New | Used | Collectible | Refurbished | All
+     *
+     * @return string
+     */
+    public function getCondition()
+    {
+        return $this->parameter['Condition'];
+    }
+
+    /**
      * Sets the condition of the items to return: New | Used | Collectible | Refurbished | All
      *
      * Defaults to New.
@@ -136,6 +195,16 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Returns the availability.
+     *
+     * @return string
+     */
+    public function getAvailability()
+    {
+        return $this->parameter['Availability'];
+    }
+
+    /**
      * Sets the availability. Don't use method if you want the default Amazon behaviour.
      * Only valid value = Available
      *
@@ -149,6 +218,16 @@ class Search extends AbstractOperation
         $this->parameter['Availability'] = $availability;
 
         return $this;
+    }
+
+    /**
+     * Returns the browseNodeId
+     *
+     * @return integer
+     */
+    public function getBrowseNode()
+    {
+        return $this->parameter['BrowseNode'];
     }
 
     /**
@@ -172,7 +251,7 @@ class Search extends AbstractOperation
      */
     protected function validatePrice($price)
     {
-        if (false === is_numeric($price)  || $price < 1) {
+        if (false === is_numeric($price) || $price < 1) {
             throw new \InvalidArgumentException(
                 sprintf(
                     '%s is an invalid price value. It has to be numeric and >= than 1',

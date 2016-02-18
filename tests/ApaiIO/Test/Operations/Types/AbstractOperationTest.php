@@ -37,4 +37,11 @@ class AbstractOperationTest extends \PHPUnit_Framework_TestCase
         $search = new Search();
         $search->foo();
     }
+
+    public function testGetResponseGroup()
+    {
+        $search = new Search();
+        $search->setResponseGroup(array('Small', 'Medium', 'Large'));
+        $this->assertEquals(array('Small', 'Medium', 'Large'), $search->getResponseGroup());
+    }
 }

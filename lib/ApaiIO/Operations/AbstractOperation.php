@@ -27,6 +27,16 @@ abstract class AbstractOperation implements OperationInterface
     protected $parameter = array();
 
     /**
+     * Returns an array of responseGroups
+     *
+     * @return array
+     */
+    public function getResponseGroup()
+    {
+        return $this->parameter['ResponseGroup'];
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setResponseGroup(array $responseGroup)

@@ -34,6 +34,16 @@ class SimilarityLookup extends AbstractOperation
     }
 
     /**
+     * Returns the itemid which has to be looked up
+     *
+     * @return string
+     */
+    public function getItemId()
+    {
+        return $this->parameter['ItemId'];
+    }
+
+    /**
      * Sets the itemid which has to be looked up
      * Basicly it is an amazon asin
      *

@@ -59,6 +59,16 @@ class Lookup extends AbstractOperation
     }
 
     /**
+     * Returns the itemid
+     *
+     * @return string
+     */
+    public function getItemId()
+    {
+        return $this->parameter['ItemId'];
+    }
+
+    /**
      * Sets the itemid which should be looked up
      *
      * @param string $itemId
@@ -70,6 +80,16 @@ class Lookup extends AbstractOperation
         $this->parameter['ItemId'] = $itemId;
 
         return $this;
+    }
+
+    /**
+     * Returns the idtype either ASIN (Default), SKU, UPC, EAN, and ISBN
+     *
+     * @return string
+     */
+    public function getIdType()
+    {
+        return $this->parameter['IdType'];
     }
 
     /**
@@ -107,6 +127,16 @@ class Lookup extends AbstractOperation
     }
 
     /**
+     * Returns the searchindex
+     *
+     * @return mixed
+     */
+    public function getSearchIndex()
+    {
+        return $this->parameter['SearchIndex'];
+    }
+
+    /**
      * Sets the searchindex which should be used when set IdType other than ASIN
      *
      * @param string $searchIndex
@@ -121,13 +151,23 @@ class Lookup extends AbstractOperation
     }
 
     /**
+     * Returns the condition of the items to return. New | Used | Collectible | Refurbished | All
+     *
+     * @return string
+     */
+    public function getCondition()
+    {
+        return $this->parameter['Condition'];
+    }
+
+    /**
      * Sets the condition of the items to return: New | Used | Collectible | Refurbished | All
      *
      * Defaults to New.
      *
      * @param string $condition
      *
-     * @return \ApaiIO\Operations\Lookup
+     * @return \ApaiIO\Operations\Search
      */
     public function setCondition($condition)
     {

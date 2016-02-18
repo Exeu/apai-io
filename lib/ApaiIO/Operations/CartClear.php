@@ -34,6 +34,16 @@ class CartClear extends AbstractOperation
     }
 
     /**
+     * Returns the cart id
+     *
+     * @return string
+     */
+    public function getCartId()
+    {
+        return $this->parameter['CartId'];
+    }
+
+    /**
      * Sets the cart id
      *
      * @param string $cartId
@@ -41,6 +51,16 @@ class CartClear extends AbstractOperation
     public function setCartId($cartId)
     {
         $this->parameter['CartId'] = $cartId;
+    }
+
+    /**
+     * Returns the HMAC
+     *
+     * @return mixed
+     */
+    public function getHMAC()
+    {
+        return $this->parameter['HMAC'];
     }
 
     /**

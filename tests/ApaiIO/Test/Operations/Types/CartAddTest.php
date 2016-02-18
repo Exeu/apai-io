@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Operations\Types;
 
-use ApaiIO\Common\OperationTrait;
 use ApaiIO\Operations\CartAdd;
 
 class CardAddTest extends \PHPUnit_Framework_TestCase
@@ -33,5 +32,19 @@ class CardAddTest extends \PHPUnit_Framework_TestCase
     {
         $cart = new CartAdd();
         $this->assertEquals('CartAdd', $cart->getName());
+    }
+
+    public function testGetCartId()
+    {
+        $cart = new CartAdd();
+        $cart->setCartId('789');
+        $this->assertEquals('789', $cart->getCartId());
+    }
+
+    public function testGetHMAC()
+    {
+        $cart = new CartAdd();
+        $cart->setHMAC('1234');
+        $this->assertEquals('1234', $cart->getHMAC());
     }
 }

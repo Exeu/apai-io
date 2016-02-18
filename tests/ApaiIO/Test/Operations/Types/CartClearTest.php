@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Operations\Types;
 
-use ApaiIO\Common\OperationTrait;
 use ApaiIO\Operations\CartClear;
 
 class CardClearTest extends \PHPUnit_Framework_TestCase
@@ -33,5 +32,19 @@ class CardClearTest extends \PHPUnit_Framework_TestCase
     {
         $cart = new CartClear();
         $this->assertEquals('CartClear', $cart->getName());
+    }
+
+    public function testGetCartId()
+    {
+        $cart = new CartClear();
+        $cart->setCartId('789');
+        $this->assertEquals('789', $cart->getCartId());
+    }
+
+    public function testGetHMAC()
+    {
+        $cart = new CartClear();
+        $cart->setHMAC('1234');
+        $this->assertEquals('1234', $cart->getHMAC());
     }
 }

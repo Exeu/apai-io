@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Operations\Types;
 
-use ApaiIO\Common\OperationTrait;
 use ApaiIO\Operations\Lookup;
 
 class LookupTest extends \PHPUnit_Framework_TestCase
@@ -42,7 +41,7 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     public function testMultiItemSet()
     {
         $lookup = new Lookup();
-        $lookup->setItemIds(array(1,2,3,4));
+        $lookup->setItemIds(array(1, 2, 3, 4));
 
         $itemQuery = $lookup->getItemId();
 
@@ -131,5 +130,19 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         $lookup = new Lookup();
         $lookup->setCondition('All');
         $this->assertEquals('All', $lookup->getCondition());
+    }
+
+    public function testGetItemId()
+    {
+        $lookup = new Lookup();
+        $lookup->setItemId('B0117IJ4LE');
+        $this->assertEquals('B0117IJ4LE', $lookup->getItemId());
+    }
+
+    public function testGetCondition()
+    {
+        $lookup = new Lookup();
+        $lookup->setCondition('Used');
+        $this->assertEquals('Used', $lookup->getCondition());
     }
 }
