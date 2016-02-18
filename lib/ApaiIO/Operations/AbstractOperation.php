@@ -33,7 +33,7 @@ abstract class AbstractOperation implements OperationInterface
      */
     public function getResponseGroup()
     {
-        return $this->parameter['ResponseGroup'];
+        return $this->getSingleOperationParameter('ResponseGroup');
     }
 
     /**
@@ -52,6 +52,16 @@ abstract class AbstractOperation implements OperationInterface
     public function getOperationParameter()
     {
         return $this->parameter;
+    }
+
+    /**
+     * Returns a single operation parameter if set
+     *
+     * @param string $keyName
+     * @return mixed|null
+     */
+    public function getSingleOperationParameter($keyName) {
+        return isset($this->parameter[$keyName]) ? $this->parameter[$keyName] : null;
     }
 
     /**

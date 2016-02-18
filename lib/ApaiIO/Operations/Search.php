@@ -40,7 +40,7 @@ class Search extends AbstractOperation
      */
     public function getCategory()
     {
-        return $this->parameter['SearchIndex'];
+        return $this->getSingleOperationParameter('SearchIndex');
     }
 
     /**
@@ -64,7 +64,7 @@ class Search extends AbstractOperation
      */
     public function getKeywords()
     {
-        return $this->parameter['Keywords'];
+        return $this->getSingleOperationParameter('Keywords');
     }
 
     /**
@@ -88,7 +88,7 @@ class Search extends AbstractOperation
      */
     public function getPage()
     {
-        return $this->parameter['ItemPage'];
+        return $this->getSingleOperationParameter('ItemPage');
     }
 
     /**
@@ -102,12 +102,8 @@ class Search extends AbstractOperation
     public function setPage($page)
     {
         if (false === is_numeric($page) || $page < 1 || $page > 10) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    '%s is an invalid page value. It has to be numeric, positive and between 1 and 10',
-                    $page
-                )
-            );
+            throw new \InvalidArgumentException(sprintf('%s is an invalid page value. It has to be numeric, positive and between 1 and 10',
+                    $page));
         }
 
         $this->parameter['ItemPage'] = $page;
@@ -122,7 +118,7 @@ class Search extends AbstractOperation
      */
     public function getMinimumPrice()
     {
-        return $this->parameter['MinimumPrice'];
+        return $this->getSingleOperationParameter('MinimumPrice');
     }
 
     /**
@@ -148,7 +144,7 @@ class Search extends AbstractOperation
      */
     public function getMaximumPrice()
     {
-        return $this->parameter['MaximumPrice'];
+        return $this->getSingleOperationParameter('MaximumPrice');
     }
 
     /**
@@ -175,7 +171,7 @@ class Search extends AbstractOperation
      */
     public function getCondition()
     {
-        return $this->parameter['Condition'];
+        return $this->getSingleOperationParameter('Condition');
     }
 
     /**
@@ -201,7 +197,7 @@ class Search extends AbstractOperation
      */
     public function getAvailability()
     {
-        return $this->parameter['Availability'];
+        return $this->getSingleOperationParameter('Availability');
     }
 
     /**
@@ -227,7 +223,7 @@ class Search extends AbstractOperation
      */
     public function getBrowseNode()
     {
-        return $this->parameter['BrowseNode'];
+        return $this->getSingleOperationParameter('BrowseNode');
     }
 
     /**
@@ -252,12 +248,8 @@ class Search extends AbstractOperation
     protected function validatePrice($price)
     {
         if (false === is_numeric($price) || $price < 1) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    '%s is an invalid price value. It has to be numeric and >= than 1',
-                    $price
-                )
-            );
+            throw new \InvalidArgumentException(sprintf('%s is an invalid price value. It has to be numeric and >= than 1',
+                    $price));
         }
     }
 }

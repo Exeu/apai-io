@@ -26,7 +26,7 @@ class AbstractOperationTest extends \PHPUnit_Framework_TestCase
         $search = new Search();
         $search->setFoo('ABC');
 
-        $this->assertEquals('ABC', $search->getFoo());
+        static::assertEquals('ABC', $search->getFoo());
     }
 
     /**
@@ -41,7 +41,8 @@ class AbstractOperationTest extends \PHPUnit_Framework_TestCase
     public function testGetResponseGroup()
     {
         $search = new Search();
+        static::assertEquals(null, $search->getResponseGroup());
         $search->setResponseGroup(array('Small', 'Medium', 'Large'));
-        $this->assertEquals(array('Small', 'Medium', 'Large'), $search->getResponseGroup());
+        static::assertEquals(array('Small', 'Medium', 'Large'), $search->getResponseGroup());
     }
 }

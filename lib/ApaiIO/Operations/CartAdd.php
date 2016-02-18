@@ -40,7 +40,7 @@ class CartAdd extends CartCreate
      */
     public function getCartId()
     {
-        return $this->parameter['CartId'];
+        return $this->getSingleOperationParameter('CartId');
     }
 
     /**
@@ -60,7 +60,7 @@ class CartAdd extends CartCreate
      */
     public function getHMAC()
     {
-        return $this->parameter['HMAC'];
+        return $this->getSingleOperationParameter('HMAC');
     }
 
     /**

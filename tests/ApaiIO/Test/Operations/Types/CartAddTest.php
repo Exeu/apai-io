@@ -31,7 +31,23 @@ class CardAddTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $cart = new CartAdd();
-        $this->assertEquals('CartAdd', $cart->getName());
+        static::assertEquals('CartAdd', $cart->getName());
+    }
+
+    public function testGetCartId()
+    {
+        $cart = new CartAdd();
+        static::assertEquals(null, $cart->getCartId());
+        $cart->setCartId('789');
+        static::assertEquals('789', $cart->getCartId());
+    }
+
+    public function testGetHMAC()
+    {
+        $cart = new CartAdd();
+        static::assertEquals(null, $cart->getHMAC());
+        $cart->setHMAC('1234');
+        static::assertEquals('1234', $cart->getHMAC());
     }
 
     public function testGetCartId()

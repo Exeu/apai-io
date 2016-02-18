@@ -65,7 +65,7 @@ class Lookup extends AbstractOperation
      */
     public function getItemId()
     {
-        return $this->parameter['ItemId'];
+        return $this->getSingleOperationParameter('ItemId');
     }
 
     /**
@@ -89,7 +89,7 @@ class Lookup extends AbstractOperation
      */
     public function getIdType()
     {
-        return $this->parameter['IdType'];
+        return $this->getSingleOperationParameter('IdType');
     }
 
     /**
@@ -133,7 +133,7 @@ class Lookup extends AbstractOperation
      */
     public function getSearchIndex()
     {
-        return $this->parameter['SearchIndex'];
+        return $this->getSingleOperationParameter('SearchIndex');
     }
 
     /**
@@ -157,7 +157,7 @@ class Lookup extends AbstractOperation
      */
     public function getCondition()
     {
-        return $this->parameter['Condition'];
+        return $this->getSingleOperationParameter('Condition');
     }
 
     /**

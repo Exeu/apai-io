@@ -40,7 +40,7 @@ class BrowseNodeLookup extends AbstractOperation
      */
     public function getNodeId()
     {
-        return $this->parameter['BrowseNodeId'];
+        return $this->getSingleOperationParameter('BrowseNodeId');
     }
 
     /**

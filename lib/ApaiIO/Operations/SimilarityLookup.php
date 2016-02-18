@@ -40,7 +40,7 @@ class SimilarityLookup extends AbstractOperation
      */
     public function getItemId()
     {
-        return $this->parameter['ItemId'];
+        return $this->getSingleOperationParameter('ItemId');
     }
 
     /**
