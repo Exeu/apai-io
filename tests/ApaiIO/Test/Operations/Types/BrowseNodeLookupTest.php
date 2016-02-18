@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Operations\Types;
 
-use ApaiIO\Common\OperationTrait;
 use ApaiIO\Operations\BrowseNodeLookup;
 
 class BrowseNodeLookupTest extends \PHPUnit_Framework_TestCase
@@ -40,12 +39,5 @@ class BrowseNodeLookupTest extends \PHPUnit_Framework_TestCase
         static::assertEquals(null, $nodeLookup->getNodeId());
         $nodeLookup->setNodeId(290060);
         static::assertEquals(290060, $nodeLookup->getNodeId());
-    }
-
-    public function testGetBrowseNode()
-    {
-        $nodeLookup = new BrowseNodeLookup();
-        $nodeLookup->setNodeId(290060);
-        $this->assertEquals(290060, $nodeLookup->getNodeId());
     }
 }
