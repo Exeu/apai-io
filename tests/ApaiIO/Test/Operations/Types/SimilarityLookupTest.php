@@ -40,11 +40,4 @@ class SimilarityLookupTest extends \PHPUnit_Framework_TestCase
         $lookup->setItemId('B0117IJ4LE');
         static::assertEquals('B0117IJ4LE', $lookup->getItemId());
     }
-
-    public function getItemId()
-    {
-        $lookup = new SimilarityLookup();
-        $lookup->setItemId('B0117IJ4LE');
-        $this->assertEquals('B0117IJ4LE', $lookup->getItemId());
-    }
 }
