@@ -34,6 +34,16 @@ class BrowseNodeLookup extends AbstractOperation
     }
 
     /**
+     * Returns the nodeid
+     *
+     * @return string
+     */
+    public function getNodeId()
+    {
+        return $this->getSingleOperationParameter('BrowseNodeId');
+    }
+
+    /**
      * Sets the nodeid in which should be looked up
      *
      * @param string $nodeId

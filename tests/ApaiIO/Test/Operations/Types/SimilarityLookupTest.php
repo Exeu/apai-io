@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Operations\Types;
 
-use ApaiIO\Common\OperationTrait;
 use ApaiIO\Operations\SimilarityLookup;
 
 class SimilarityLookupTest extends \PHPUnit_Framework_TestCase
@@ -31,6 +30,14 @@ class SimilarityLookupTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $lookup = new SimilarityLookup();
-        $this->assertEquals('SimilarityLookup', $lookup->getName());
+        static::assertEquals('SimilarityLookup', $lookup->getName());
+    }
+
+    public function getItemId()
+    {
+        $lookup = new SimilarityLookup();
+        static::assertEquals(null, $lookup->getItemId());
+        $lookup->setItemId('B0117IJ4LE');
+        static::assertEquals('B0117IJ4LE', $lookup->getItemId());
     }
 }

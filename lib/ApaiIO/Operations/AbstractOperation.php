@@ -27,6 +27,16 @@ abstract class AbstractOperation implements OperationInterface
     protected $parameter = array();
 
     /**
+     * Returns an array of responseGroups
+     *
+     * @return array
+     */
+    public function getResponseGroup()
+    {
+        return $this->getSingleOperationParameter('ResponseGroup');
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setResponseGroup(array $responseGroup)
@@ -42,6 +52,16 @@ abstract class AbstractOperation implements OperationInterface
     public function getOperationParameter()
     {
         return $this->parameter;
+    }
+
+    /**
+     * Returns a single operation parameter if set
+     *
+     * @param string $keyName
+     * @return mixed|null
+     */
+    public function getSingleOperationParameter($keyName) {
+        return isset($this->parameter[$keyName]) ? $this->parameter[$keyName] : null;
     }
 
     /**

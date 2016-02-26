@@ -34,6 +34,16 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Return the amazon category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->getSingleOperationParameter('SearchIndex');
+    }
+
+    /**
      * Sets the amazon category
      *
      * @param string $category
@@ -45,6 +55,16 @@ class Search extends AbstractOperation
         $this->parameter['SearchIndex'] = $category;
 
         return $this;
+    }
+
+    /**
+     * Returns the keywords
+     *
+     * @return string
+     */
+    public function getKeywords()
+    {
+        return $this->getSingleOperationParameter('Keywords');
     }
 
     /**
@@ -62,6 +82,16 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Return the resultpage
+     *
+     * @return integer
+     */
+    public function getPage()
+    {
+        return $this->getSingleOperationParameter('ItemPage');
+    }
+
+    /**
      * Sets the resultpage to a specified value
      * Allows to browse resultsets which have more than one page
      *
@@ -72,17 +102,23 @@ class Search extends AbstractOperation
     public function setPage($page)
     {
         if (false === is_numeric($page) || $page < 1 || $page > 10) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    '%s is an invalid page value. It has to be numeric, positive and between 1 and 10',
-                    $page
-                )
-            );
+            throw new \InvalidArgumentException(sprintf('%s is an invalid page value. It has to be numeric, positive and between 1 and 10',
+                    $page));
         }
 
         $this->parameter['ItemPage'] = $page;
 
         return $this;
+    }
+
+    /**
+     * Return the minimum price as integer so 8.99$ will be returned as 899
+     *
+     * @return integer
+     */
+    public function getMinimumPrice()
+    {
+        return $this->getSingleOperationParameter('MinimumPrice');
     }
 
     /**
@@ -103,6 +139,15 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Returns the maximum price as integer so 8.99$ will be returned as 899
+     * @return mixed
+     */
+    public function getMaximumPrice()
+    {
+        return $this->getSingleOperationParameter('MaximumPrice');
+    }
+
+    /**
      * Sets the maximum price to a specified value for the search
      * Currency will be given by the site you are querying: EUR for IT, USD for COM
      * Price should be given as integer. 8.99$ USD becomes 899
@@ -117,6 +162,16 @@ class Search extends AbstractOperation
         $this->parameter['MaximumPrice'] = $price;
 
         return $this;
+    }
+
+    /**
+     * Returns the condition of the items to return. New | Used | Collectible | Refurbished | All
+     *
+     * @return string
+     */
+    public function getCondition()
+    {
+        return $this->getSingleOperationParameter('Condition');
     }
 
     /**
@@ -136,6 +191,16 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Returns the availability.
+     *
+     * @return string
+     */
+    public function getAvailability()
+    {
+        return $this->getSingleOperationParameter('Availability');
+    }
+
+    /**
      * Sets the availability. Don't use method if you want the default Amazon behaviour.
      * Only valid value = Available
      *
@@ -149,6 +214,16 @@ class Search extends AbstractOperation
         $this->parameter['Availability'] = $availability;
 
         return $this;
+    }
+
+    /**
+     * Returns the browseNodeId
+     *
+     * @return integer
+     */
+    public function getBrowseNode()
+    {
+        return $this->getSingleOperationParameter('BrowseNode');
     }
 
     /**
@@ -172,13 +247,9 @@ class Search extends AbstractOperation
      */
     protected function validatePrice($price)
     {
-        if (false === is_numeric($price)  || $price < 1) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    '%s is an invalid price value. It has to be numeric and >= than 1',
-                    $price
-                )
-            );
+        if (false === is_numeric($price) || $price < 1) {
+            throw new \InvalidArgumentException(sprintf('%s is an invalid price value. It has to be numeric and >= than 1',
+                    $price));
         }
     }
 }

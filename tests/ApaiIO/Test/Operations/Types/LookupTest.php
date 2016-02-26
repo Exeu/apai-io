@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Operations\Types;
 
-use ApaiIO\Common\OperationTrait;
 use ApaiIO\Operations\Lookup;
 
 class LookupTest extends \PHPUnit_Framework_TestCase
@@ -34,25 +33,23 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     public function testSettersNegative()
     {
         $lookup = new Lookup();
-        $lookup->setItemIds(
-            array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-        );
+        $lookup->setItemIds(array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
     }
 
     public function testMultiItemSet()
     {
         $lookup = new Lookup();
-        $lookup->setItemIds(array(1,2,3,4));
+        $lookup->setItemIds(array(1, 2, 3, 4));
 
         $itemQuery = $lookup->getItemId();
 
-        $this->assertSame('1,2,3,4', $itemQuery);
+        static::assertSame('1,2,3,4', $itemQuery);
     }
 
     public function testGetName()
     {
         $lookup = new Lookup();
-        $this->assertEquals('ItemLookup', $lookup->getName());
+        static::assertEquals('ItemLookup', $lookup->getName());
     }
 
     public function testGetIdType()
@@ -72,7 +69,7 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         );
         foreach ($valididTypes as $valididType) {
             $lookup->setIdType($valididType);
-            $this->assertEquals($valididType, $lookup->getIdType());
+            static::assertEquals($valididType, $lookup->getIdType());
         }
     }
 
@@ -90,9 +87,9 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         $parameters = $lookup->getOperationParameter();
 
         if ($expectedSearchIndex === null) {
-            $this->assertArrayNotHasKey('SearchIndex', $parameters);
+            static::assertArrayNotHasKey('SearchIndex', $parameters);
         } else {
-            $this->assertSame($expectedSearchIndex, $parameters['SearchIndex']);
+            static::assertSame($expectedSearchIndex, $parameters['SearchIndex']);
         }
     }
 
@@ -122,14 +119,32 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     public function testGetSearchIndex()
     {
         $lookup = new Lookup();
+        static::assertEquals(null, $lookup->getSearchIndex());
         $lookup->setSearchIndex('Appliances');
-        $this->assertEquals('Appliances', $lookup->getSearchIndex());
+        static::assertEquals('Appliances', $lookup->getSearchIndex());
     }
 
     public function testConditionGetterAndSetter()
     {
         $lookup = new Lookup();
+        static::assertEquals(null, $lookup->getCondition());
         $lookup->setCondition('All');
-        $this->assertEquals('All', $lookup->getCondition());
+        static::assertEquals('All', $lookup->getCondition());
+    }
+
+    public function testGetItemId()
+    {
+        $lookup = new Lookup();
+        static::assertEquals(null, $lookup->getItemId());
+        $lookup->setItemId('B0117IJ4LE');
+        static::assertEquals('B0117IJ4LE', $lookup->getItemId());
+    }
+
+    public function testGetCondition()
+    {
+        $lookup = new Lookup();
+        static::assertEquals(null, $lookup->getCondition());
+        $lookup->setCondition('Used');
+        static::assertEquals('Used', $lookup->getCondition());
     }
 }
