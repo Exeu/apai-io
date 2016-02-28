@@ -23,7 +23,7 @@ namespace ApaiIO\Operations;
  * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/ItemLookup.html
  * @author Jan Eichhorn <exeu65@googlemail.com>
  *
- * @method void setMerchantId(string $merchantId)
+ * @method Lookup setMerchantId(string $merchantId)
  */
 class Lookup extends AbstractOperation
 {
