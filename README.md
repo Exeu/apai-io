@@ -34,7 +34,7 @@ Add apai-io in your composer.json or create a new composer.json:
 ```js
 {
     "require": {
-        "exeu/apai-io": "dev-master"
+        "exeu/apai-io": "~1.0"
     }
 }
 ```
