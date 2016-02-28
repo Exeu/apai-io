@@ -22,6 +22,9 @@ namespace ApaiIO\Operations;
  *
  * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/SimilarityLookup.html
  * @author Jan Eichhorn <exeu65@googlemail.com>
+ *
+ * @method void setSimilarityType(string $similarityType)
+ * @method void setMerchantId(string $merchantId)
  */
 class SimilarityLookup extends AbstractOperation
 {

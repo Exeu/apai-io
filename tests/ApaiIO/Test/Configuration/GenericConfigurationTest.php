@@ -31,6 +31,16 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->genericConfiguration = new GenericConfiguration();
         parent::setUp();
     }
+    public function testGettersAndSetters()
+    {
+        $this->genericConfiguration->setAccessKey('ABC');
+        $this->genericConfiguration->setSecretKey('DEF');
+        $this->genericConfiguration->setAssociateTag('GHI');
+
+        $this->assertSame('ABC', $this->genericConfiguration->getAccessKey());
+        $this->assertSame('DEF', $this->genericConfiguration->getSecretKey());
+        $this->assertSame('GHI', $this->genericConfiguration->getAssociateTag());
+    }
 
     public function testSetRequestFactoryExeptsClosure()
     {
