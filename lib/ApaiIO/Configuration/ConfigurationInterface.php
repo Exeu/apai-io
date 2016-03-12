@@ -17,6 +17,9 @@
 
 namespace ApaiIO\Configuration;
 
+use ApaiIO\Request\RequestInterface;
+use ApaiIO\ResponseTransformer\ResponseTransformerInterface;
+
 interface ConfigurationInterface
 {
     /**
@@ -50,30 +53,14 @@ interface ConfigurationInterface
     /**
      * Gets the requestclass
      *
-     * @return string
+     * @return RequestInterface
      */
     public function getRequest();
 
     /**
      * Gets the responsetransformerclass
      *
-     * @return string
+     * @return ResponseTransformerInterface
      */
     public function getResponseTransformer();
-
-    /**
-     * Gets the request factory callback if it is set
-     * This callback can be used to manipulate the request before its returned.
-     *
-     * @return \Closure|array|string
-     */
-    public function getRequestFactory();
-
-    /**
-     * Gets the responsetransformer factory callback if it is set
-     * This callback can be used to manipulate the request before its returned.
-     *
-     * @return \Closure|array|string
-     */
-    public function getResponseTransformerFactory();
 }

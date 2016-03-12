@@ -19,8 +19,6 @@ namespace ApaiIO;
 
 use ApaiIO\Configuration\ConfigurationInterface;
 use ApaiIO\Operations\OperationInterface;
-use ApaiIO\Request\RequestFactory;
-use ApaiIO\ResponseTransformer\ResponseTransformerFactory;
 
 /**
  * ApaiIO Core
@@ -38,7 +36,7 @@ class ApaiIO
     const VERSION = "2.0.0-DEV";
 
     /**
-     * Configuration
+     * Configuration.
      *
      * @var ConfigurationInterface
      */
@@ -47,49 +45,38 @@ class ApaiIO
     /**
      * @param ConfigurationInterface $configuration
      */
-    public function __construct(ConfigurationInterface $configuration = null)
+    public function __construct(ConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
     }
 
     /**
-     * Runs the given operation
+     * Runs the given operation.
      *
-     * @param OperationInterface     $operation     The operationobject
-     * @param ConfigurationInterface $configuration The configurationobject
+     * @param OperationInterface $operation The operationobject
      *
      * @return mixed
      */
-    public function runOperation(OperationInterface $operation, ConfigurationInterface $configuration = null)
+    public function runOperation(OperationInterface $operation)
     {
-        $configuration = is_null($configuration) ? $this->configuration : $configuration;
+        $request  = $this->configuration->getRequest();
+        $response = $request->perform($operation);
 
-        if (true === is_null($configuration)) {
-            throw new \Exception('No configuration passed.');
-        }
-
-        $requestObject = RequestFactory::createRequest($configuration);
-
-        $response = $requestObject->perform($operation);
-
-        return $this->applyResponseTransformer($response, $configuration);
+        return $this->applyResponseTransformer($response);
     }
 
     /**
-     * Applies a responsetransformer
+     * Applies a responsetransformer.
      *
-     * @param mixed                  $response      The response of the request
-     * @param ConfigurationInterface $configuration The configurationobject
+     * @param mixed $response The response of the request
      *
      * @return mixed
      */
-    protected function applyResponseTransformer($response, ConfigurationInterface $configuration)
+    protected function applyResponseTransformer($response)
     {
-        if (true === is_null($configuration->getResponseTransformer())) {
+        if (null === $responseTransformer = $this->configuration->getResponseTransformer()) {
             return $response;
         }
-
-        $responseTransformer = ResponseTransformerFactory::createResponseTransformer($configuration);
 
         return $responseTransformer->transform($response);
     }

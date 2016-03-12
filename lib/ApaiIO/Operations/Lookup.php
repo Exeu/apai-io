@@ -103,13 +103,13 @@ class Lookup extends AbstractOperation
      */
     public function setIdType($idType)
     {
-        $idTypes = array(
+        $idTypes = [
             self::TYPE_ASIN,
             self::TYPE_SKU,
             self::TYPE_UPC,
             self::TYPE_EAN,
             self::TYPE_ISBN
-        );
+        ];
 
         if (!in_array($idType, $idTypes)) {
             throw new \InvalidArgumentException(sprintf(

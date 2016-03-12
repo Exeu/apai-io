@@ -24,7 +24,7 @@ namespace ApaiIO\Common;
  */
 trait OperationTrait
 {
-    protected $parameter = array();
+    protected $parameter = [];
 
     /**
      * Sets the responsegroups for the current operation

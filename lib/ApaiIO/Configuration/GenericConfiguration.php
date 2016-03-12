@@ -17,7 +17,8 @@
 
 namespace ApaiIO\Configuration;
 
-use ApaiIO\Configuration\Country;
+use ApaiIO\Request\RequestInterface;
+use ApaiIO\ResponseTransformer\ResponseTransformerInterface;
 
 /**
  * A generic configurationclass
@@ -58,31 +59,17 @@ class GenericConfiguration implements ConfigurationInterface
      * The requestclass
      * By default its set to the provided restful request
      *
-     * @var string
+     * @var RequestInterface
      */
-    protected $request = "\ApaiIO\Request\Rest\Request";
-
-    /**
-     * A callback which is called before returning the request by the factory
-     *
-     * @var \Closure|array|string
-     */
-    protected $requestFactory = null;
+    protected $request;
 
     /**
      * The responsetransformerclass
      * By default its set to null which means that no transformer will be applied
      *
-     * @var string
+     * @var ResponseTransformerInterface
      */
-    protected $responseTransformer = null;
-
-    /**
-     * A callback which is called before returning the responsetransformer by the factory
-     *
-     * @var \Closure|array|string
-     */
-    protected $responseTransformerFactory = null;
+    protected $responseTransformer;
 
     /**
      * {@inheritdoc}
@@ -183,13 +170,13 @@ class GenericConfiguration implements ConfigurationInterface
     }
 
     /**
-     * Sets the requestclass
+     * Sets the Request.
      *
-     * @param string $request
+     * @param RequestInterface $request
      *
      * @return \ApaiIO\Configuration\GenericConfiguration
      */
-    public function setRequest($request)
+    public function setRequest(RequestInterface $request)
     {
         $this->request = $request;
 
@@ -205,67 +192,15 @@ class GenericConfiguration implements ConfigurationInterface
     }
 
     /**
-     * Sets the responsetransformerclass
+     * Sets the ResponseTransformer
      *
-     * @param string $responseTransformer
+     * @param ResponseTransformerInterface $responseTransformer
      *
      * @return \ApaiIO\Configuration\GenericConfiguration
      */
-    public function setResponseTransformer($responseTransformer)
+    public function setResponseTransformer(ResponseTransformerInterface $responseTransformer)
     {
         $this->responseTransformer = $responseTransformer;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getRequestFactory()
-    {
-        return $this->requestFactory;
-    }
-
-    /**
-     * Sets the request factory callback
-     *
-     * @param \Closure|array|string $callback
-     *
-     * @return \ApaiIO\Configuration\GenericConfiguration
-     */
-    public function setRequestFactory($callback)
-    {
-        if (!is_callable($callback)) {
-            throw new \InvalidArgumentException("Given argument is not callable");
-        }
-
-        $this->requestFactory = $callback;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getResponseTransformerFactory()
-    {
-        return $this->responseTransformerFactory;
-    }
-
-    /**
-     * Sets the responsetransformer factory callback
-     *
-     * @param \Closure|array|string $callback
-     *
-     * @return \ApaiIO\Configuration\GenericConfiguration
-     */
-    public function setResponseTransformerFactory($callback)
-    {
-        if (!is_callable($callback)) {
-            throw new \InvalidArgumentException("Given argument is not callable");
-        }
-
-        $this->responseTransformerFactory = $callback;
 
         return $this;
     }

@@ -24,7 +24,7 @@ namespace ApaiIO\Operations;
  */
 abstract class AbstractOperation implements OperationInterface
 {
-    protected $parameter = array();
+    protected $parameter = [];
 
     /**
      * Returns an array of responseGroups
@@ -58,9 +58,11 @@ abstract class AbstractOperation implements OperationInterface
      * Returns a single operation parameter if set
      *
      * @param string $keyName
+     *
      * @return mixed|null
      */
-    public function getSingleOperationParameter($keyName) {
+    public function getSingleOperationParameter($keyName)
+    {
         return isset($this->parameter[$keyName]) ? $this->parameter[$keyName] : null;
     }
 

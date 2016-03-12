@@ -64,7 +64,7 @@ class Request implements RequestInterface
      *
      * @var array
      */
-    private $options = array();
+    private $options = [];
 
     /**
      * The requestscheme
@@ -83,14 +83,15 @@ class Request implements RequestInterface
      *
      * @param array $options
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
-        $this->options = array(
+        $this->options = [
             self::USERAGENT          => "ApaiIO [" . ApaiIO::VERSION . "]",
             self::CONNECTION_TIMEOUT => 10,
             self::TIMEOUT            => 10,
             self::FOLLOW_LOCATION    => 1
-        );
+        ];
+
         $this->setOptions($options);
     }
 
@@ -99,11 +100,12 @@ class Request implements RequestInterface
      *
      * @param array $options
      */
-    public function setOptions(array $options = array())
+    public function setOptions(array $options = [])
     {
         foreach ($options as $currentOption => $currentOptionValue) {
             $this->options[$currentOption] = $currentOptionValue;
         }
+
         $this->options[CURLOPT_RETURNTRANSFER] = 1; // force the return transfer
     }
 
@@ -190,14 +192,14 @@ class Request implements RequestInterface
      */
     protected function prepareRequestParams(OperationInterface $operation)
     {
-        $baseRequestParams = array(
+        $baseRequestParams = [
             'Service' => 'AWSECommerceService',
             'AWSAccessKeyId' => $this->configuration->getAccessKey(),
             'AssociateTag' => $this->configuration->getAssociateTag(),
             'Operation' => $operation->getName(),
             'Version' => '2011-08-01',
             'Timestamp' => Util::getTimeStamp()
-        );
+        ];
 
         $operationParams = $operation->getOperationParameter();
 
@@ -222,7 +224,7 @@ class Request implements RequestInterface
      */
     protected function buildQueryString(array $params)
     {
-        $parameterList = array();
+        $parameterList = [];
         foreach ($params as $key => $value) {
             $parameterList[] = sprintf('%s=%s', $key, rawurlencode($value));
         }
