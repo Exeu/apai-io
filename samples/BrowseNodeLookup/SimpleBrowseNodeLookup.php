@@ -35,10 +35,6 @@ try {
 }
 $apaiIO = new ApaiIO($conf);
 
-// Changing to SOAP and ObjectToArray ResponseTransformer
-$conf->setRequest('\ApaiIO\Request\Soap\Request');
-$conf->setResponseTransformer(new \ApaiIO\ResponseTransformer\ObjectToArray());
-
 $browseNodeLookup = new BrowseNodeLookup();
 $browseNodeLookup->setNodeId(542064);
 
