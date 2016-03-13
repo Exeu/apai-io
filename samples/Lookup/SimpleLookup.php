@@ -23,7 +23,6 @@ use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Lookup;
 
 $conf = new GenericConfiguration();
-
 $client = new \GuzzleHttp\Client();
 $request = new \ApaiIO\Request\Rest\Request($client);
 

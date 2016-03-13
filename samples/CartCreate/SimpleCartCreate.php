@@ -24,7 +24,6 @@ use ApaiIO\Operations\CartAdd;
 use ApaiIO\Operations\CartCreate;
 
 $conf = new GenericConfiguration();
-
 $client = new \GuzzleHttp\Client();
 $request = new \ApaiIO\Request\Rest\Request($client);
 

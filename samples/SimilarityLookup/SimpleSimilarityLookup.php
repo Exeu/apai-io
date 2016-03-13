@@ -22,6 +22,7 @@ use ApaiIO\ApaiIO;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\SimilarityLookup;
 
+$conf = new GenericConfiguration();
 $client = new \GuzzleHttp\Client();
 $request = new \ApaiIO\Request\Rest\Request($client);
 
