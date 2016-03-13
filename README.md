@@ -34,7 +34,7 @@ Add apai-io in your composer.json or create a new composer.json:
 ```js
 {
     "require": {
-        "exeu/apai-io": "~1.0"
+        "exeu/apai-io": "~2.0"
     }
 }
 ```
@@ -62,12 +62,15 @@ use ApaiIO\Operations\Search;
 use ApaiIO\ApaiIO;
 
 $conf = new GenericConfiguration();
+$client = new \GuzzleHttp\Client();
+$request = new \ApaiIO\Request\Rest\Request($client);
+
 $conf
     ->setCountry('com')
     ->setAccessKey(AWS_API_KEY)
     ->setSecretKey(AWS_API_SECRET_KEY)
-    ->setAssociateTag(AWS_ASSOCIATE_TAG);
-
+    ->setAssociateTag(AWS_ASSOCIATE_TAG)
+    ->setRequest($request);
 $apaiIO = new ApaiIO($conf);
 
 $search = new Search();

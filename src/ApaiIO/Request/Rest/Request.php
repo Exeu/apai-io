@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,12 +37,12 @@ class Request implements RequestInterface
      *
      * @var string
      */
-    protected $requestScheme = "http://webservices.amazon.%s/onca/xml?%s";
+    private $requestScheme = "http://webservices.amazon.%s/onca/xml?%s";
 
     /**
      * @var ConfigurationInterface
      */
-    protected $configuration;
+    private $configuration;
 
     /**
      * @var ClientInterface
