@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Test\Request\Types;
+namespace ApaiIO\Test\Request\Rest;
 
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\ApaiIO;

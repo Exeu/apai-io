@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Test\Misc;
+namespace ApaiIO\Test;
 
 use ApaiIO\ApaiIO;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Search;
 
-class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
+class ApaiIOTest extends \PHPUnit_Framework_TestCase
 {
     public function testApaiIORequestPerfomOperation()
     {

@@ -18,28 +18,27 @@
 namespace ApaiIO\Test\Configuration;
 
 use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Request\Rest\Request;
+use ApaiIO\ResponseTransformer\XmlToDomDocument;
+use GuzzleHttp\ClientInterface;
 
 class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var \ApaiIO\Configuration\GenericConfiguration
-     */
-    private $genericConfiguration;
-
-    protected function setUp()
-    {
-        $this->genericConfiguration = new GenericConfiguration();
-        parent::setUp();
-    }
     public function testGettersAndSetters()
     {
-        $this->genericConfiguration->setAccessKey('ABC');
-        $this->genericConfiguration->setSecretKey('DEF');
-        $this->genericConfiguration->setAssociateTag('GHI');
+        $object = new GenericConfiguration();
 
-        $this->assertSame('ABC', $this->genericConfiguration->getAccessKey());
-        $this->assertSame('DEF', $this->genericConfiguration->getSecretKey());
-        $this->assertSame('GHI', $this->genericConfiguration->getAssociateTag());
+        $object->setAccessKey('ABC');
+        $object->setSecretKey('DEF');
+        $object->setAssociateTag('GHI');
+        $object->setResponseTransformer($a = new XmlToDomDocument());
+        $object->setRequest($b = new Request($this->prophesize('\GuzzleHttp\ClientInterface')->reveal()));
+
+        $this->assertSame('ABC', $object->getAccessKey());
+        $this->assertSame('DEF', $object->getSecretKey());
+        $this->assertSame('GHI', $object->getAssociateTag());
+        $this->assertSame($a, $object->getResponseTransformer());
+        $this->assertSame($b, $object->getRequest());
     }
 
     /**
@@ -57,12 +56,5 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
         $object->setCountry('DE');
 
         $this->assertEquals('de', $object->getCountry());
-    }
-}
-
-class CallableClass
-{
-    public static function foo()
-    {
     }
 }
