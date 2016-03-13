@@ -36,8 +36,8 @@ class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
 
         $conf->setRequest($request);
 
-        $apaiIO = new ApaiIO();
-        $apaiIO->runOperation($operation, $conf);
+        $apaiIO = new ApaiIO($conf);
+        $apaiIO->runOperation($operation);
     }
 
     public function testApaiIOTransformResponse()
@@ -53,7 +53,7 @@ class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
 
         $conf->setRequest($request);
 
-        $responseTransformer = $this->getMock('\ApaiIO\ResponseTransformer\ObjectToArray', array('transform'));
+        $responseTransformer = $this->getMock('\ApaiIO\ResponseTransformer\ResponseTransformerInterface', array('transform'));
         $responseTransformer
             ->expects($this->once())
             ->method('transform')
@@ -61,18 +61,7 @@ class ApaiIOCoreTest extends \PHPUnit_Framework_TestCase
 
         $conf->setResponseTransformer($responseTransformer);
 
-        $apaiIO = new ApaiIO();
-        $apaiIO->runOperation($operation, $conf);
-    }
-
-    /**
-     * @expectedException Exception
-     */
-    public function testApaiIOWithoutConfig()
-    {
-        $operation = new Search();
-        $apaiIO = new ApaiIO();
-
+        $apaiIO = new ApaiIO($conf);
         $apaiIO->runOperation($operation);
     }
 }

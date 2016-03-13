@@ -23,21 +23,6 @@ use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;
 
 class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testObjectToArray()
-    {
-        $stdClassSub = new \stdClass();
-        $stdClassSub->baz = 'bar';
-
-        $stdClass = new \stdClass();
-        $stdClass->foo = 'bar';
-        $stdClass->bar = $stdClassSub;
-
-        $array = array('foo' => 'bar', 'bar' => array('baz' => 'bar'));
-        $transformer = new ObjectToArray();
-
-        $this->assertEquals($array, $transformer->transform($stdClass));
-    }
-
     public function testXmlToDomDocument()
     {
         $transformer = new XmlToDomDocument();

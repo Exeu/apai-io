@@ -42,42 +42,6 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('GHI', $this->genericConfiguration->getAssociateTag());
     }
 
-    public function testSetRequestFactoryExeptsClosure()
-    {
-        $this->genericConfiguration->setRequestFactory(function(){});
-    }
-
-    public function testSetRequestFactoryExeptsCallable()
-    {
-        $this->genericConfiguration->setRequestFactory(array(__NAMESPACE__ . '\CallableClass', 'foo'));
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testSetRequestFactoryThrowExceptionIfArgumentIsNotCallable()
-    {
-        $this->genericConfiguration->setRequestFactory("");
-    }
-
-    public function testSetResponseTransformerFactoryExeptsClosure()
-    {
-        $this->genericConfiguration->setResponseTransformerFactory(function(){});
-    }
-
-    public function testSetResponseTransformerExeptsCallable()
-    {
-        $this->genericConfiguration->setResponseTransformerFactory(array(__NAMESPACE__ . '\CallableClass', 'foo'));
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testSetResponseTransformerFactoryThrowExceptionIfArgumentIsNotCallable()
-    {
-        $this->genericConfiguration->setResponseTransformerFactory("");
-    }
-
     /**
      * @expectedException InvalidArgumentException
      */
