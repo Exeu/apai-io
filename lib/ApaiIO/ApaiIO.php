@@ -60,6 +60,8 @@ class ApaiIO
     public function runOperation(OperationInterface $operation)
     {
         $request  = $this->configuration->getRequest();
+        $request->setConfiguration($this->configuration);
+
         $response = $request->perform($operation);
 
         return $this->applyResponseTransformer($response);

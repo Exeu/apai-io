@@ -22,14 +22,16 @@ use ApaiIO\ApaiIO;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\SimilarityLookup;
 
-$conf = new GenericConfiguration();
+$client = new \GuzzleHttp\Client();
+$request = new \ApaiIO\Request\Rest\Request($client);
 
 try {
     $conf
         ->setCountry('de')
         ->setAccessKey(AWS_API_KEY)
         ->setSecretKey(AWS_API_SECRET_KEY)
-        ->setAssociateTag(AWS_ASSOCIATE_TAG);
+        ->setAssociateTag(AWS_ASSOCIATE_TAG)
+        ->setRequest($request);
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
@@ -42,16 +44,3 @@ $lookup->setResponseGroup(array('Large', 'Small'));
 $formattedResponse = $apaiIO->runOperation($lookup);
 
 echo $formattedResponse;
-echo "<hr>";
-
-// Changing to SOAP and ObjectToArray ResponseTransformer
-$conf->setRequest('\ApaiIO\Request\Soap\Request');
-$conf->setResponseTransformer('\ApaiIO\ResponseTransformer\ObjectToArray');
-
-$lookup = new SimilarityLookup();
-$lookup->setItemId('B0040PBK32');
-$lookup->setResponseGroup(array('Large', 'Small'));
-
-$formattedResponse = $apaiIO->runOperation($lookup);
-
-var_dump($formattedResponse);

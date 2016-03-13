@@ -22,6 +22,7 @@ use ApaiIO\Configuration\ConfigurationInterface;
 use ApaiIO\Operations\OperationInterface;
 use ApaiIO\Request\RequestInterface;
 use ApaiIO\Request\Util;
+use GuzzleHttp\ClientInterface;
 
 /**
  * Basic implementation of the rest request
@@ -31,41 +32,6 @@ use ApaiIO\Request\Util;
  */
 class Request implements RequestInterface
 {
-    /**
-     * Connection time out in seconds
-     *
-     * @var int
-     */
-    const CONNECTION_TIMEOUT = CURLOPT_CONNECTTIMEOUT;
-
-    /**
-     * Time out in seconds
-     *
-     * @var int
-     */
-    const TIMEOUT = CURLOPT_TIMEOUT;
-
-    /**
-     * Enable/Disable location following
-     *
-     * @var int
-     */
-    const FOLLOW_LOCATION = CURLOPT_FOLLOWLOCATION;
-
-    /**
-     * Useragent
-     *
-     * @var string
-     */
-    const USERAGENT = CURLOPT_USERAGENT;
-
-    /**
-     * curl options
-     *
-     * @var array
-     */
-    private $options = [];
-
     /**
      * The requestscheme
      *
@@ -79,44 +45,18 @@ class Request implements RequestInterface
     protected $configuration;
 
     /**
+     * @var ClientInterface
+     */
+    private $client;
+
+    /**
      * Initialize instance
      *
-     * @param array $options
+     * @param ClientInterface $client
      */
-    public function __construct(array $options = [])
+    public function __construct(ClientInterface $client)
     {
-        $this->options = [
-            self::USERAGENT          => "ApaiIO [" . ApaiIO::VERSION . "]",
-            self::CONNECTION_TIMEOUT => 10,
-            self::TIMEOUT            => 10,
-            self::FOLLOW_LOCATION    => 1
-        ];
-
-        $this->setOptions($options);
-    }
-
-    /**
-     * Sets the curl options
-     *
-     * @param array $options
-     */
-    public function setOptions(array $options = [])
-    {
-        foreach ($options as $currentOption => $currentOptionValue) {
-            $this->options[$currentOption] = $currentOptionValue;
-        }
-
-        $this->options[CURLOPT_RETURNTRANSFER] = 1; // force the return transfer
-    }
-
-    /**
-     * return the current curl options
-     *
-     * @return array
-     */
-    public function getOptions()
-    {
-        return $this->options;
+        $this->client = $client;
     }
 
     /**
@@ -132,55 +72,17 @@ class Request implements RequestInterface
      */
     public function perform(OperationInterface $operation)
     {
-        $ch = curl_init();
-
-        if (false === $ch) {
-            throw new \RuntimeException("Cannot initialize curl resource");
-        }
-
         $preparedRequestParams = $this->prepareRequestParams($operation);
         $queryString = $this->buildQueryString($preparedRequestParams);
 
-        $options = $this->options;
-        $options[CURLOPT_URL] = sprintf($this->requestScheme, $this->configuration->getCountry(), $queryString);
+        $uri = sprintf($this->requestScheme, $this->configuration->getCountry(), $queryString);
+        $request = new \GuzzleHttp\Psr7\Request('GET', $uri, [
+            'User-Agent' => 'ApaiIO [' . ApaiIO::VERSION . ']'
+        ]);
 
-        foreach ($options as $currentOption => $currentOptionValue) {
-            if (false === curl_setopt($ch, $currentOption, $currentOptionValue)) {
-                throw new \RuntimeException(
-                    sprintf(
-                        "An error occurred while setting %s with value %s",
-                        $currentOption,
-                        $currentOptionValue
-                    )
-                );
-            }
-        }
+        $result = $this->client->send($request);
 
-        $curlError = false;
-        $errorNumber = null;
-        $errorMessage = null;
-
-        $result = curl_exec($ch);
-
-        if (false === $result) {
-            $curlError = true;
-            $errorNumber = curl_errno($ch);
-            $errorMessage = curl_error($ch);
-        }
-
-        curl_close($ch);
-
-        if ($curlError) {
-            throw new \RuntimeException(
-                sprintf(
-                    "An error occurred while sending request. Error number: %d; Error message: %s",
-                    $errorNumber,
-                    $errorMessage
-                )
-            );
-        }
-
-        return $result;
+        return $result->getBody()->getContents();
     }
 
     /**

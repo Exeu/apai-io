@@ -76,13 +76,13 @@ abstract class AbstractOperation implements OperationInterface
      */
     public function __call($methodName, $parameter)
     {
-        if (substr($methodName, 0, 3) == 'set') {
+        if (substr($methodName, 0, 3) === 'set') {
             $this->parameter[substr($methodName, 3)] = array_shift($parameter);
 
             return $this;
         }
 
-        if (substr($methodName, 0, 3) == 'get') {
+        if (substr($methodName, 0, 3) === 'get') {
             $keyName = substr($methodName, 3);
 
             return isset($this->parameter[$keyName]) ? $this->parameter[$keyName] : null;

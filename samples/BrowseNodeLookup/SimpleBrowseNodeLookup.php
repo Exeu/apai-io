@@ -24,12 +24,16 @@ use ApaiIO\Operations\BrowseNodeLookup;
 
 $conf = new GenericConfiguration();
 
+$client = new \GuzzleHttp\Client();
+$request = new \ApaiIO\Request\Rest\Request($client);
+
 try {
     $conf
         ->setCountry('de')
         ->setAccessKey(AWS_API_KEY)
         ->setSecretKey(AWS_API_SECRET_KEY)
-        ->setAssociateTag(AWS_ASSOCIATE_TAG);
+        ->setAssociateTag(AWS_ASSOCIATE_TAG)
+        ->setRequest($request);
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
