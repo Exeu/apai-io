@@ -30,13 +30,9 @@ class ApaiIOTest extends \PHPUnit_Framework_TestCase
 
         $request = $this->prophesize('\ApaiIO\Request\RequestInterface');
         $request
-            ->perform($operation)
+            ->perform($operation, $conf)
             ->shouldBeCalledTimes(1)
             ->willReturn();
-
-        $request
-            ->setConfiguration($conf)
-            ->shouldBeCalledTimes(1);
 
         $conf->setRequest($request->reveal());
 
@@ -51,13 +47,9 @@ class ApaiIOTest extends \PHPUnit_Framework_TestCase
 
         $request = $this->prophesize('\ApaiIO\Request\RequestInterface');
         $request
-            ->perform($operation)
+            ->perform($operation, $conf)
             ->shouldBeCalledTimes(1)
             ->willReturn(['a' => 'b']);
-
-        $request
-            ->setConfiguration($conf)
-            ->shouldBeCalledTimes(1);
 
         $conf->setRequest($request->reveal());
 

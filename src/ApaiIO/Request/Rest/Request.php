@@ -40,11 +40,6 @@ class Request implements RequestInterface
     private $requestScheme = "http://webservices.amazon.%s/onca/xml?%s";
 
     /**
-     * @var ConfigurationInterface
-     */
-    private $configuration;
-
-    /**
      * @var ClientInterface
      */
     private $client;
@@ -62,20 +57,12 @@ class Request implements RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function setConfiguration(ConfigurationInterface $configuration)
+    public function perform(OperationInterface $operation, ConfigurationInterface $configuration)
     {
-        $this->configuration = $configuration;
-    }
+        $preparedRequestParams = $this->prepareRequestParams($operation, $configuration);
+        $queryString = $this->buildQueryString($preparedRequestParams, $configuration);
 
-    /**
-     * {@inheritdoc}
-     */
-    public function perform(OperationInterface $operation)
-    {
-        $preparedRequestParams = $this->prepareRequestParams($operation);
-        $queryString = $this->buildQueryString($preparedRequestParams);
-
-        $uri = sprintf($this->requestScheme, $this->configuration->getCountry(), $queryString);
+        $uri = sprintf($this->requestScheme, $configuration->getCountry(), $queryString);
         $request = new \GuzzleHttp\Psr7\Request('GET', $uri, [
             'User-Agent' => 'ApaiIO [' . ApaiIO::VERSION . ']'
         ]);
@@ -88,19 +75,20 @@ class Request implements RequestInterface
     /**
      * Prepares the parameters for the request
      *
-     * @param OperationInterface $operation
+     * @param OperationInterface     $operation
+     * @param ConfigurationInterface $configuration
      *
      * @return array
      */
-    protected function prepareRequestParams(OperationInterface $operation)
+    protected function prepareRequestParams(OperationInterface $operation, ConfigurationInterface $configuration)
     {
         $baseRequestParams = [
-            'Service' => 'AWSECommerceService',
-            'AWSAccessKeyId' => $this->configuration->getAccessKey(),
-            'AssociateTag' => $this->configuration->getAssociateTag(),
-            'Operation' => $operation->getName(),
-            'Version' => '2011-08-01',
-            'Timestamp' => Util::getTimeStamp()
+            'Service'        => 'AWSECommerceService',
+            'AWSAccessKeyId' => $configuration->getAccessKey(),
+            'AssociateTag'   => $configuration->getAssociateTag(),
+            'Operation'      => $operation->getName(),
+            'Version'        => '2011-08-01',
+            'Timestamp'      => Util::getTimeStamp()
         ];
 
         $operationParams = $operation->getOperationParameter();
@@ -120,18 +108,21 @@ class Request implements RequestInterface
     /**
      * Builds the final querystring including the signature
      *
-     * @param array $params
+     * @param array                  $params
+     * @param ConfigurationInterface $configuration
      *
      * @return string
      */
-    protected function buildQueryString(array $params)
+    protected function buildQueryString(array $params, ConfigurationInterface $configuration)
     {
         $parameterList = [];
         foreach ($params as $key => $value) {
             $parameterList[] = sprintf('%s=%s', $key, rawurlencode($value));
         }
 
-        $parameterList[] = 'Signature=' . rawurlencode($this->buildSignature($parameterList));
+        $parameterList[] = 'Signature=' . rawurlencode(
+            $this->buildSignature($parameterList, $configuration->getCountry(), $configuration->getSecretKey())
+        );
 
         return implode("&", $parameterList);
     }
@@ -139,21 +130,23 @@ class Request implements RequestInterface
     /**
      * Calculates the signature for the request
      *
-     * @param array $params
+     * @param array  $params
+     * @param string $country
+     * @param string $secret
      *
      * @return string
      */
-    protected function buildSignature(array $params)
+    protected function buildSignature(array $params, $country, $secret)
     {
         $template = "GET\nwebservices.amazon.%s\n/onca/xml\n%s";
 
         return Util::buildSignature(
             sprintf(
                 $template,
-                $this->configuration->getCountry(),
+                $country,
                 implode('&', $params)
             ),
-            $this->configuration->getSecretKey()
+            $secret
         );
     }
 }
