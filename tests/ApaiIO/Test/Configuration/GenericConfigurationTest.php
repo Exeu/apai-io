@@ -20,7 +20,6 @@ namespace ApaiIO\Test\Configuration;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Request\Rest\Request;
 use ApaiIO\ResponseTransformer\XmlToDomDocument;
-use GuzzleHttp\ClientInterface;
 
 class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
 {
