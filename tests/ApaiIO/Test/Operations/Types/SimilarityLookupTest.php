@@ -30,14 +30,14 @@ class SimilarityLookupTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $lookup = new SimilarityLookup();
-        static::assertEquals('SimilarityLookup', $lookup->getName());
+        $this->assertEquals('SimilarityLookup', $lookup->getName());
     }
 
     public function getItemId()
     {
         $lookup = new SimilarityLookup();
-        static::assertEquals(null, $lookup->getItemId());
+        $this->assertEquals(null, $lookup->getItemId());
         $lookup->setItemId('B0117IJ4LE');
-        static::assertEquals('B0117IJ4LE', $lookup->getItemId());
+        $this->assertEquals('B0117IJ4LE', $lookup->getItemId());
     }
 }

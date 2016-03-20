@@ -30,14 +30,14 @@ class BrowseNodeLookupTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $nodeLookup = new BrowseNodeLookup();
-        static::assertEquals('BrowseNodeLookup', $nodeLookup->getName());
+        $this->assertEquals('BrowseNodeLookup', $nodeLookup->getName());
     }
 
     public function testGetBrowseNode()
     {
         $nodeLookup = new BrowseNodeLookup();
-        static::assertEquals(null, $nodeLookup->getNodeId());
+        $this->assertEquals(null, $nodeLookup->getNodeId());
         $nodeLookup->setNodeId(290060);
-        static::assertEquals(290060, $nodeLookup->getNodeId());
+        $this->assertEquals(290060, $nodeLookup->getNodeId());
     }
 }

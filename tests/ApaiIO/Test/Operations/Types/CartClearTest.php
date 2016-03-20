@@ -31,22 +31,22 @@ class CartClearTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $cart = new CartClear();
-        static::assertEquals('CartClear', $cart->getName());
+        $this->assertEquals('CartClear', $cart->getName());
     }
 
     public function testGetCartId()
     {
         $cart = new CartClear();
-        static::assertEquals(null, $cart->getCartId());
+        $this->assertEquals(null, $cart->getCartId());
         $cart->setCartId('789');
-        static::assertEquals('789', $cart->getCartId());
+        $this->assertEquals('789', $cart->getCartId());
     }
 
     public function testGetHMAC()
     {
         $cart = new CartClear();
-        static::assertEquals(null, $cart->getHMAC());
+        $this->assertEquals(null, $cart->getHMAC());
         $cart->setHMAC('1234');
-        static::assertEquals('1234', $cart->getHMAC());
+        $this->assertEquals('1234', $cart->getHMAC());
     }
 }

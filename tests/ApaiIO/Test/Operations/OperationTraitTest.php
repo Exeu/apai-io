@@ -20,13 +20,6 @@ namespace ApaiIO\Test\Operations;
 
 class OperationTraitTest extends \PHPUnit_Framework_TestCase
 {
-    public function setUp()
-    {
-        if (version_compare(phpversion(), '5.4.0', '<')) {
-            $this->markTestSkipped('You need PHP >= 5.4.0 to run this test');
-        }
-    }
-
     public function testOperationTrait()
     {
         $search = new TraitSearch();
