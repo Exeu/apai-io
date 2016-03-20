@@ -33,13 +33,13 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     public function testSettersNegative()
     {
         $lookup = new Lookup();
-        $lookup->setItemIds(array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
+        $lookup->setItemIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
     }
 
     public function testMultiItemSet()
     {
         $lookup = new Lookup();
-        $lookup->setItemIds(array(1, 2, 3, 4));
+        $lookup->setItemIds([1, 2, 3, 4]);
 
         $itemQuery = $lookup->getItemId();
 
@@ -55,7 +55,7 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     public function testGetIdType()
     {
         $lookup = new Lookup();
-        $valididTypes = array(
+        $valididTypes = [
             'ASIN',
             'SKU',
             'UPC',
@@ -66,7 +66,7 @@ class LookupTest extends \PHPUnit_Framework_TestCase
             Lookup::TYPE_UPC,
             Lookup::TYPE_EAN,
             Lookup::TYPE_ISBN
-        );
+        ];
         foreach ($valididTypes as $valididType) {
             $lookup->setIdType($valididType);
             static::assertEquals($valididType, $lookup->getIdType());
@@ -98,13 +98,13 @@ class LookupTest extends \PHPUnit_Framework_TestCase
      */
     public function providerSetIdTypeAffectsSearchIndex()
     {
-        return array(
-            array(Lookup::TYPE_ASIN, null),
-            array(Lookup::TYPE_SKU, 'All'),
-            array(Lookup::TYPE_UPC, 'All'),
-            array(Lookup::TYPE_EAN, 'All'),
-            array(Lookup::TYPE_ISBN, 'All')
-        );
+        return [
+            [Lookup::TYPE_ASIN, null],
+            [Lookup::TYPE_SKU, 'All'],
+            [Lookup::TYPE_UPC, 'All'],
+            [Lookup::TYPE_EAN, 'All'],
+            [Lookup::TYPE_ISBN, 'All']
+        ];
     }
 
     /**

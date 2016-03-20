@@ -59,24 +59,13 @@ final class Country
     /**
      * Checks if the given value is a valid country
      *
-     * @param string $country
-     * @param string $exception false = throw no exception true = throw an exception
+     * @param string  $country
      *
      * @return boolean
      */
-    public static function isValidCountry($country, $exception = true)
+    public static function isValidCountry($country)
     {
         $isValid = in_array(strtolower($country), self::$countryList) ? true : false;
-
-        if (true === $exception && false === $isValid) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid Country-Code: %s! Possible Country-Codes: %s",
-                    $country,
-                    implode(', ', self::$countryList)
-                )
-            );
-        }
 
         return $isValid;
     }

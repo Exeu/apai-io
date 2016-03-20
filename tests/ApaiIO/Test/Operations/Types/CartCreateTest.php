@@ -48,7 +48,7 @@ class CartCreateTest extends \PHPUnit_Framework_TestCase
     public function testAddItem()
     {
         $operationParameters = $this->cartCreate->getOperationParameter();
-        $this->assertEquals(array(), $operationParameters);
+        $this->assertEquals([], $operationParameters);
 
         $asin = __LINE__;
         $this->cartCreate->addItem($asin, 2);
@@ -61,7 +61,7 @@ class CartCreateTest extends \PHPUnit_Framework_TestCase
     public function testAddItemByOfferListingId()
     {
         $operationParameters = $this->cartCreate->getOperationParameter();
-        $this->assertEquals(array(), $operationParameters);
+        $this->assertEquals([], $operationParameters);
 
         $asin = __LINE__;
         $this->cartCreate->addItem($asin, 2, false);

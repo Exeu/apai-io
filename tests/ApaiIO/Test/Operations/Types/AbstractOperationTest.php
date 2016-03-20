@@ -42,7 +42,7 @@ class AbstractOperationTest extends \PHPUnit_Framework_TestCase
     {
         $search = new Search();
         static::assertEquals(null, $search->getResponseGroup());
-        $search->setResponseGroup(array('Small', 'Medium', 'Large'));
-        static::assertEquals(array('Small', 'Medium', 'Large'), $search->getResponseGroup());
+        $search->setResponseGroup(['Small', 'Medium', 'Large']);
+        static::assertEquals(['Small', 'Medium', 'Large'], $search->getResponseGroup());
     }
 }

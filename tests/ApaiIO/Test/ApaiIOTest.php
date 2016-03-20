@@ -28,13 +28,17 @@ class ApaiIOTest extends \PHPUnit_Framework_TestCase
         $conf = new GenericConfiguration();
         $operation = new Search();
 
-        $request = $this->getMock('\ApaiIO\Request\Rest\Request', array('perform'));
+        $request = $this->prophesize('\ApaiIO\Request\RequestInterface');
         $request
-            ->expects($this->once())
-            ->method('perform')
-            ->with($this->equalTo($operation));
+            ->perform($operation)
+            ->shouldBeCalledTimes(1)
+            ->willReturn();
 
-        $conf->setRequest($request);
+        $request
+            ->setConfiguration($conf)
+            ->shouldBeCalledTimes(1);
+
+        $conf->setRequest($request->reveal());
 
         $apaiIO = new ApaiIO($conf);
         $apaiIO->runOperation($operation);
@@ -45,21 +49,24 @@ class ApaiIOTest extends \PHPUnit_Framework_TestCase
         $conf = new GenericConfiguration();
         $operation = new Search();
 
-        $request = $this->getMock('\ApaiIO\Request\Rest\Request', array('perform'));
+        $request = $this->prophesize('\ApaiIO\Request\RequestInterface');
         $request
-            ->expects($this->once())
-            ->method('perform')
-            ->will($this->returnValue(array('a' => 'b')));
+            ->perform($operation)
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['a' => 'b']);
 
-        $conf->setRequest($request);
+        $request
+            ->setConfiguration($conf)
+            ->shouldBeCalledTimes(1);
 
-        $responseTransformer = $this->getMock('\ApaiIO\ResponseTransformer\ResponseTransformerInterface', array('transform'));
+        $conf->setRequest($request->reveal());
+
+        $responseTransformer = $this->prophesize('\ApaiIO\ResponseTransformer\ResponseTransformerInterface');
         $responseTransformer
-            ->expects($this->once())
-            ->method('transform')
-            ->with($this->equalTo(array('a' => 'b')));
+            ->transform(['a' => 'b'])
+            ->shouldBeCalledTimes(1);
 
-        $conf->setResponseTransformer($responseTransformer);
+        $conf->setResponseTransformer($responseTransformer->reveal());
 
         $apaiIO = new ApaiIO($conf);
         $apaiIO->runOperation($operation);

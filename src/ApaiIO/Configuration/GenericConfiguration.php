@@ -88,7 +88,15 @@ class GenericConfiguration implements ConfigurationInterface
      */
     public function setCountry($country)
     {
-        Country::isValidCountry($country);
+        if (!Country::isValidCountry($country)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid Country-Code: %s! Possible Country-Codes: %s",
+                    $country,
+                    implode(', ', Country::getCountries())
+                )
+            );
+        }
 
         $this->country = strtolower($country);
 

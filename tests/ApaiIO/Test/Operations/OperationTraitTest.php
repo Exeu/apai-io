@@ -17,7 +17,6 @@
 
 namespace ApaiIO\Test\Operations;
 
-use ApaiIO\Common\OperationTrait;
 
 class OperationTraitTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,9 +31,9 @@ class OperationTraitTest extends \PHPUnit_Framework_TestCase
     {
         $search = new TraitSearch();
 
-        $search->setResponseGroup(array('Large'));
+        $search->setResponseGroup(['Large']);
 
-        $expectedResult = array('ResponseGroup' => array('Large'));
+        $expectedResult = ['ResponseGroup' => ['Large']];
 
         $this->assertEquals($expectedResult, $search->getOperationParameter());
     }

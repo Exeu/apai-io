@@ -26,4 +26,9 @@ class UtilTest extends \PHPUnit_Framework_TestCase
         $expectedResult = "9hUgcq4Tnuwb9naeMAyL/Xnk070qcbQUfSbWsFBztgM=";
         $this->assertEquals($expectedResult, Util::buildSignature('ABCD', 'EFG'));
     }
+
+    public function testTimestamp()
+    {
+        $this->assertRegExp('#[0-9]{4}(-[0-9]{2}){2}T([0-9]{2}:){2}[0-9]{2}Z#', Util::getTimeStamp());
+    }
 }

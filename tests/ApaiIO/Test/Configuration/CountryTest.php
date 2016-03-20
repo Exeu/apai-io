@@ -24,7 +24,7 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     public function testCountryList()
     {
         $this->assertEquals(
-            array('de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es', 'in', 'com.br', 'com.mx', 'com.au'),
+            ['de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es', 'in', 'com.br', 'com.mx', 'com.au'],
             Country::getCountries()
         );
     }
@@ -32,14 +32,6 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     public function testUnvalidCountryWithoutException()
     {
         $this->assertFalse(Country::isValidCountry(__METHOD__, false));
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testUnvalidCountryWithExcetion()
-    {
-        Country::isValidCountry(__METHOD__);
     }
 
     public function testValidCountry()
