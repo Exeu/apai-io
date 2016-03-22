@@ -29,9 +29,9 @@ class CountryTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testUnvalidCountryWithoutException()
+    public function testUnvalidCountry()
     {
-        $this->assertFalse(Country::isValidCountry(__METHOD__, false));
+        $this->assertFalse(Country::isValidCountry(__METHOD__));
     }
 
     public function testValidCountry()
