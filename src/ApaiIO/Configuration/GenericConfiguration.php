@@ -80,7 +80,7 @@ class GenericConfiguration implements ConfigurationInterface
     }
 
     /**
-     * Sets an validates the country
+     * Sets and validates the country
      *
      * @param string $country
      *

@@ -29,16 +29,6 @@ interface OperationInterface
     public function getName();
 
     /**
-     * Sets the responsegroups for the current operation
-     * Which responsegroups are available depends on the Operation you perform
-     *
-     * @param array $responseGroup The responsegroup as an array
-     *
-     * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CHAP_ResponseGroupsList.html
-     */
-    public function setResponseGroup(array $responseGroup);
-
-    /**
      * Returns all paramerters belonging to the current operation
      *
      * @return array

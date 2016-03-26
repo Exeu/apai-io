@@ -24,6 +24,9 @@ namespace ApaiIO\Operations;
  */
 abstract class AbstractOperation implements OperationInterface
 {
+    /**
+     * @var array
+     */
     protected $parameter = [];
 
     /**
@@ -69,25 +72,25 @@ abstract class AbstractOperation implements OperationInterface
     /**
      * Magic setter and getter functions
      *
-     * @param string $methodName Methodname
-     * @param string $parameter  Parameters
+     * @param string $method    Methodname
+     * @param string $parameter Parameters
      *
      * @return \ApaiIO\Operations\AbstractOperation
      */
-    public function __call($methodName, $parameter)
+    public function __call($method, $parameter)
     {
-        if (substr($methodName, 0, 3) === 'set') {
-            $this->parameter[substr($methodName, 3)] = array_shift($parameter);
+        if (substr($method, 0, 3) === 'set') {
+            $this->parameter[substr($method, 3)] = array_shift($parameter);
 
             return $this;
         }
 
-        if (substr($methodName, 0, 3) === 'get') {
-            $keyName = substr($methodName, 3);
+        if (substr($method, 0, 3) === 'get') {
+            $key = substr($method, 3);
 
-            return isset($this->parameter[$keyName]) ? $this->parameter[$keyName] : null;
+            return isset($this->parameter[$key]) ? $this->parameter[$key] : null;
         }
 
-        throw new \BadFunctionCallException(sprintf('The function "%s" does not exist!', $methodName));
+        throw new \BadFunctionCallException(sprintf('The function "%s" does not exist!', $method));
     }
 }

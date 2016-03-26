@@ -138,11 +138,9 @@ class Request implements RequestInterface
      */
     protected function buildSignature(array $params, $country, $secret)
     {
-        $template = "GET\nwebservices.amazon.%s\n/onca/xml\n%s";
-
         return Util::buildSignature(
             sprintf(
-                $template,
+                "GET\nwebservices.amazon.%s\n/onca/xml\n%s",
                 $country,
                 implode('&', $params)
             ),
