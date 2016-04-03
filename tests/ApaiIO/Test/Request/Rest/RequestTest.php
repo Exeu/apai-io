@@ -58,6 +58,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
                 $this->assertSame('def', $parts['AssociateTag']);
                 $this->assertArrayHasKey('ItemId', $parts);
                 $this->assertSame('1', $parts['ItemId']);
+                $this->assertArrayHasKey('Test', $parts);
+                $this->assertSame('a,b', $parts['Test']);
                 $this->assertArrayHasKey('Operation', $parts);
                 $this->assertSame('ItemLookup', $parts['Operation']);
                 $this->assertArrayHasKey('Service', $parts);
@@ -76,6 +78,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $operation  = new Lookup();
         $operation->setItemId('1');
+        $operation->setTest(['a', 'b']);
 
         $config = new GenericConfiguration();
         $config->setAccessKey('abc');
