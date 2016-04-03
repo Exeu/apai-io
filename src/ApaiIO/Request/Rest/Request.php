@@ -23,6 +23,7 @@ use ApaiIO\Operations\OperationInterface;
 use ApaiIO\Request\RequestInterface;
 use ApaiIO\Request\Util;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Psr7\Uri;
 
 /**
  * Basic implementation of the rest request
@@ -37,7 +38,14 @@ class Request implements RequestInterface
      *
      * @var string
      */
-    private $requestScheme = "http://webservices.amazon.%s/onca/xml?%s";
+    private $requestTemplate = "//webservices.amazon.%s/onca/xml?%s";
+
+    /**
+     * The scheme for the uri. E.g. http or https.
+     *
+     * @var string
+     */
+    private $scheme = 'http';
 
     /**
      * @var ClientInterface
@@ -62,14 +70,27 @@ class Request implements RequestInterface
         $preparedRequestParams = $this->prepareRequestParams($operation, $configuration);
         $queryString = $this->buildQueryString($preparedRequestParams, $configuration);
 
-        $uri = sprintf($this->requestScheme, $configuration->getCountry(), $queryString);
-        $request = new \GuzzleHttp\Psr7\Request('GET', $uri, [
+        $uri = new Uri(sprintf($this->requestTemplate, $configuration->getCountry(), $queryString));
+        $request = new \GuzzleHttp\Psr7\Request('GET', $uri->withScheme($this->scheme), [
             'User-Agent' => 'ApaiIO [' . ApaiIO::VERSION . ']'
         ]);
-
         $result = $this->client->send($request);
 
         return $result->getBody()->getContents();
+    }
+
+    /**
+     * Sets the scheme.
+     *
+     * @param string $scheme
+     */
+    public function setScheme($scheme)
+    {
+        if (!in_array($scheme = strtolower($scheme), ['http', 'https'])) {
+            throw new \InvalidArgumentException('The scheme can only be http or https.');
+        }
+
+        $this->scheme = $scheme;
     }
 
     /**
