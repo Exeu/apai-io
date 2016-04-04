@@ -11,3 +11,4 @@ composer.lock
 vendor
 *.orig
 build
+docs/_*
