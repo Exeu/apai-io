@@ -21,10 +21,6 @@ The documentation is currently under construction.
 
 You can read here: http://apai-io.pixel-web.org
 
-## API Documentation
-
-http://api.pixel-web.org/apai-io/index.html
-
 ## Installation
 
 ### Composer
