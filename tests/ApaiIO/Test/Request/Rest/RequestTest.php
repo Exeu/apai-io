@@ -67,7 +67,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
                 $this->assertArrayHasKey('Timestamp', $parts);
                 $this->assertRegExp('#[0-9]{4}(-[0-9]{2}){2}T([0-9]{2}:){2}[0-9]{2}Z#', $parts['Timestamp']);
                 $this->assertArrayHasKey('Version', $parts);
-                $this->assertSame('2011-08-01', $parts['Version']);
+                $this->assertSame('2013-08-01', $parts['Version']);
                 $this->assertArrayHasKey('Signature', $parts);
                 return true;
             }))
