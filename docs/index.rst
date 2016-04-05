@@ -1,17 +1,16 @@
-.. apai-io documentation master file, created by
-   sphinx-quickstart on Mon Apr  4 16:20:05 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Apai-IO
+=======
 
-Welcome to apai-io's documentation!
-===================================
+Amazon-Product-Adverstising-API library based on PHP using REST and SOAP.
+-------------------------------------------------------------------------
 
-Contents version 1:
+Contents:
 
 .. toctree::
-   v1/index
-
-Contents version 2:
-
-.. toctree::
-   v2/index
+   chapters/installation
+   chapters/basic-usage
+   chapters/advanced-configuration
+   chapters/built-in-operations
+   chapters/custom-operations
+   chapters/responsetransformer
+   chapters/testing
