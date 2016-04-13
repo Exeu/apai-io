@@ -15,13 +15,11 @@
  * limitations under the License.
  */
 
-namespace ApaiIO\Request\Rest;
+namespace ApaiIO\Request;
 
 use ApaiIO\ApaiIO;
 use ApaiIO\Configuration\ConfigurationInterface;
 use ApaiIO\Operations\OperationInterface;
-use ApaiIO\Request\RequestInterface;
-use ApaiIO\Request\Util;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Uri;
 
@@ -31,7 +29,7 @@ use GuzzleHttp\Psr7\Uri;
  * @see    http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/AnatomyOfaRESTRequest.html
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
-class Request implements RequestInterface
+class GuzzleRequest implements RequestInterface
 {
     /**
      * The requestscheme

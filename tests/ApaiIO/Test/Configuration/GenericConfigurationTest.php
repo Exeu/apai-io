@@ -18,7 +18,7 @@
 namespace ApaiIO\Test\Configuration;
 
 use ApaiIO\Configuration\GenericConfiguration;
-use ApaiIO\Request\Rest\Request;
+use ApaiIO\Request\GuzzleRequest;
 use ApaiIO\ResponseTransformer\XmlToDomDocument;
 
 class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
@@ -31,7 +31,7 @@ class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
         $object->setSecretKey('DEF');
         $object->setAssociateTag('GHI');
         $object->setResponseTransformer($a = new XmlToDomDocument());
-        $object->setRequest($b = new Request($this->prophesize('\GuzzleHttp\ClientInterface')->reveal()));
+        $object->setRequest($b = new GuzzleRequest($this->prophesize('\GuzzleHttp\ClientInterface')->reveal()));
 
         $this->assertSame('ABC', $object->getAccessKey());
         $this->assertSame('DEF', $object->getSecretKey());

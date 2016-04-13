@@ -19,11 +19,11 @@ namespace ApaiIO\Test\Request\Rest;
 
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Lookup;
-use ApaiIO\Request\Rest\Request;
+use ApaiIO\Request\GuzzleRequest;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 
-class RequestTest extends \PHPUnit_Framework_TestCase
+class GuzzleRequestTest extends \PHPUnit_Framework_TestCase
 {
     public function testPerform()
     {
@@ -74,7 +74,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($response->reveal());
 
-        $request = new Request($client->reveal());
+        $request = new GuzzleRequest($client->reveal());
 
         $operation  = new Lookup();
         $operation->setItemId('1');
@@ -119,7 +119,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($response->reveal());
 
-        $request = new Request($client->reveal());
+        $request = new GuzzleRequest($client->reveal());
         $request->setScheme('HTTPS');
 
         $operation  = new Lookup();
@@ -142,7 +142,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $client = $this->prophesize('\GuzzleHttp\ClientInterface');
 
-        $request = new Request($client->reveal());
+        $request = new GuzzleRequest($client->reveal());
         $request->setScheme('ftp');
     }
 }
