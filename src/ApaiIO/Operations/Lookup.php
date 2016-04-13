@@ -81,7 +81,7 @@ class Lookup extends AbstractOperation
      */
     public function setItemId($itemId)
     {
-        $this->parameter['ItemId'] = $itemId;
+        $this->parameters['ItemId'] = $itemId;
 
         return $this;
     }
@@ -121,10 +121,10 @@ class Lookup extends AbstractOperation
             ));
         }
 
-        $this->parameter['IdType'] = $idType;
+        $this->parameters['IdType'] = $idType;
 
-        if (empty($this->parameter['SearchIndex']) && $idType != self::TYPE_ASIN) {
-            $this->parameter['SearchIndex'] = 'All';
+        if (empty($this->parameters['SearchIndex']) && $idType != self::TYPE_ASIN) {
+            $this->parameters['SearchIndex'] = 'All';
         }
 
         return $this;
@@ -149,7 +149,7 @@ class Lookup extends AbstractOperation
      */
     public function setSearchIndex($searchIndex)
     {
-        $this->parameter['SearchIndex'] = $searchIndex;
+        $this->parameters['SearchIndex'] = $searchIndex;
 
         return $this;
     }
@@ -175,7 +175,7 @@ class Lookup extends AbstractOperation
      */
     public function setCondition($condition)
     {
-        $this->parameter['Condition'] = $condition;
+        $this->parameters['Condition'] = $condition;
 
         return $this;
     }

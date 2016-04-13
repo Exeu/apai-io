@@ -56,7 +56,7 @@ class SimilarityLookup extends AbstractOperation
      */
     public function setItemId($itemId)
     {
-        $this->parameter['ItemId'] = $itemId;
+        $this->parameters['ItemId'] = $itemId;
 
         return $this;
     }

@@ -50,7 +50,7 @@ class CartClear extends AbstractOperation
      */
     public function setCartId($cartId)
     {
-        $this->parameter['CartId'] = $cartId;
+        $this->parameters['CartId'] = $cartId;
     }
 
     /**
@@ -70,6 +70,6 @@ class CartClear extends AbstractOperation
      */
     public function setHMAC($HMAC)
     {
-        $this->parameter['HMAC'] = $HMAC;
+        $this->parameters['HMAC'] = $HMAC;
     }
 }

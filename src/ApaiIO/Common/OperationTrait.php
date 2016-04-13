@@ -24,7 +24,7 @@ namespace ApaiIO\Common;
  */
 trait OperationTrait
 {
-    protected $parameter = [];
+    protected $parameters = [];
 
     /**
      * Sets the responsegroups for the current operation
@@ -36,7 +36,7 @@ trait OperationTrait
      */
     public function setResponseGroup(array $responseGroup)
     {
-        $this->parameter['ResponseGroup'] = $responseGroup;
+        $this->parameters['ResponseGroup'] = $responseGroup;
 
         return $this;
     }
@@ -48,6 +48,6 @@ trait OperationTrait
      */
     public function getOperationParameter()
     {
-        return $this->parameter;
+        return $this->parameters;
     }
 }

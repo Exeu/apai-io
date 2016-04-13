@@ -52,7 +52,7 @@ class BrowseNodeLookup extends AbstractOperation
      */
     public function setNodeId($nodeId)
     {
-        $this->parameter['BrowseNodeId'] = $nodeId;
+        $this->parameters['BrowseNodeId'] = $nodeId;
 
         return $this;
     }

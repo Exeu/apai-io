@@ -46,8 +46,8 @@ class CartCreate extends AbstractOperation
     {
         $itemIdentifier = ($byAsin) ? '.ASIN' : '.OfferListingId';
 
-        $this->parameter['Item.' . $this->itemCounter . $itemIdentifier] = $id;
-        $this->parameter['Item.' . $this->itemCounter . '.Quantity'] = $quantity;
+        $this->parameters['Item.' . $this->itemCounter . $itemIdentifier] = $id;
+        $this->parameters['Item.' . $this->itemCounter . '.Quantity'] = $quantity;
 
         $this->itemCounter++;
     }

@@ -54,7 +54,7 @@ class Search extends AbstractOperation
      */
     public function setCategory($category)
     {
-        $this->parameter['SearchIndex'] = $category;
+        $this->parameters['SearchIndex'] = $category;
 
         return $this;
     }
@@ -78,7 +78,7 @@ class Search extends AbstractOperation
      */
     public function setKeywords($keywords)
     {
-        $this->parameter['Keywords'] = $keywords;
+        $this->parameters['Keywords'] = $keywords;
 
         return $this;
     }
@@ -108,7 +108,7 @@ class Search extends AbstractOperation
                     $page));
         }
 
-        $this->parameter['ItemPage'] = $page;
+        $this->parameters['ItemPage'] = $page;
 
         return $this;
     }
@@ -135,7 +135,7 @@ class Search extends AbstractOperation
     public function setMinimumPrice($price)
     {
         $this->validatePrice($price);
-        $this->parameter['MinimumPrice'] = $price;
+        $this->parameters['MinimumPrice'] = $price;
 
         return $this;
     }
@@ -161,7 +161,7 @@ class Search extends AbstractOperation
     public function setMaximumPrice($price)
     {
         $this->validatePrice($price);
-        $this->parameter['MaximumPrice'] = $price;
+        $this->parameters['MaximumPrice'] = $price;
 
         return $this;
     }
@@ -187,7 +187,7 @@ class Search extends AbstractOperation
      */
     public function setCondition($condition)
     {
-        $this->parameter['Condition'] = $condition;
+        $this->parameters['Condition'] = $condition;
 
         return $this;
     }
@@ -213,7 +213,7 @@ class Search extends AbstractOperation
      */
     public function setAvailability($availability)
     {
-        $this->parameter['Availability'] = $availability;
+        $this->parameters['Availability'] = $availability;
 
         return $this;
     }
@@ -237,7 +237,7 @@ class Search extends AbstractOperation
      */
     public function setBrowseNode($browseNodeId)
     {
-        $this->parameter['BrowseNode'] = $browseNodeId;
+        $this->parameters['BrowseNode'] = $browseNodeId;
 
         return $this;
     }

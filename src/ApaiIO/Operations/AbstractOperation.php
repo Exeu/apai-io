@@ -27,7 +27,7 @@ abstract class AbstractOperation implements OperationInterface
     /**
      * @var array
      */
-    protected $parameter = [];
+    protected $parameters = [];
 
     /**
      * Returns an array of responseGroups
@@ -44,7 +44,7 @@ abstract class AbstractOperation implements OperationInterface
      */
     public function setResponseGroup(array $responseGroup)
     {
-        $this->parameter['ResponseGroup'] = $responseGroup;
+        $this->parameters['ResponseGroup'] = $responseGroup;
 
         return $this;
     }
@@ -54,7 +54,7 @@ abstract class AbstractOperation implements OperationInterface
      */
     public function getOperationParameter()
     {
-        return $this->parameter;
+        return $this->parameters;
     }
 
     /**
@@ -66,7 +66,7 @@ abstract class AbstractOperation implements OperationInterface
      */
     public function getSingleOperationParameter($keyName)
     {
-        return isset($this->parameter[$keyName]) ? $this->parameter[$keyName] : null;
+        return isset($this->parameters[$keyName]) ? $this->parameters[$keyName] : null;
     }
 
     /**
@@ -80,7 +80,7 @@ abstract class AbstractOperation implements OperationInterface
     public function __call($method, $parameter)
     {
         if (substr($method, 0, 3) === 'set') {
-            $this->parameter[substr($method, 3)] = array_shift($parameter);
+            $this->parameters[substr($method, 3)] = array_shift($parameter);
 
             return $this;
         }
@@ -88,7 +88,7 @@ abstract class AbstractOperation implements OperationInterface
         if (substr($method, 0, 3) === 'get') {
             $key = substr($method, 3);
 
-            return isset($this->parameter[$key]) ? $this->parameter[$key] : null;
+            return isset($this->parameters[$key]) ? $this->parameters[$key] : null;
         }
 
         throw new \BadFunctionCallException(sprintf('The function "%s" does not exist!', $method));
