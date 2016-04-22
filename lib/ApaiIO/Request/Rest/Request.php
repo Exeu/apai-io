@@ -60,6 +60,13 @@ class Request implements RequestInterface
     const USERAGENT = CURLOPT_USERAGENT;
 
     /**
+     * Content encoding; an empty string will use any supported encoding
+     *
+     * @var string
+     */
+    const ENCODING = CURLOPT_ENCODING;
+
+    /**
      * curl options
      *
      * @var array
@@ -89,7 +96,8 @@ class Request implements RequestInterface
             self::USERAGENT          => "ApaiIO [" . ApaiIO::VERSION . "]",
             self::CONNECTION_TIMEOUT => 10,
             self::TIMEOUT            => 10,
-            self::FOLLOW_LOCATION    => 1
+            self::FOLLOW_LOCATION    => 1,
+            self::ENCODING           => ''
         );
         $this->setOptions($options);
     }
