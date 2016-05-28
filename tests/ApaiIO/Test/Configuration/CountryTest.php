@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,22 +24,14 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     public function testCountryList()
     {
         $this->assertEquals(
-            array('de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es', 'in', 'com.br', 'com.mx', 'com.au'),
+            ['de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es', 'in', 'com.br', 'com.mx', 'com.au'],
             Country::getCountries()
         );
     }
 
-    public function testUnvalidCountryWithoutException()
+    public function testUnvalidCountry()
     {
-        $this->assertFalse(Country::isValidCountry(__METHOD__, false));
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testUnvalidCountryWithExcetion()
-    {
-        Country::isValidCountry(__METHOD__);
+        $this->assertFalse(Country::isValidCountry(__METHOD__));
     }
 
     public function testValidCountry()

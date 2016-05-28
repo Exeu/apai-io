@@ -19,11 +19,7 @@ You can try it out with the new demo site: http://apaiio.dev.pixel-web.org/
 
 The documentation is currently under construction.
 
-You can read here: http://apai-io.pixel-web.org
-
-## API Documentation
-
-http://api.pixel-web.org/apai-io/index.html
+You can read here: http://docs.pixel-web.org/apai-io/master/
 
 ## Installation
 
@@ -34,7 +30,7 @@ Add apai-io in your composer.json or create a new composer.json:
 ```js
 {
     "require": {
-        "exeu/apai-io": "~1.0"
+        "exeu/apai-io": "~2.0"
     }
 }
 ```
@@ -62,12 +58,15 @@ use ApaiIO\Operations\Search;
 use ApaiIO\ApaiIO;
 
 $conf = new GenericConfiguration();
+$client = new \GuzzleHttp\Client();
+$request = new \ApaiIO\Request\GuzzleRequest($client);
+
 $conf
     ->setCountry('com')
     ->setAccessKey(AWS_API_KEY)
     ->setSecretKey(AWS_API_SECRET_KEY)
-    ->setAssociateTag(AWS_ASSOCIATE_TAG);
-
+    ->setAssociateTag(AWS_ASSOCIATE_TAG)
+    ->setRequest($request);
 $apaiIO = new ApaiIO($conf);
 
 $search = new Search();

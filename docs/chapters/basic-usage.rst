@@ -18,12 +18,16 @@ First of all you have to create a new configuration object. Apai-IO has one buil
 
     use ApaiIO\Configuration\GenericConfiguration;
 
+    $client = new \GuzzleHttp\Client();
+    $request = new \ApaiIO\Request\GuzzleRequest($client);
+
     $conf = new GenericConfiguration();
     $conf
         ->setCountry('com')
         ->setAccessKey('YOUR ACCESS KEY')
         ->setSecretKey('YOUR SECRET KEY')
-        ->setAssociateTag('YOUR ASSOCIATE TAG');
+        ->setAssociateTag('YOUR ASSOCIATE TAG')
+        ->setRequest($request);
 
 You have to set the country, accesskey, secretkey and your associate tag using the setter functions of the GenericConfiguration class.
 
@@ -80,12 +84,16 @@ The full example
     use ApaiIO\Operations\Search;
     use ApaiIO\ApaiIO;
 
+    $client = new \GuzzleHttp\Client();
+    $request = new \ApaiIO\Request\GuzzleRequest($client);
+
     $conf = new GenericConfiguration();
     $conf
         ->setCountry('com')
         ->setAccessKey('YOUR ACCESS KEY')
         ->setSecretKey('YOUR SECRET KEY')
-        ->setAssociateTag('YOUR ASSOCIATE TAG');
+        ->setAssociateTag('YOUR ASSOCIATE TAG')
+        ->setRequest($request);
 
     $search = new Search();
     $search->setCategory('DVD');

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ class AbstractOperationTest extends \PHPUnit_Framework_TestCase
         $search = new Search();
         $search->setFoo('ABC');
 
-        static::assertEquals('ABC', $search->getFoo());
+        $this->assertEquals('ABC', $search->getFoo());
     }
 
     /**
@@ -41,8 +41,8 @@ class AbstractOperationTest extends \PHPUnit_Framework_TestCase
     public function testGetResponseGroup()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getResponseGroup());
-        $search->setResponseGroup(array('Small', 'Medium', 'Large'));
-        static::assertEquals(array('Small', 'Medium', 'Large'), $search->getResponseGroup());
+        $this->assertEquals(null, $search->getResponseGroup());
+        $search->setResponseGroup(['Small', 'Medium', 'Large']);
+        $this->assertEquals(['Small', 'Medium', 'Large'], $search->getResponseGroup());
     }
 }

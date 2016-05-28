@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,14 @@ class BrowseNodeLookupTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $nodeLookup = new BrowseNodeLookup();
-        static::assertEquals('BrowseNodeLookup', $nodeLookup->getName());
+        $this->assertEquals('BrowseNodeLookup', $nodeLookup->getName());
     }
 
     public function testGetBrowseNode()
     {
         $nodeLookup = new BrowseNodeLookup();
-        static::assertEquals(null, $nodeLookup->getNodeId());
+        $this->assertEquals(null, $nodeLookup->getNodeId());
         $nodeLookup->setNodeId(290060);
-        static::assertEquals(290060, $nodeLookup->getNodeId());
+        $this->assertEquals(290060, $nodeLookup->getNodeId());
     }
 }

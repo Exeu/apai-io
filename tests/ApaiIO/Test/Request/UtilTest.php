@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,5 +25,10 @@ class UtilTest extends \PHPUnit_Framework_TestCase
     {
         $expectedResult = "9hUgcq4Tnuwb9naeMAyL/Xnk070qcbQUfSbWsFBztgM=";
         $this->assertEquals($expectedResult, Util::buildSignature('ABCD', 'EFG'));
+    }
+
+    public function testTimestamp()
+    {
+        $this->assertRegExp('#[0-9]{4}(-[0-9]{2}){2}T([0-9]{2}:){2}[0-9]{2}Z#', Util::getTimeStamp());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,4 +20,4 @@ if (!$loader = @include __DIR__.'/../vendor/autoload.php') {
         'curl -s http://getcomposer.org/installer | php'.PHP_EOL.
         'php composer.phar install'.PHP_EOL);
 }
-$loader->add('ApaiIO\Test', __DIR__);
+$loader->addPsr4('ApaiIO\\Test\\', __DIR__ . DIRECTORY_SEPARATOR . 'ApaiIO' . DIRECTORY_SEPARATOR . 'Test');

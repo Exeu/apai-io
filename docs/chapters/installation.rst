@@ -11,7 +11,7 @@ Edit this composer.json and add the following content to it
 
     {
         "require": {
-            "exeu/apai-io": "~1.0"
+            "exeu/apai-io": "~2.0"
         }
     }
 
@@ -42,12 +42,15 @@ For example - create a index.php and add the following:
     use ApaiIO\ApaiIO;
 
     $conf = new GenericConfiguration();
+    $client = new \GuzzleHttp\Client();
+    $request = new \ApaiIO\Request\GuzzleRequest($client);
 
     $conf
         ->setCountry('com')
         ->setAccessKey('YOUR ACCESS KEY')
         ->setSecretKey('YOUR SECRET KEY')
-        ->setAssociateTag('YOUR ASSOCIATE TAG');
+        ->setAssociateTag('YOUR ASSOCIATE TAG')
+        ->setRequest($request);
 
     $apaiIo = new ApaiIO($conf);
 

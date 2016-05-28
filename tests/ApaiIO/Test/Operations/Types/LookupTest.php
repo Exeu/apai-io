@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,29 +33,29 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     public function testSettersNegative()
     {
         $lookup = new Lookup();
-        $lookup->setItemIds(array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
+        $lookup->setItemIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
     }
 
     public function testMultiItemSet()
     {
         $lookup = new Lookup();
-        $lookup->setItemIds(array(1, 2, 3, 4));
+        $lookup->setItemIds([1, 2, 3, 4]);
 
         $itemQuery = $lookup->getItemId();
 
-        static::assertSame('1,2,3,4', $itemQuery);
+        $this->assertSame('1,2,3,4', $itemQuery);
     }
 
     public function testGetName()
     {
         $lookup = new Lookup();
-        static::assertEquals('ItemLookup', $lookup->getName());
+        $this->assertEquals('ItemLookup', $lookup->getName());
     }
 
     public function testGetIdType()
     {
         $lookup = new Lookup();
-        $valididTypes = array(
+        $valididTypes = [
             'ASIN',
             'SKU',
             'UPC',
@@ -66,10 +66,10 @@ class LookupTest extends \PHPUnit_Framework_TestCase
             Lookup::TYPE_UPC,
             Lookup::TYPE_EAN,
             Lookup::TYPE_ISBN
-        );
+        ];
         foreach ($valididTypes as $valididType) {
             $lookup->setIdType($valididType);
-            static::assertEquals($valididType, $lookup->getIdType());
+            $this->assertEquals($valididType, $lookup->getIdType());
         }
     }
 
@@ -87,9 +87,9 @@ class LookupTest extends \PHPUnit_Framework_TestCase
         $parameters = $lookup->getOperationParameter();
 
         if ($expectedSearchIndex === null) {
-            static::assertArrayNotHasKey('SearchIndex', $parameters);
+            $this->assertArrayNotHasKey('SearchIndex', $parameters);
         } else {
-            static::assertSame($expectedSearchIndex, $parameters['SearchIndex']);
+            $this->assertSame($expectedSearchIndex, $parameters['SearchIndex']);
         }
     }
 
@@ -98,13 +98,13 @@ class LookupTest extends \PHPUnit_Framework_TestCase
      */
     public function providerSetIdTypeAffectsSearchIndex()
     {
-        return array(
-            array(Lookup::TYPE_ASIN, null),
-            array(Lookup::TYPE_SKU, 'All'),
-            array(Lookup::TYPE_UPC, 'All'),
-            array(Lookup::TYPE_EAN, 'All'),
-            array(Lookup::TYPE_ISBN, 'All')
-        );
+        return [
+            [Lookup::TYPE_ASIN, null],
+            [Lookup::TYPE_SKU, 'All'],
+            [Lookup::TYPE_UPC, 'All'],
+            [Lookup::TYPE_EAN, 'All'],
+            [Lookup::TYPE_ISBN, 'All']
+        ];
     }
 
     /**
@@ -119,32 +119,32 @@ class LookupTest extends \PHPUnit_Framework_TestCase
     public function testGetSearchIndex()
     {
         $lookup = new Lookup();
-        static::assertEquals(null, $lookup->getSearchIndex());
+        $this->assertEquals(null, $lookup->getSearchIndex());
         $lookup->setSearchIndex('Appliances');
-        static::assertEquals('Appliances', $lookup->getSearchIndex());
+        $this->assertEquals('Appliances', $lookup->getSearchIndex());
     }
 
     public function testConditionGetterAndSetter()
     {
         $lookup = new Lookup();
-        static::assertEquals(null, $lookup->getCondition());
+        $this->assertEquals(null, $lookup->getCondition());
         $lookup->setCondition('All');
-        static::assertEquals('All', $lookup->getCondition());
+        $this->assertEquals('All', $lookup->getCondition());
     }
 
     public function testGetItemId()
     {
         $lookup = new Lookup();
-        static::assertEquals(null, $lookup->getItemId());
+        $this->assertEquals(null, $lookup->getItemId());
         $lookup->setItemId('B0117IJ4LE');
-        static::assertEquals('B0117IJ4LE', $lookup->getItemId());
+        $this->assertEquals('B0117IJ4LE', $lookup->getItemId());
     }
 
     public function testGetCondition()
     {
         $lookup = new Lookup();
-        static::assertEquals(null, $lookup->getCondition());
+        $this->assertEquals(null, $lookup->getCondition());
         $lookup->setCondition('Used');
-        static::assertEquals('Used', $lookup->getCondition());
+        $this->assertEquals('Used', $lookup->getCondition());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,14 @@ class SimilarityLookupTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $lookup = new SimilarityLookup();
-        static::assertEquals('SimilarityLookup', $lookup->getName());
+        $this->assertEquals('SimilarityLookup', $lookup->getName());
     }
 
-    public function getItemId()
+    public function testGetItemId()
     {
         $lookup = new SimilarityLookup();
-        static::assertEquals(null, $lookup->getItemId());
+        $this->assertEquals(null, $lookup->getItemId());
         $lookup->setItemId('B0117IJ4LE');
-        static::assertEquals('B0117IJ4LE', $lookup->getItemId());
+        $this->assertEquals('B0117IJ4LE', $lookup->getItemId());
     }
 }

@@ -8,7 +8,7 @@
 
     <filter>
         <whitelist>
-            <directory>./lib</directory>
+            <directory>./src</directory>
             <exclude>
                 <directory>./samples</directory>
             </exclude>

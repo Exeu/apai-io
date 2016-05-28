@@ -38,52 +38,52 @@
 
   <!-- Generate pmd.xml -->
   <target name="phpmd">
-    <exec executable="${basedir}/vendor/bin/phpmd">
-      <arg line="${basedir}/lib xml codesize,unusedcode,naming,design
+    <exec executable="phpmd">
+      <arg line="${basedir}/src xml codesize,unusedcode,naming,design
       --reportfile ${build.dir}/logs/pmd.xml" />
     </exec>
   </target>
 
   <!-- Generate checkstyle.xml -->
   <target name="phpcs">
-    <exec executable="${basedir}/vendor/bin/phpcs" output="/dev/null">
+    <exec executable="phpcs" output="/dev/null">
       <arg line="--report=checkstyle
               --report-file=${build.dir}/logs/checkstyle.xml
               --standard=PSR2
-              ${basedir}/lib" />
+              ${basedir}/src" />
     </exec>
   </target>
 
   <!-- Generate jdepend.xml and software metrics charts -->
   <target name="pdepend">
-    <exec executable="${basedir}/vendor/bin/pdepend">
+    <exec executable="pdepend">
       <arg line="--jdepend-xml=${build.dir}/logs/jdepend.xml
               --jdepend-chart=${build.dir}/logs/jdepend-chart.svg
               --overview-pyramid=${build.dir}/logs/jdepend-pyramid.svg
-              ${basedir}/lib" />
+              ${basedir}/src" />
     </exec>
   </target>
 
   <!-- Generate pmd-cpd.xml -->
   <target name="phpcpd">
-    <exec executable="${basedir}/vendor/bin/phpcpd">
+    <exec executable="phpcpd">
       <arg line="--log-pmd ${build.dir}/logs/pmd-cpd.xml
-              ${basedir}/lib" />
+              ${basedir}/src" />
     </exec>
   </target>
 
   <!-- Generate phploc.xml -->
   <target name="phploc">
-    <exec executable="${basedir}/vendor/bin/phploc">
+    <exec executable="phploc">
       <arg line="--log-xml ${build.dir}/logs/phploc.xml
-              ${basedir}/lib" />
+              ${basedir}/src" />
     </exec>
   </target>
 
   <target name="phpcb">
-    <exec executable="${basedir}/vendor/bin/phpcb">
+    <exec executable="phpcb">
       <arg line="--log=${build.dir}/logs
-              --source=${basedir}/lib
+              --source=${basedir}/src
               --output=${build.dir}/code-browser" />
     </exec>
   </target>

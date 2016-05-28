@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,21 +23,20 @@ use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\BrowseNodeLookup;
 
 $conf = new GenericConfiguration();
+$client = new \GuzzleHttp\Client();
+$request = new \ApaiIO\Request\GuzzleRequest($client);
 
 try {
     $conf
         ->setCountry('de')
         ->setAccessKey(AWS_API_KEY)
         ->setSecretKey(AWS_API_SECRET_KEY)
-        ->setAssociateTag(AWS_ASSOCIATE_TAG);
+        ->setAssociateTag(AWS_ASSOCIATE_TAG)
+        ->setRequest($request);
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
 $apaiIO = new ApaiIO($conf);
-
-// Changing to SOAP and ObjectToArray ResponseTransformer
-$conf->setRequest('\ApaiIO\Request\Soap\Request');
-$conf->setResponseTransformer(new \ApaiIO\ResponseTransformer\ObjectToArray());
 
 $browseNodeLookup = new BrowseNodeLookup();
 $browseNodeLookup->setNodeId(542064);

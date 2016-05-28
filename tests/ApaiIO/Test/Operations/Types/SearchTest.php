@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ class SearchTest extends \PHPUnit_Framework_TestCase
 
         $object = $search->setMaximumPrice(100);
 
-        static::assertSame($search, $object);
-        static::assertEquals(100, $search->getMaximumPrice());
+        $this->assertSame($search, $object);
+        $this->assertEquals(100, $search->getMaximumPrice());
     }
 
     public function testMinimumPriceGetterAndSetter()
@@ -55,8 +55,8 @@ class SearchTest extends \PHPUnit_Framework_TestCase
 
         $object = $search->setMinimumPrice(100);
 
-        static::assertSame($search, $object);
-        static::assertEquals(100, $search->getMinimumPrice());
+        $this->assertSame($search, $object);
+        $this->assertEquals(100, $search->getMinimumPrice());
     }
 
     /**
@@ -73,92 +73,92 @@ class SearchTest extends \PHPUnit_Framework_TestCase
         $search = new Search();
         $search->setPage(1);
 
-        static::assertEquals(1, $search->getItemPage());
+        $this->assertEquals(1, $search->getItemPage());
     }
 
     public function testConditionGetterAndSetter()
     {
         $search = new Search();
         $search->setCondition('All');
-        static::assertEquals('All', $search->getCondition());
+        $this->assertEquals('All', $search->getCondition());
     }
 
     public function testAvailabilityGetterAndSetter()
     {
         $search = new Search();
         $search->setAvailability('Available');
-        static::assertEquals('Available', $search->getAvailability());
+        $this->assertEquals('Available', $search->getAvailability());
     }
 
     public function testNodeGetterAndSetter()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getBrowseNode());
+        $this->assertEquals(null, $search->getBrowseNode());
         $search->setBrowseNode(10967581);
-        static::assertEquals(10967581, $search->getBrowseNode());
+        $this->assertEquals(10967581, $search->getBrowseNode());
     }
 
     public function testGetCategory()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getCategory());
+        $this->assertEquals(null, $search->getCategory());
         $search->setCategory('All');
-        static::assertEquals('All', $search->getCategory());
+        $this->assertEquals('All', $search->getCategory());
     }
 
     public function testGetKeywords()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getKeywords());
+        $this->assertEquals(null, $search->getKeywords());
         $search->setKeywords('4k tv');
-        static::assertEquals('4k tv', $search->getKeywords());
+        $this->assertEquals('4k tv', $search->getKeywords());
     }
 
     public function testGetPage()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getPage());
+        $this->assertEquals(null, $search->getPage());
         $search->setPage(3);
-        static::assertEquals(3, $search->getPage());
+        $this->assertEquals(3, $search->getPage());
     }
 
     public function testGetMinimumPrice()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getMinimumPrice());
+        $this->assertEquals(null, $search->getMinimumPrice());
         $search->setMinimumPrice(899);
-        static::assertEquals(899, $search->getMinimumPrice());
+        $this->assertEquals(899, $search->getMinimumPrice());
     }
 
     public function testGetMaximumPrice()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getMaximumPrice());
+        $this->assertEquals(null, $search->getMaximumPrice());
         $search->setMaximumPrice(899);
-        static::assertEquals(899, $search->getMaximumPrice());
+        $this->assertEquals(899, $search->getMaximumPrice());
     }
 
     public function testGetCondition()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getCondition());
+        $this->assertEquals(null, $search->getCondition());
         $search->setCondition('Collectible');
-        static::assertEquals('Collectible', $search->getCondition());
+        $this->assertEquals('Collectible', $search->getCondition());
     }
 
     public function testGetAvailability()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getAvailability());
+        $this->assertEquals(null, $search->getAvailability());
         $search->setAvailability('Available');
-        static::assertEquals('Available', $search->getAvailability());
+        $this->assertEquals('Available', $search->getAvailability());
     }
 
     public function testGetBrowseNode()
     {
         $search = new Search();
-        static::assertEquals(null, $search->getBrowseNode());
+        $this->assertEquals(null, $search->getBrowseNode());
         $search->setBrowseNode(123);
-        static::assertEquals(123, $search->getBrowseNode());
+        $this->assertEquals(123, $search->getBrowseNode());
     }
 }
