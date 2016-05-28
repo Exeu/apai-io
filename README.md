@@ -59,7 +59,7 @@ use ApaiIO\ApaiIO;
 
 $conf = new GenericConfiguration();
 $client = new \GuzzleHttp\Client();
-$request = new \ApaiIO\Request\Rest\Request($client);
+$request = new \ApaiIO\Request\GuzzleRequest($client);
 
 $conf
     ->setCountry('com')

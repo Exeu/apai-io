@@ -33,39 +33,6 @@ Built in Responsetransformer
 
 apai-io comes with some build in ResponseTransfomer classes.
 
-ObjectToArray
-_____________
-
-The ObjectToArray ResponseTransformer transforms Objects (stdClass) to an array. Its basicly used when you decided to make SOAP requests.
-
-You can pass the fully quallified class name to the configuration object which you use:
-
-.. code-block:: php
-
-    use ApaiIO\Configuration\GenericConfiguration;
-    use ApaiIO\ApaiIO;
-
-    $conf = new GenericConfiguration();
-    $conf
-        ->setCountry('com')
-        ->setAccessKey(AWS_API_KEY)
-        ->setSecretKey(AWS_API_SECRET_KEY)
-        ->setAssociateTag(AWS_ASSOCIATE_TAG)
-        ->setRequest('\ApaiIO\Request\Soap\Request')
-        ->setResponseTransformer('\ApaiIO\ResponseTransformer\ObjectToArray');
-
-    $apaiIo = new ApaiIO($conf);
-
-    // ... Preparing your operation
-
-    $response = $apaiIo->runOperation($operation);
-
-If you run this code the $response will be an array containing the whole response from the amazon api.
-
-You now can access the key you want or iterate over it.
-
-Note: This will only work if you are going to make SOAP Requests.
-
 XmlToDomDocument
 ________________
 
@@ -80,13 +47,17 @@ The XmlToDomDocument transformer transforms the XML-Response to an instance of \
     use ApaiIO\Configuration\GenericConfiguration;
     use ApaiIO\ApaiIO;
 
+    $client = new \GuzzleHttp\Client();
+    $request = new \ApaiIO\Request\GuzzleRequest($client);
+
     $conf = new GenericConfiguration();
     $conf
         ->setCountry('com')
         ->setAccessKey(AWS_API_KEY)
         ->setSecretKey(AWS_API_SECRET_KEY)
         ->setAssociateTag(AWS_ASSOCIATE_TAG)
-        ->setResponseTransformer('\ApaiIO\ResponseTransformer\XmlToDomDocument');
+        ->setRequest($request)
+        ->setResponseTransformer(new \ApaiIO\ResponseTransformer\XmlToDomDocument());
 
     $apaiIo = new ApaiIO($conf);
 
@@ -109,12 +80,16 @@ What XSLT is, you can see here: Wikipedia :)
 
     $xsltResponseTransformer = new Xslt($xstlTemplate); // $xstlTemplate -> String
 
+    $client = new \GuzzleHttp\Client();
+    $request = new \ApaiIO\Request\GuzzleRequest($client);
+
     $conf = new GenericConfiguration();
     $conf
         ->setCountry('com')
         ->setAccessKey(AWS_API_KEY)
         ->setSecretKey(AWS_API_SECRET_KEY)
         ->setAssociateTag(AWS_ASSOCIATE_TAG)
+        ->setRequest($request)
         ->setResponseTransformer($xsltResponseTransformer);
 
     $apaiIo = new ApaiIO($conf);
@@ -159,12 +134,16 @@ Now you have build the class you can use it out of the box:
 
     $itemSearchXmlToItems = new ItemSearchXmlToItems();
 
+    $client = new \GuzzleHttp\Client();
+    $request = new \ApaiIO\Request\GuzzleRequest($client);
+
     $conf = new GenericConfiguration();
     $conf
         ->setCountry('com')
         ->setAccessKey(AWS_API_KEY)
         ->setSecretKey(AWS_API_SECRET_KEY)
         ->setAssociateTag(AWS_ASSOCIATE_TAG)
+        ->setRequest($request)
         ->setResponseTransformer($itemSearchXmlToItems);
 
     $apaiIo = new ApaiIO($conf);
@@ -173,7 +152,7 @@ Now you have build the class you can use it out of the box:
 
     $response = $apaiIo->runOperation($operation);
 
-If you dont want to instanciate the object you can pass the fully quallified class name:
+If you dont want to instantiate the object you can pass the fully qualified class name:
 
 .. code-block:: php
 
