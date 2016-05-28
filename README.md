@@ -19,7 +19,7 @@ You can try it out with the new demo site: http://apaiio.dev.pixel-web.org/
 
 The documentation is currently under construction.
 
-You can read here: http://apai-io.pixel-web.org
+You can read here: http://docs.pixel-web.org/apai-io/master/
 
 ## Installation
 
