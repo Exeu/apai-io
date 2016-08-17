@@ -32,7 +32,7 @@ trait OperationTrait
      *
      * @param array $responseGroup The responsegroup as an array
      *
-     * @see http://docs.aws.amazon.com/AWSECommerceService/2011-08-01/DG/CHAP_ResponseGroupsList.html
+     * @see http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_ResponseGroupsList.html
      */
     public function setResponseGroup(array $responseGroup)
     {
