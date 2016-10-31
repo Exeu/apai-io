@@ -47,6 +47,19 @@ class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Genf', $simpleXML->eintrag[0]->stichwort);
     }
 
+    public function testObjectToArray()
+    {
+        $transformer = new ObjectToArray();
+
+        $sampleXML = $this->getSampleXMLResponse();
+
+        $array = $transformer->transform($sampleXML);
+
+        $this->assertInternalType('array', $array);
+        $this->assertEquals('Wikipedia Städteverzeichnis', $array['titel']);
+        $this->assertEquals('Genf', $array['eintrag']['0']['stichwort']);
+    }
+
     /**
      * @return string
      */
