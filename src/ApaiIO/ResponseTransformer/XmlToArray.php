@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2013 Jan Eichhorn <exeu65@googlemail.com>
+ * Copyright 2016 Jan Eichhorn <exeu65@googlemail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,15 +20,18 @@ namespace ApaiIO\ResponseTransformer;
 /**
  * A responsetransformer transforming an object to an array
  *
- * @author Jan Eichhorn <exeu65@googlemail.com>
+ * @author Badal Surana <badalsurana122@gmail.com>
  */
-class ObjectToArray implements ResponseTransformerInterface
+class XmlToArray implements ResponseTransformerInterface
 {
     /**
      * {@inheritdoc}
      */
     public function transform($response)
     {
-        return json_decode(json_encode(simplexml_load_string($response)), true);
+        $simpleXml = simplexml_load_string($response);
+        $array     = json_decode(json_encode($simpleXml), true);
+
+        return $array;
     }
 }

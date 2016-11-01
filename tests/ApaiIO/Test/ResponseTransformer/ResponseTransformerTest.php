@@ -17,7 +17,7 @@
 
 namespace ApaiIO\Test\ResponseTransformer;
 
-use ApaiIO\ResponseTransformer\ObjectToArray;
+use ApaiIO\ResponseTransformer\XmlToArray;
 use ApaiIO\ResponseTransformer\XmlToDomDocument;
 use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;
 
@@ -47,9 +47,9 @@ class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Genf', $simpleXML->eintrag[0]->stichwort);
     }
 
-    public function testObjectToArray()
+    public function testXmlToArray()
     {
-        $transformer = new ObjectToArray();
+        $transformer = new XmlToArray();
 
         $sampleXML = $this->getSampleXMLResponse();
 
