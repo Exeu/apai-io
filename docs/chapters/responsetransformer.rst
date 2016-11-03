@@ -65,12 +65,40 @@ The XmlToDomDocument transformer transforms the XML-Response to an instance of \
 
     $response = $apaiIo->runOperation($operation);
 
+XmlToArray
+________________
+
+The XmlToArray transformer transforms the XML-Response to an Array.
+
+.. code-block:: php
+
+    use ApaiIO\Configuration\GenericConfiguration;
+    use ApaiIO\ApaiIO;
+
+    $client = new \GuzzleHttp\Client();
+    $request = new \ApaiIO\Request\GuzzleRequest($client);
+
+    $conf = new GenericConfiguration();
+    $conf
+        ->setCountry('com')
+        ->setAccessKey(AWS_API_KEY)
+        ->setSecretKey(AWS_API_SECRET_KEY)
+        ->setAssociateTag(AWS_ASSOCIATE_TAG)
+        ->setRequest($request)
+        ->setResponseTransformer(new \ApaiIO\ResponseTransformer\XmlToArray());
+
+    $apaiIo = new ApaiIO($conf);
+
+    // ... Preparing your operation
+
+    $response = $apaiIo->runOperation($operation);
+
 Xslt
 ____
 
 If you want to transform a XML to a for example usage ready HTML you can use the XSLT Transformer.
 
-What XSLT is, you can see here: Wikipedia :)
+What XSLT is, you can see here: https://en.wikipedia.org/wiki/XSLT :)
 
 .. code-block:: php
 
