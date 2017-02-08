@@ -114,6 +114,14 @@ class SearchTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('4k tv', $search->getKeywords());
     }
 
+    public function testGetSort()
+    {
+        $search = new Search();
+        $this->assertEquals(null, $search->getSort());
+        $search->setSort('salesrank');
+        $this->assertEquals('salesrank', $search->getSort());
+    }
+
     public function testGetPage()
     {
         $search = new Search();
