@@ -84,6 +84,30 @@ class Search extends AbstractOperation
     }
 
     /**
+     * Returns the sort
+     *
+     * @return string
+     */
+    public function getSort()
+    {
+        return $this->getSingleOperationParameter('Sort');
+    }
+
+    /**
+     * Sets the sort
+     *
+     * @param string $sort
+     *
+     * @return \ApaiIO\Operations\Search
+     */
+    public function setSort($sort)
+    {
+        $this->parameters['Sort'] = $sort;
+
+        return $this;
+    }
+
+    /**
      * Return the resultpage
      *
      * @return integer
