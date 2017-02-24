@@ -33,7 +33,7 @@ use ApaiIO\Operations\OperationInterface;
  */
 class ApaiIO
 {
-    const VERSION = "2.0.0-DEV";
+    const VERSION = "2.1.0";
 
     /**
      * Configuration.
