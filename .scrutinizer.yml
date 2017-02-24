@@ -12,23 +12,24 @@ tools:
             excluded_paths: ["*/tests/*", "*/samples/*"]
     sensiolabs_security_checker: true
     php_code_coverage: true
-    external_code_coverage: true
 before_commands:
     - "composer install --prefer-source"
 
 checks:
-    php:
-        unreachable_code: true
-        unused_methods: true
-        unused_parameters: true
-        parameter_doc_comments: true
-        no_debug_code: true
-        deadlock_detection_in_loops: true
-        deprecated_code_usage: true
-        code_rating: true
-        duplication: true
+    php: true
 
 filter:
     excluded_paths:
         - tests/*
         - samples/*
+
+build:
+    environment:
+        php: 7.0.6
+    tests:
+        override:
+            -
+                command: 'php vendor/bin/phpunit --coverage-clover build/coverage.xml'
+                coverage:
+                    file: 'build/coverage.xml'
+                    format: 'clover'
