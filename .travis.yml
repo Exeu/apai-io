@@ -2,6 +2,8 @@ language: php
 
 sudo: false
 
+dist: trusty
+
 matrix:
     include:
         - php: '5.6'
