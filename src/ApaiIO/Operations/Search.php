@@ -274,7 +274,7 @@ class Search extends AbstractOperation
     protected function validatePrice($price)
     {
         if (false === is_numeric($price) || $price < 0) {
-            throw new \InvalidArgumentException(sprintf('%s is an invalid price value. It has to be numeric and >= than 1',
+            throw new \InvalidArgumentException(sprintf('%s is an invalid price value. It has to be numeric and >= than 0',
                     $price));
         }
     }
