@@ -18,15 +18,29 @@
 namespace ApaiIO\Configuration;
 
 /**
- * Countryvalidation and countrylistings according to the amazonapi
+ * Country validation and country listings according to the amazon api
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
 final class Country
 {
+    const AMERICA = 'com';
+    const AUSTRALIA = 'com.au';
+    const BRAZIL = 'com.br';
+    const CANADA = 'ca';
+    const CHINA = 'cn';
+    const FRANCE = 'fr';
+    const GERMANY = 'de';
+    const INDIA = 'in';
+    const ITALY = 'it';
+    const JAPAN = 'co.jp';
+    const MEXICO = 'com.mx';
+    const SPAIN = 'es';
+    const UNITED_KINGDOM = 'co.uk';
+
     /**
      * Possible countries
-     * Important for the requestendpoints
+     * Important for the request endpoints
      *
      * @var array
      */
@@ -65,8 +79,6 @@ final class Country
      */
     public static function isValidCountry($country)
     {
-        $isValid = in_array(strtolower($country), self::$countryList) ? true : false;
-
-        return $isValid;
+        return in_array(strtolower($country), self::$countryList);
     }
 }
