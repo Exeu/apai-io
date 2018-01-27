@@ -20,6 +20,7 @@ require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Con
 
 use ApaiIO\ApaiIO;
 use ApaiIO\Configuration\GenericConfiguration;
+use ApaiIO\Configuration\Country;
 use ApaiIO\Operations\CartAdd;
 use ApaiIO\Operations\CartCreate;
 
@@ -29,7 +30,7 @@ $request = new \ApaiIO\Request\GuzzleRequest($client);
 
 try {
     $conf
-        ->setCountry('de')
+        ->setCountry(Country::GERMANY)
         ->setAccessKey(AWS_API_KEY)
         ->setSecretKey(AWS_API_SECRET_KEY)
         ->setAssociateTag(AWS_ASSOCIATE_TAG)
