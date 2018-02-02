@@ -24,7 +24,7 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     public function testCountryList()
     {
         $this->assertEquals(
-            ['de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es', 'in', 'com.br', 'com.mx', 'com.au'],
+            ['com.au', 'com.br', 'ca', 'cn', 'fr', 'de', 'in', 'com', 'it', 'co.jp', 'com.mx', 'es', 'co.uk'],
             Country::getCountries()
         );
     }
