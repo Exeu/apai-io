@@ -37,7 +37,7 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     public function testValidCountry()
     {
         $this->assertTrue(Country::isValidCountry('com'));
-        $this->assertTrue(Country::isValidCountry(Country::AMERICA));
+        $this->assertTrue(Country::isValidCountry(Country::INTERNATIONAL));
         $this->assertTrue(Country::isValidCountry(Country::AUSTRALIA));
         $this->assertTrue(Country::isValidCountry(Country::BRAZIL));
         $this->assertTrue(Country::isValidCountry(Country::CANADA));

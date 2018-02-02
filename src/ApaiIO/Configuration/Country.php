@@ -24,7 +24,6 @@ namespace ApaiIO\Configuration;
  */
 final class Country
 {
-    const AMERICA = 'com';
     const AUSTRALIA = 'com.au';
     const BRAZIL = 'com.br';
     const CANADA = 'ca';
@@ -32,6 +31,7 @@ final class Country
     const FRANCE = 'fr';
     const GERMANY = 'de';
     const INDIA = 'in';
+    const INTERNATIONAL = 'com';
     const ITALY = 'it';
     const JAPAN = 'co.jp';
     const MEXICO = 'com.mx';
@@ -45,19 +45,19 @@ final class Country
      * @var array
      */
     private static $countryList = [
-        'de',
-        'com',
-        'co.uk',
-        'ca',
-        'fr',
-        'co.jp',
-        'it',
-        'cn',
-        'es',
-        'in',
-        'com.br',
-        'com.mx',
-        'com.au'
+        self::AUSTRALIA,
+        self::BRAZIL,
+        self::CANADA,
+        self::CHINA,
+        self::FRANCE,
+        self::GERMANY,
+        self::INDIA,
+        self::INTERNATIONAL,
+        self::ITALY,
+        self::JAPAN,
+        self::MEXICO,
+        self::SPAIN,
+        self::UNITED_KINGDOM
     ];
 
     /**
@@ -73,7 +73,7 @@ final class Country
     /**
      * Checks if the given value is a valid country
      *
-     * @param string  $country
+     * @param string $country
      *
      * @return boolean
      */
