@@ -18,32 +18,46 @@
 namespace ApaiIO\Configuration;
 
 /**
- * Countryvalidation and countrylistings according to the amazonapi
+ * Country validation and country listings according to the amazon api
  *
  * @author Jan Eichhorn <exeu65@googlemail.com>
  */
 final class Country
 {
+    const AUSTRALIA = 'com.au';
+    const BRAZIL = 'com.br';
+    const CANADA = 'ca';
+    const CHINA = 'cn';
+    const FRANCE = 'fr';
+    const GERMANY = 'de';
+    const INDIA = 'in';
+    const INTERNATIONAL = 'com';
+    const ITALY = 'it';
+    const JAPAN = 'co.jp';
+    const MEXICO = 'com.mx';
+    const SPAIN = 'es';
+    const UNITED_KINGDOM = 'co.uk';
+
     /**
      * Possible countries
-     * Important for the requestendpoints
+     * Important for the request endpoints
      *
      * @var array
      */
     private static $countryList = [
-        'de',
-        'com',
-        'co.uk',
-        'ca',
-        'fr',
-        'co.jp',
-        'it',
-        'cn',
-        'es',
-        'in',
-        'com.br',
-        'com.mx',
-        'com.au'
+        self::AUSTRALIA,
+        self::BRAZIL,
+        self::CANADA,
+        self::CHINA,
+        self::FRANCE,
+        self::GERMANY,
+        self::INDIA,
+        self::INTERNATIONAL,
+        self::ITALY,
+        self::JAPAN,
+        self::MEXICO,
+        self::SPAIN,
+        self::UNITED_KINGDOM
     ];
 
     /**
@@ -59,14 +73,12 @@ final class Country
     /**
      * Checks if the given value is a valid country
      *
-     * @param string  $country
+     * @param string $country
      *
      * @return boolean
      */
     public static function isValidCountry($country)
     {
-        $isValid = in_array(strtolower($country), self::$countryList) ? true : false;
-
-        return $isValid;
+        return in_array(strtolower($country), self::$countryList);
     }
 }

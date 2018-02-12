@@ -24,7 +24,7 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     public function testCountryList()
     {
         $this->assertEquals(
-            ['de', 'com', 'co.uk', 'ca', 'fr', 'co.jp', 'it', 'cn', 'es', 'in', 'com.br', 'com.mx', 'com.au'],
+            ['com.au', 'com.br', 'ca', 'cn', 'fr', 'de', 'in', 'com', 'it', 'co.jp', 'com.mx', 'es', 'co.uk'],
             Country::getCountries()
         );
     }
@@ -37,5 +37,18 @@ class CountryTest extends \PHPUnit_Framework_TestCase
     public function testValidCountry()
     {
         $this->assertTrue(Country::isValidCountry('com'));
+        $this->assertTrue(Country::isValidCountry(Country::INTERNATIONAL));
+        $this->assertTrue(Country::isValidCountry(Country::AUSTRALIA));
+        $this->assertTrue(Country::isValidCountry(Country::BRAZIL));
+        $this->assertTrue(Country::isValidCountry(Country::CANADA));
+        $this->assertTrue(Country::isValidCountry(Country::CHINA));
+        $this->assertTrue(Country::isValidCountry(Country::FRANCE));
+        $this->assertTrue(Country::isValidCountry(Country::GERMANY));
+        $this->assertTrue(Country::isValidCountry(Country::INDIA));
+        $this->assertTrue(Country::isValidCountry(Country::ITALY));
+        $this->assertTrue(Country::isValidCountry(Country::JAPAN));
+        $this->assertTrue(Country::isValidCountry(Country::MEXICO));
+        $this->assertTrue(Country::isValidCountry(Country::SPAIN));
+        $this->assertTrue(Country::isValidCountry(Country::UNITED_KINGDOM));
     }
 }
