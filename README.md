@@ -44,7 +44,7 @@ Composer will generate the autoloader file automaticly. So you only have to incl
 Typically its located in the vendor dir and its called autoload.php
 
 ## Basic Usage:
-This library is using the PSR-0 standard: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+This library is using the PSR-4 standard: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
 So you can use any autoloader which fits into this standard.
 The tests directory contains an example bootstrap file.
 
