@@ -24,23 +24,11 @@ You can read here: http://apai-io.readthedocs.io/en/latest/
 
 ### Composer
 
-Add apai-io in your composer.json or create a new composer.json:
-
-```js
-{
-    "require": {
-        "exeu/apai-io": "~2.0"
-    }
-}
-```
-
-Now tell composer to download the library by running the command:
-
 ``` bash
-$ php composer.phar install
+$ composer require exeu/apai-io
 ```
 
-Composer will generate the autoloader file automaticly. So you only have to include this.
+Composer will generate the autoloader file automaticaly. So you only have to include this.
 Typically its located in the vendor dir and its called autoload.php
 
 ## Basic Usage:
