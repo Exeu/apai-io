@@ -20,8 +20,9 @@ namespace ApaiIO\Test;
 use ApaiIO\ApaiIO;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Search;
+use PHPUnit\Framework\TestCase;
 
-class ApaiIOTest extends \PHPUnit_Framework_TestCase
+class ApaiIOTest extends TestCase
 {
     public function testApaiIORequestPerfomOperation()
     {

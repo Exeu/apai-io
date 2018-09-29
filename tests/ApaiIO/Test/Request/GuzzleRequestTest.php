@@ -22,8 +22,9 @@ use ApaiIO\Operations\Lookup;
 use ApaiIO\Request\GuzzleRequest;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class GuzzleRequestTest extends \PHPUnit_Framework_TestCase
+class GuzzleRequestTest extends TestCase
 {
     public function testPerform()
     {

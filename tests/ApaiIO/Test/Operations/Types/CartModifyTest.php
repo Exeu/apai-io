@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\CartModify;
+use PHPUnit\Framework\TestCase;
 
-class CartModifyTest extends \PHPUnit_Framework_TestCase
+class CartModifyTest extends TestCase
 {
     public function testSetter()
     {
@@ -88,7 +89,7 @@ class CartModifyTest extends \PHPUnit_Framework_TestCase
     {
         $operation = new CartModify();
         $operation->modifyAction('dummyId1', 'MoveToCart');
-        
+
         $this->assertEquals(1, count($operation));
     }
 

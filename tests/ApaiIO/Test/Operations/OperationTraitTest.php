@@ -17,8 +17,9 @@
 
 namespace ApaiIO\Test\Operations;
 
+use PHPUnit\Framework\TestCase;
 
-class OperationTraitTest extends \PHPUnit_Framework_TestCase
+class OperationTraitTest extends TestCase
 {
     public function testOperationTrait()
     {

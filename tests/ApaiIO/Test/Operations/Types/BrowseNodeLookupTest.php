@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\BrowseNodeLookup;
+use PHPUnit\Framework\TestCase;
 
-class BrowseNodeLookupTest extends \PHPUnit_Framework_TestCase
+class BrowseNodeLookupTest extends TestCase
 {
     public function testSetter()
     {

@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\SimilarityLookup;
+use PHPUnit\Framework\TestCase;
 
-class SimilarityLookupTest extends \PHPUnit_Framework_TestCase
+class SimilarityLookupTest extends TestCase
 {
     public function testSetter()
     {

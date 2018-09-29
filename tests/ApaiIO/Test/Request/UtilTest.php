@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Request;
 
 use ApaiIO\Request\Util;
+use PHPUnit\Framework\TestCase;
 
-class UtilTest extends \PHPUnit_Framework_TestCase
+class UtilTest extends TestCase
 {
     public function testSignature()
     {
