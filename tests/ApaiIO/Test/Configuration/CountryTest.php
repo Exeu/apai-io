@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Configuration;
 
 use ApaiIO\Configuration\Country;
+use PHPUnit\Framework\TestCase;
 
-class CountryTest extends \PHPUnit_Framework_TestCase
+class CountryTest extends TestCase
 {
     public function testCountryList()
     {

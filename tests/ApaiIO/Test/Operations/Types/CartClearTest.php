@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\CartClear;
+use PHPUnit\Framework\TestCase;
 
-class CartClearTest extends \PHPUnit_Framework_TestCase
+class CartClearTest extends TestCase
 {
     public function testSetter()
     {

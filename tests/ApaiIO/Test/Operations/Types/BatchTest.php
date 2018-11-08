@@ -20,8 +20,9 @@ namespace ApaiIO\Test\Operations\Types;
 use ApaiIO\Operations\Batch;
 use ApaiIO\Operations\Lookup;
 use ApaiIO\Operations\Search;
+use PHPUnit\Framework\TestCase;
 
-class BatchTest extends \PHPUnit_Framework_TestCase
+class BatchTest extends TestCase
 {
     public function testAddOperation()
     {

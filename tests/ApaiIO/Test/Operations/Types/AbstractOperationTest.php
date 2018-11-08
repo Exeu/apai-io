@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\Search;
+use PHPUnit\Framework\TestCase;
 
-class AbstractOperationTest extends \PHPUnit_Framework_TestCase
+class AbstractOperationTest extends TestCase
 {
     public function testAbstractOperationSetterAndGetter()
     {

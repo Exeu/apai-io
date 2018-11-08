@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\Lookup;
+use PHPUnit\Framework\TestCase;
 
-class LookupTest extends \PHPUnit_Framework_TestCase
+class LookupTest extends TestCase
 {
     public function testSetter()
     {

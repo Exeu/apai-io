@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\Search;
+use PHPUnit\Framework\TestCase;
 
-class SearchTest extends \PHPUnit_Framework_TestCase
+class SearchTest extends TestCase
 {
     /**
      * @expectedException InvalidArgumentException

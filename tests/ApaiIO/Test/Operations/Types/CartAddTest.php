@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\CartAdd;
+use PHPUnit\Framework\TestCase;
 
-class CartAddTest extends \PHPUnit_Framework_TestCase
+class CartAddTest extends TestCase
 {
     public function testSetter()
     {

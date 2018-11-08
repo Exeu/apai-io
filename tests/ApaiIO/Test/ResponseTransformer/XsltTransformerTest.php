@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\ResponseTransformer;
 
 use ApaiIO\ResponseTransformer\Xslt;
+use PHPUnit\Framework\TestCase;
 
-class XsltTransformerTest extends \PHPUnit_Framework_TestCase
+class XsltTransformerTest extends TestCase
 {
     protected function setUp()
     {

@@ -20,8 +20,9 @@ namespace ApaiIO\Test\Configuration;
 use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Request\GuzzleRequest;
 use ApaiIO\ResponseTransformer\XmlToDomDocument;
+use PHPUnit\Framework\TestCase;
 
-class GenericConfigurationTest extends \PHPUnit_Framework_TestCase
+class GenericConfigurationTest extends TestCase
 {
     public function testGettersAndSetters()
     {

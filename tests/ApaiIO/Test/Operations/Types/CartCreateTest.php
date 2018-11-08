@@ -18,8 +18,9 @@
 namespace ApaiIO\Test\Operations\Types;
 
 use ApaiIO\Operations\CartCreate;
+use PHPUnit\Framework\TestCase;
 
-class CartCreateTest extends \PHPUnit_Framework_TestCase
+class CartCreateTest extends TestCase
 {
     /**
      * the subject

@@ -20,8 +20,9 @@ namespace ApaiIO\Test\ResponseTransformer;
 use ApaiIO\ResponseTransformer\XmlToArray;
 use ApaiIO\ResponseTransformer\XmlToDomDocument;
 use ApaiIO\ResponseTransformer\XmlToSimpleXmlObject;
+use PHPUnit\Framework\TestCase;
 
-class ResponseTransformerTest extends \PHPUnit_Framework_TestCase
+class ResponseTransformerTest extends TestCase
 {
     public function testXmlToDomDocument()
     {
