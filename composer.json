@@ -31,5 +31,8 @@
     },
     "autoload": {
         "psr-4": { "ApaiIO\\": "src/ApaiIO" }
+    },
+    "autoload-dev": {
+        "psr-4": { "ApaiIO\\": "tests/ApaiIO" }
     }
 }
