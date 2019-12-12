@@ -1,3 +1,8 @@
+# DISCONTINUED
+
+If you want to implement new features you can still fork and enhance this repo.
+Please let me know if you plan to enhance this library then i can add your fork to this list.
+
 # apai-io
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exeu/apai-io/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exeu/apai-io/?branch=master)
